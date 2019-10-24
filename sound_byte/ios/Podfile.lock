@@ -127,7 +127,9 @@ PODS:
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
-  - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
+  - Firebase/Analytics
+  - Firebase/Core
+  - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_database (from `.symlinks/plugins/firebase_database/ios`)
   - Flutter (from `.symlinks/flutter/ios`)

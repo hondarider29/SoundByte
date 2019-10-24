@@ -9,7 +9,7 @@ class User
   
   User(String username, int id)
   {
-    //this.userID = username "#" this.formatter.format(id);
+    this.userID = username + "#"  + this.formatter.format(id);
   }
 
   // Returns only the 4 digit int
