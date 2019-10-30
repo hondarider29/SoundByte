@@ -15,4 +15,8 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
     );
   }
+
+  bool testFunction() {
+    return true;
+  }
 }
