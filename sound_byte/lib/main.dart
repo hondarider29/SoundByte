@@ -25,4 +25,8 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+
+  bool testFunction() {
+    return true;
+  }
 }
