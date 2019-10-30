@@ -10,13 +10,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Sound Byte',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: PageView(
         children: <Widget>[
-          HomePage(),
           ChatScreen(),
+          HomePage(),
           Container(
             color: Colors.green,
           ),
