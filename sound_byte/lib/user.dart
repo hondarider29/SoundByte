@@ -24,8 +24,8 @@ class User
   }
 
   @override
-  bool operator ==(Object other)
-  {
-    return other is User && this.userID == other.userID;
-  }
+  bool operator ==(Object other) => other is User && this.userID == other.userID;
+
+  @override
+  int get hashCode => userID.hashCode;
 }
