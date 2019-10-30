@@ -73,7 +73,11 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "1.5.0"
+=======
+    version: "1.8.0+1"
+>>>>>>> Update
   quiver:
     dependency: transitive
     description:
@@ -143,4 +147,8 @@ packages:
     source: hosted
     version: "2.0.8"
 sdks:
+<<<<<<< HEAD
   dart: ">=2.2.0 <3.0.0"
+=======
+  dart: ">=2.2.2 <3.0.0"
+>>>>>>> Update
