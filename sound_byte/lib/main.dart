@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sound_byte/chatScreen.dart';
 import 'package:sound_byte/homePage.dart';
 
 void main() => runApp(MyApp());
@@ -15,9 +16,7 @@ class MyApp extends StatelessWidget {
       home: PageView(
         children: <Widget>[
           HomePage(),
-          Container(
-            color: Colors.blue,
-          ),
+          ChatScreen(),
           Container(
             color: Colors.green,
           ),
