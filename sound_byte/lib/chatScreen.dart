@@ -24,7 +24,7 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
             icon: Icon(Icons.close),
             onPressed: () {
-              Navigator.pop(context);
+              //Navigator.pop(context);
             },
           ),
         ],
@@ -41,6 +41,30 @@ class _ChatScreenState extends State<ChatScreen> {
               Colors.blue,
             ],
           ),
+        ),
+        child: Column(
+          children: <Widget>[
+            //chat bar
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Container(
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Friend Search...',
+                    contentPadding: EdgeInsets.all(12.0),
+                    hintStyle: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: new BorderRadius.all(new Radius.circular(24.0)),
+                  color: Color(0x55ffffff),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
