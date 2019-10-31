@@ -1,12 +1,15 @@
+import 'package:intl/intl.dart';
+
 class User
 {
   // UserIDs will be in the format userName#xxxx
   // Where xxxx is a 4 digit int
   String userID;
+  var formatter = new NumberFormat("0000", "en_US");
   
   User(String username, int id)
   {
-    this.userID = username + "#" + id.toString();
+    this.userID = username "#" this.formatter.format(id);
   }
 
   // Returns only the 4 digit int
