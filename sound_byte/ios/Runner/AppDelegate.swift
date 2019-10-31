@@ -1,5 +1,8 @@
 import UIKit
 import Firebase
+import UIKit
+import Flutter
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -13,10 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
-
-
-import UIKit
-import Flutter
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
