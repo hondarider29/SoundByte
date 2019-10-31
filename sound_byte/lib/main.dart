@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sound_byte/homePage.dart';
+import 'package:sound_byte/loginScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,11 +11,12 @@ class MyApp extends StatelessWidget {
       title: 'Sound Byte',
       home: PageView(
         children: <Widget>[
-          
-          HomePage(),
+          LoginScreen(),
+          /* HomePage(),
+          ChatScreen(),
           Container(
             color: Colors.green,
-          ),
+          ),*/
         ],
       ),
     );
