@@ -42,6 +42,6 @@ class User
     users.add(temp);
 
     temp = new User("Dev2", 0002);
-    usrs.add(temp);
+    users.add(temp);
   }
 }
