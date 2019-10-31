@@ -28,4 +28,20 @@ class User
 
   @override
   int get hashCode => userID.hashCode;
+
+  // Fuction to initialze the Dev Users
+  static void initDevUsers(List<User> users)
+  {
+    User temp = new User("JackSkellington", 1031);
+    users.add(temp);
+
+    temp = new User("SpookyScarySkeleton", 1031);
+    users.add(temp);
+
+    temp = new User("Dev1", 0001);
+    users.add(temp);
+
+    temp = new User("Dev2", 0002);
+    usrs.add(temp);
+  }
 }
