@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
       title: 'Sound Byte',
       home: PageView(
         children: <Widget>[
-          ChatScreen(),
           HomePage(),
+          ChatScreen(),
           Container(
             color: Colors.green,
           ),
