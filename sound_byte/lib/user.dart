@@ -13,7 +13,7 @@ class User
   }
 
   // Returns only the 4 digit int
-  int getUnquieNum()
+  int getUniqueNum()
   {
     List<String> parts = userID.split("#");
     return int.parse(parts[1]);
