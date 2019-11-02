@@ -35,11 +35,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter.
 flutter:
 
   # The following line ensures that the Material Icons font is
@@ -52,9 +47,12 @@ flutter:
         - asset: fonts/Roboto-Regular.ttf
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
-  #  - images/a_dot_ham.jpeg
+  assets:
+   - images/headShot1.jpg
+   - images/headShot2.jpg
+   - images/headShot3.jpg
+   - images/headShot4.jpg
+   - images/headShot5.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
