@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
+<<<<<<< HEAD
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sound_byte/messageBubble.dart';
+=======
+//import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:sound_byte/messageBubble.dart';
+>>>>>>> committing to rebase
 
 //final _firestore = Firestore.instance;
 //FirebaseUser loggedInUser;
@@ -31,6 +36,7 @@ class MessagesStream extends StatelessWidget {
   //           final senderText = message.data['sender'];
   //           final timeStamp = message.data['timestamp'];
 
+<<<<<<< HEAD
             //final currentUser = loggedInUser.email;
 
             //create a new message bubble widget to load
@@ -43,6 +49,20 @@ class MessagesStream extends StatelessWidget {
           //     ),
           //   );
           // }
+=======
+  //           final currentUser = loggedInUser.email;
+
+  //           //create a new message bubble widget to load
+  //           messageBubbles.add(
+  //             MessageBubble(
+  //               text: messageText,
+  //               sender: senderText,
+  //               timeStamp: timeStamp,
+  //               isMe: currentUser == senderText,
+  //             ),
+  //           );
+  //         }
+>>>>>>> committing to rebase
 
   //         //actual displaying of the messages
   //         return Expanded(
@@ -55,5 +75,9 @@ class MessagesStream extends StatelessWidget {
   //       }
   //     },
   //   );
+<<<<<<< HEAD
   }
+=======
+   }
+>>>>>>> committing to rebase
 }
