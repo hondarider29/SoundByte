@@ -79,21 +79,16 @@ class _FriendScreenState extends State<FriendScreen> {
 
               //friend list
               //TODO: add real data
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  friendButton(
-                      'images/headShot1.jpeg', "John", "this is a test"),
-                  friendButton(
-                      'images/headShot2.jpeg', "John", "this is a test"),
-                  friendButton(
-                      'images/headShot3.jpeg', "John", "this is a test"),
-                  friendButton(
-                      'images/headShot4.jpeg', "John", "this is a test"),
-                  friendButton(
-                      'images/headShot5.png', "John", "this is a test"),
-                ],
-              )
+              friendButton(
+                  'images/headShot1.jpeg', "John", "this is a test"),
+              friendButton(
+                  'images/headShot2.jpeg', "John", "this is a test"),
+              friendButton(
+                  'images/headShot3.jpeg', "John", "this is a test"),
+              friendButton(
+                  'images/headShot4.jpeg', "John", "this is a test"),
+              friendButton(
+                  'images/headShot5.png', "John", "this is a test")
             ],
           ),
         ),
