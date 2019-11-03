@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sound_byte/chatScreen.dart';
+import 'package:sound_byte/loginScreen.dart';
 
 //screen to see all recent chats with friends and access to contact list
 class FriendScreen extends StatefulWidget {
@@ -28,7 +29,10 @@ class _FriendScreenState extends State<FriendScreen> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () {
-            //Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginScreen()),
+            );
           },
         ),
       ),
@@ -53,7 +57,7 @@ class _FriendScreenState extends State<FriendScreen> {
               //friend search bar bar
               Container(
                 child: TextField(
-                  onChanged: (String input){
+                  onChanged: (String input) {
                     //TODO: update the list based on input
                   },
                   decoration: InputDecoration(
@@ -70,13 +74,13 @@ class _FriendScreenState extends State<FriendScreen> {
                   color: Color(0x55ffffff),
                 ),
               ),
-        
+
               //friend list
-              friendButton("../images/headShot1.jpg", "John", "this is a test"),
-              friendButton("../images/headShot2.jpg", "John", "this is a test"),
-              friendButton("../images/headShot3.jpg", "John", "this is a test"),
-              friendButton("../images/headShot4.jpg", "John", "this is a test"),
-              friendButton("../images/headShot5.jpg", "John", "this is a test"),
+              friendButton('images/headShot1.jpeg', "John", "this is a test"),
+              friendButton('images/headShot2.jpeg', "John", "this is a test"),
+              friendButton('images/headShot3.jpeg', "John", "this is a test"),
+              friendButton('images/headShot4.jpeg', "John", "this is a test"),
+              friendButton('images/headShot5.png', "John", "this is a test"),
             ],
           ),
         ),
@@ -105,15 +109,17 @@ class _FriendScreenState extends State<FriendScreen> {
             children: <Widget>[
               //image of friend
               //TODO: add default image if none is set
+              //Image.asset('images/headShot5.png', width: 50.0, height: 50.0),
               Container(
                 width: size,
                 height: size,
-                decoration: new BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  image: new DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage(imageName),
-                  ),
+                  color: Colors.red,
+                    image: DecorationImage(
+                      fit: BoxFit.fitHeight,
+                      image: AssetImage(imageName)
+                    ),
                 ),
               ),
               SizedBox(width: 8),

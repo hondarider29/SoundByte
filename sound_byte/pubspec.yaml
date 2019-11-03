@@ -48,13 +48,8 @@ flutter:
       fonts:
         - asset: fonts/Roboto-Regular.ttf
 
-  # To add assets to your application, add an assets section, like this:
   assets:
-   - images/headShot1.jpg
-   - images/headShot2.jpg
-   - images/headShot3.jpg
-   - images/headShot4.jpg
-   - images/headShot5.jpg
+  - images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
