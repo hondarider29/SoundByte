@@ -75,12 +75,25 @@ class _FriendScreenState extends State<FriendScreen> {
                 ),
               ),
 
+              SizedBox(height: 16),
+
               //friend list
-              friendButton('images/headShot1.jpeg', "John", "this is a test"),
-              friendButton('images/headShot2.jpeg', "John", "this is a test"),
-              friendButton('images/headShot3.jpeg', "John", "this is a test"),
-              friendButton('images/headShot4.jpeg', "John", "this is a test"),
-              friendButton('images/headShot5.png', "John", "this is a test"),
+              //TODO: add real data
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  friendButton(
+                      'images/headShot1.jpeg', "John", "this is a test"),
+                  friendButton(
+                      'images/headShot2.jpeg', "John", "this is a test"),
+                  friendButton(
+                      'images/headShot3.jpeg', "John", "this is a test"),
+                  friendButton(
+                      'images/headShot4.jpeg', "John", "this is a test"),
+                  friendButton(
+                      'images/headShot5.png', "John", "this is a test"),
+                ],
+              )
             ],
           ),
         ),
@@ -89,61 +102,65 @@ class _FriendScreenState extends State<FriendScreen> {
   }
 
   //creates a button displaying all the information about a friend
-  //TODO: clean up display of the friends
   Widget friendButton(String imageName, String name, String subText) {
     double size = 50;
 
     return Column(
       children: <Widget>[
-        FlatButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              //TODO: add name to navigator to allow chat screen to load correct conversation
-              MaterialPageRoute(
-                builder: (context) => ChatScreen(),
-              ),
-            );
-          },
-          child: Row(
-            children: <Widget>[
-              //image of friend
-              //TODO: add default image if none is set
-              //Image.asset('images/headShot5.png', width: 50.0, height: 50.0),
-              Container(
-                width: size,
-                height: size,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.red,
-                    image: DecorationImage(
-                      fit: BoxFit.fitHeight,
-                      image: AssetImage(imageName)
-                    ),
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 8),
+          decoration: BoxDecoration(
+              border: Border.all(
+                  color: Colors.white, style: BorderStyle.solid, width: 1),
+              borderRadius: BorderRadius.all(Radius.circular(16))),
+          child: FlatButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                //TODO: add name to navigator to allow chat screen to load correct conversation
+                MaterialPageRoute(
+                  builder: (context) => ChatScreen(),
                 ),
-              ),
-              SizedBox(width: 8),
-              //name and part of last sent text message
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    name,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                    ),
+              );
+            },
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                //image of friend
+                //TODO: add default image if none is set
+                Container(
+                  width: size,
+                  height: size,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.red,
+                    image: DecorationImage(
+                        fit: BoxFit.fitHeight, image: AssetImage(imageName)),
                   ),
-                  Text(
-                    subText,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
+                ),
+                SizedBox(width: 8),
+                //name and part of last sent text message
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      name,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    Text(
+                      subText,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
         SizedBox(height: 16),
