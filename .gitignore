@@ -1,3 +1,5 @@
+*.code-workspace
+
 # Miscellaneous
 *.class
 *.log
