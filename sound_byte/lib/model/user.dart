@@ -5,11 +5,13 @@ class User
   // UserIDs will be in the format userName#xxxx
   // Where xxxx is a 4 digit int
   String userID;
+  String userEmail;
   var formatter = new NumberFormat("0000", "en_US");
   
-  User(String username, int id)
+  User(String username, int id, String email)
   {
     this.userID = username + "#"  + this.formatter.format(id);
+    this.userEmail = email;
   }
 
   // Returns only the 4 digit int
@@ -35,16 +37,16 @@ class User
   // Fuction to initialze the Dev Users
   static void initDevUsers(List<User> users)
   {
-    User temp = new User("JackSkellington", 1031);
+    User temp = new User("JackSkellington", "jackskellington@gmail.com", 1031);
     users.add(temp);
 
-    temp = new User("SpookyScarySkeleton", 1031);
+    temp = new User("SpookyScarySkeleton", "spook@hotmail.com", 1031);
     users.add(temp);
 
-    temp = new User("Dev1", 0001);
+    temp = new User("Dev1", "dev@no-reply.aol.com", 0001);
     users.add(temp);
 
-    temp = new User("Dev2", 0002);
+    temp = new User("Dev2", "dev@no-reply.yahoo.com", 0002);
     users.add(temp);
   }
 }
