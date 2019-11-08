@@ -8,7 +8,7 @@ class User
   String userEmail;
   var formatter = new NumberFormat("0000", "en_US");
   
-  User(String username, int id, String email)
+  User(String username, String email, int id)
   {
     this.userID = username + "#"  + this.formatter.format(id);
     this.userEmail = email;
