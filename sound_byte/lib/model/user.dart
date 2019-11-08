@@ -6,6 +6,10 @@ class User
   // Where xxxx is a 4 digit int
   String userID;
   String userEmail;
+  // List of friends stored as userIDs
+  List<String> friends;
+  //List of Conversations by string based ID
+  List<String> conversations;
   var formatter = new NumberFormat("0000", "en_US");
   
   User(String username, String email, int id)
