@@ -1,47 +1,82 @@
 import 'package:flutter/material.dart';
+import 'package:sound_byte/messageStream.dart';
 
+//screen to display and send all chats
 class ChatScreen extends StatefulWidget {
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  TextEditingController messageTextController;
+  String messageText = '';
+
   @override
   void initState() {
-    // TODO: implement initState
+    messageTextController = new TextEditingController();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
       appBar: AppBar(
+        //back button
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Text('Byte Chat'),
         backgroundColor: Colors.lightBlueAccent,
-        elevation: 0,
-        leading: null,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.close),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+      ),
+      //messages and chat bar
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          MessagesStream(),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: new BorderRadius.all(new Radius.circular(24.0)),
+              color: Color(0x55ffffff),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    controller: messageTextController,
+                    onChanged: (value) {
+                      messageText = value;
+                    },
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Type your message here...',
+                      contentPadding: EdgeInsets.all(12.0),
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+                FlatButton(
+                  onPressed: () {
+                    //TODO: send messageText to server and reload
+                  },
+                  child: Text(
+                    'Send',
+                    style: TextStyle(
+                      color: Colors.lightBlue,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
-        title: Text('Byte Chat'),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            stops: [0.1, 0.9],
-            colors: [
-              Colors.lightBlueAccent,
-              Colors.blue,
-            ],
-          ),
-        ),
       ),
     );
   }

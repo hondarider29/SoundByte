@@ -6,35 +6,33 @@ class LoginScreen extends StatefulWidget {
 
   final String title;
 
-  @override _LoginScreenState createState() => _LoginScreenState();
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
   TextStyle style = TextStyle(fontFamily: 'Roboto', fontSize: 20.0);
-  
+
   @override
   void dispose() {
     usernameController.dispose();
     passwordController.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
-
     final usernameField = TextField(
       obscureText: false,
       style: style,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        hintText: "Username",
-        border: 
-          OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))
-      ),
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Username",
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
       controller: usernameController,
     );
 
@@ -42,11 +40,10 @@ class _LoginScreenState extends State<LoginScreen> {
       obscureText: true,
       style: style,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        hintText: "Password",
-        border: 
-          OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))
-      ),
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Password",
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
       controller: passwordController,
     );
 
@@ -65,18 +62,16 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         },
         child: Text("Login",
-          textAlign: TextAlign.center,
-          style: style.copyWith(
-            color: Colors.white, fontWeight: FontWeight.bold
-          )
-        ),
+            textAlign: TextAlign.center,
+            style: style.copyWith(
+                color: Colors.white, fontWeight: FontWeight.bold)),
       ),
     );
 
     return Scaffold(
       body: Center(
         child: Container(
-          color: Colors.red,
+          color: Colors.white,
           alignment: Alignment.center,
           child: SingleChildScrollView(
             child: Padding(
@@ -86,13 +81,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   usernameField,
                   SizedBox(height: 25.0),
                   passwordField,
-                  SizedBox(
-                    height: 35.0,
-                  ),
+                  SizedBox(height: 35.0),
                   loginButton,
-                  SizedBox(
-                    height: 15.0,
-                  ),
+                  SizedBox(height: 15.0),
                 ],
               ),
             ),
