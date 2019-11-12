@@ -1,28 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:sound_byte/loginScreen.dart';
+import 'package:sound_byte/services/authentication.dart';
+import 'package:sound_byte/pages/root_page.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(new MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Sound Byte',
-      home: PageView(
-        children: <Widget>[
-          LoginScreen(),
-          /* HomePage(),
-          ChatScreen(),
-          Container(
-            color: Colors.green,
-          ),*/
-        ],
-      ),
-    );
-  }
-
-  bool testFunction() {
-    return true;
+    return new MaterialApp(
+        title: 'SoundByte',
+        debugShowCheckedModeBanner: false,
+        theme: new ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: new RootPage(auth: new Auth()));
   }
 }
