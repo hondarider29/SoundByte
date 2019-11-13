@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('SounByte'),
+          title: Text('SoundByte'),
           actions: <Widget>[
            FlatButton(
                 child: Text('Logout',
