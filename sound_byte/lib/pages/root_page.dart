@@ -15,7 +15,7 @@ class RootPage extends StatefulWidget {
   final BaseAuth auth;
 
   @override
-  State<StatefulWidget> createState() => new _RootPageState();
+  State<StatefulWidget> createState() => _RootPageState();
 }
 
 class _RootPageState extends State<RootPage> {

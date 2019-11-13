@@ -89,9 +89,9 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('SoundByte'),
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('SoundByte'),
         ),
         body: Stack(
           children: <Widget>[
@@ -110,29 +110,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
       width: 0.0,
     );
   }
-
-//  void _showVerifyEmailSentDialog() {
-//    showDialog(
-//      context: context,
-//      builder: (BuildContext context) {
-//        // return object of type Dialog
-//        return AlertDialog(
-//          title: new Text("Verify your account"),
-//          content:
-//              new Text("Link to verify account has been sent to your email"),
-//          actions: <Widget>[
-//            new FlatButton(
-//              child: new Text("Dismiss"),
-//              onPressed: () {
-//                toggleFormMode();
-//                Navigator.of(context).pop();
-//              },
-//            ),
-//          ],
-//        );
-//      },
-//    );
-//  }
 
   Widget _showForm() {
     return new Container(
@@ -170,20 +147,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     }
   }
 
-  // Widget showLogo() {
-  //   return new Hero(
-  //     tag: 'hero',
-  //     child: Padding(
-  //       padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
-  //       child: CircleAvatar(
-  //         backgroundColor: Colors.transparent,
-  //         radius: 48.0,
-  //         child: Image.asset('assets/flutter-icon.png'),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Widget showEmailInput() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
@@ -206,13 +169,13 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   Widget showPasswordInput() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
-      child: new TextFormField(
+      child: TextFormField(
         maxLines: 1,
         obscureText: true,
         autofocus: false,
-        decoration: new InputDecoration(
+        decoration: InputDecoration(
             hintText: 'Password',
-            icon: new Icon(
+            icon: Icon(
               Icons.lock,
               color: Colors.grey,
             )),
@@ -223,25 +186,25 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   }
 
   Widget showSecondaryButton() {
-    return new FlatButton(
-        child: new Text(
+    return FlatButton(
+        child: Text(
             _isLoginForm ? 'Create an account' : 'Have an account? Sign in',
-            style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300)),
+            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300)),
         onPressed: toggleFormMode);
   }
 
   Widget showPrimaryButton() {
-    return new Padding(
+    return Padding(
         padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
         child: SizedBox(
           height: 40.0,
-          child: new RaisedButton(
+          child: RaisedButton(
             elevation: 5.0,
-            shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(30.0)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0)),
             color: Colors.blue,
-            child: new Text(_isLoginForm ? 'Login' : 'Create account',
-                style: new TextStyle(fontSize: 20.0, color: Colors.white)),
+            child: Text(_isLoginForm ? 'Login' : 'Create account',
+                style: TextStyle(fontSize: 20.0, color: Colors.white)),
             onPressed: validateAndSubmit,
           ),
         ));
