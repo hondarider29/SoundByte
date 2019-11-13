@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sound_byte/friendScreen.dart';
+import 'package:sound_byte/pages/friendScreen.dart';
 
 class HomePage extends StatelessWidget {
   @override
