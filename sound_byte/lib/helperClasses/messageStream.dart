@@ -12,7 +12,7 @@ class MessagesStream extends StatelessWidget {
     return Container();
     //   return StreamBuilder<QuerySnapshot>(
     //     //TODO: change firestore collection to be actual ones. Here lie demos
-    //     stream: _firestore.collection('messages').orderBy('timestamp').snapshots(),
+    //     stream: _firestore.collection('Messages').orderBy('TimeSent').snapshots(),
     //     builder: (context, snapshot) {
     //       //loading screen
     //       if (!snapshot.hasData) {
