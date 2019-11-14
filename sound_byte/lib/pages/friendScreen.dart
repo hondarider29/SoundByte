@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sound_byte/chatScreen.dart';
-import 'package:sound_byte/loginScreen.dart';
+import 'package:sound_byte/pages/chatScreen.dart';
+import 'package:sound_byte/pages/login_signup_page.dart';
 
 //screen to see all recent chats with friends and access to contact list
 class FriendScreen extends StatefulWidget {
@@ -31,7 +31,7 @@ class _FriendScreenState extends State<FriendScreen> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => LoginScreen()),
+              MaterialPageRoute(builder: (context) => LoginSignupPage()),
             );
           },
         ),

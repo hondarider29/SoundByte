@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sound_byte/messageStream.dart';
+import 'package:sound_byte/helperClasses/messageStream.dart';
 
 //screen to display and send all chats
 class ChatScreen extends StatefulWidget {
