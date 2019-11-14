@@ -1,14 +1,14 @@
-//import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-//import 'package:intl/intl.dart';
+import 'package:intl/intl.dart';
 
 //creates a bubble with all the text from a message
 class MessageBubble extends StatelessWidget {
-  MessageBubble({this.sender, this.text, /*this.timeStamp,*/ this.isMe});
+  MessageBubble({this.sender, this.text, this.timeStamp, this.isMe});
 
   final String sender;
   final String text;
-  //final Timestamp timeStamp;
+  final Timestamp timeStamp;
   final bool isMe;
 
   @override
@@ -46,13 +46,13 @@ class MessageBubble extends StatelessWidget {
               ),
             ),
           ),
-          // Text(
-          //   convert12(DateFormat('kk:mm').format(timeStamp.toDate())),
-          //   style: TextStyle(
-          //     fontSize: 12,
-          //     color: Colors.black54,
-          //   ),
-          // ),
+          Text(
+            convert12(DateFormat('kk:mm').format(timeStamp.toDate())),
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.black54,
+            ),
+          ),
         ],
       ),
     );
