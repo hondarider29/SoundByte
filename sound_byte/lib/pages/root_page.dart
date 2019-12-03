@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sound_byte/pages/login_signup_page.dart';
 import 'package:sound_byte/services/authentication.dart';
-import 'package:sound_byte/pages/home_page.dart';
+import 'package:sound_byte/pages/friendScreen.dart';
 
 enum AuthStatus {
   NOT_DETERMINED,
@@ -77,10 +77,10 @@ class _RootPageState extends State<RootPage> {
         break;
       case AuthStatus.LOGGED_IN:
         if (_userId.length > 0 && _userId != null) {
-          return HomePage(
-            // userId: _userId,
-            // auth: widget.auth,
-            // logoutCallback: logoutCallback,
+          return FriendScreen(
+            userId: _userId,
+            auth: widget.auth,
+            logoutCallback: logoutCallback,
           );
         } else
           return buildWaitingScreen();
