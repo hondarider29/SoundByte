@@ -10,10 +10,10 @@ class HomePage extends StatelessWidget {
         children: <Widget> [
           FriendScreen(),
           Container(
-            color: Colors.red,
+            color: Colors.blue,
           ),
           Container(
-            color: Colors.green,
+            color: Colors.grey,
           ),
         ],
       ),
