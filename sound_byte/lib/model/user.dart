@@ -18,6 +18,8 @@ class User
   {
     this.userID = username + "#"  + this.formatter.format(id);
     this.userEmail = email;
+    friends = new List<String>();
+    conversations = new List<String>();
   }
 
   User.full(String userID, String userEmail, List<String> friends, List<String> conversations)
