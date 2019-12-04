@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:sound_byte/pages/chatScreen.dart';
-import 'package:sound_byte/pages/login_signup_page.dart';
+import 'package:sound_byte/services/authentication.dart';
+import 'login_signup_page.dart';
 
 //screen to see all recent chats with friends and access to contact list
 class FriendScreen extends StatefulWidget {
   @override
+  FriendScreen({Key key, this.auth, this.userId, this.logoutCallback})
+      : super(key: key);
+
   _FriendScreenState createState() => _FriendScreenState();
+  final BaseAuth auth;
+  final VoidCallback logoutCallback;
+  final String userId;
 }
 
 class _FriendScreenState extends State<FriendScreen> {
@@ -17,6 +24,15 @@ class _FriendScreenState extends State<FriendScreen> {
     super.initState();
   }
 
+  signOut() async {
+    try {
+      await widget.auth.signOut();
+      widget.logoutCallback();
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +41,13 @@ class _FriendScreenState extends State<FriendScreen> {
         backgroundColor: Colors.lightBlueAccent,
         elevation: 0,
         title: Text('Byte Chat'),
-        //back button
+        actions: <Widget>[
+          FlatButton(child: Text('Logout',
+            style: new TextStyle(fontSize: 17.0, color: Colors.white)),
+          onPressed: signOut
+          )
+        ],
+        // back button
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () {
