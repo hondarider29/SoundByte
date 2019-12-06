@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:crypto/crypto.dart';
+import 'package:pointycastle/pointycastle.dart';
 
 class User
 {
