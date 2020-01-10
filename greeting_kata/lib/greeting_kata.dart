@@ -16,5 +16,82 @@ String greet(String name) {
 
 @override
 String greet(String[] names) {
-  return "Hello, ${names[0]} and ${names[1]}.";
+  if (names.length == 0)
+  {
+    return greet();
+  }
+  String[] lowers = [];
+  String[] uppers = [];
+  for (String name on names)
+  {
+    if (isUppercase(name))
+    {
+      uppers.add(name);
+    }
+    else
+    {
+      lowers.add(name);
+    }
+  }
+
+  String res;
+  if (lowers.length == 1)
+  {
+    res = greet(lowers[0]);
+    if (uppers.length > 0)
+    {
+      res += loopUppers(uppers);
+    }
+    return res;
+  }
+
+  if (lowers.length == 2)
+  {
+    res = "Hello, ${names[0]} and ${names[1]}.";
+    if (uppers.length > 0)
+    {
+      res += loopUppers(uppers);
+    }
+    return res;
+  }
+
+  return loopLowers(lowers) + loopUppers(uppers);
+}
+
+String loopUppers(String[] names)
+{
+  String res = " AND"
+  for (String name in names)
+  {
+    if (name != names[names.length - 1])
+    {
+      res += " $name";
+    }
+    else if (name.length = 1)
+    {
+      res += " $name!";
+    }
+    else
+    {
+      res += " AND $name!";
+    }
+  }
+  return res;
+}
+
+String loopLowers(String[] names)
+{
+  String res = "Hello";
+  for (String name in names)
+  {
+    if (name != names[names.length - 1])
+    {
+      res += ", $name";
+    }
+    else
+    {
+      res += ", and $name.";
+    }
+  }
+  return res
 }

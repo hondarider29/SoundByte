@@ -19,6 +19,14 @@ void main() {
   });
 
   test('req4', () {
-    expect(greet(["Joe", "Rye"]), "Hello, Joe and Rye.")
-  })
+    expect(greet(["Joe", "Rye"]), "Hello, Joe and Rye.");
+  });
+
+  test('req5', () {
+    expect(greet(["Joe", "Rye", "Garrett"]), "Hello, Joe, Rye, and Garrett.");
+  });
+
+  test('req6', () {
+    expect(greet(["JOE", "Rye", "Garrett"]), "Hello, Rye and Garrett. AND HELLO JOE!");
+  });
 }
