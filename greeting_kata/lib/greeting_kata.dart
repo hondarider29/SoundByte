@@ -24,12 +24,34 @@ String greet(String[] names) {
   String[] uppers = [];
   for (String name on names)
   {
-    if (isUppercase(name))
+    if (name.contains(', ') && !(name[0] == '"' && name[name.length - 1] == '"'))
     {
+      for (String name2 in name.split(", "))
+      {
+        if (isUppercase(name))
+        {
+          uppers.add(name);
+        }
+        else
+        {
+          lowers.add(name);
+        }
+      }
+    }
+    else if (isUppercase(name))
+    {
+      if (name[0] == '"' && name[name.length - 1] == '"')
+      {
+        name = name.replaceAll('"', "");
+      }
       uppers.add(name);
     }
     else
     {
+      if (name[0] == '"' && name[name.length - 1] == '"')
+      {
+        name = name.replaceAll('"', "");
+      }
       lowers.add(name);
     }
   }

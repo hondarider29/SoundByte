@@ -29,4 +29,12 @@ void main() {
   test('req6', () {
     expect(greet(["JOE", "Rye", "Garrett"]), "Hello, Rye and Garrett. AND HELLO JOE!");
   });
+
+  test('req7', () {
+    expect(greet(["Joe", "Rye, Garrett"]), "Hello, Joe, Rye, and Garrett.");
+  });
+
+  test('req8', () {
+    expect(greet(["Joe", "\"Rye, Garrett\""]), "Hello, Joe and Rye, Garrett.");
+  });
 }
