@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 class User
 {
   // UserIDs will be a unique int
-  int userID;
+  String userID;
   String userName;
   String userEmail;
   // List of friends stored as userIDs
@@ -13,7 +13,7 @@ class User
   //List of Conversations by string based ID
   List<String> conversations;
   
-  User(String username, String email, int id)
+  User(String username, String email, String id)
   {
     this.userID = id;
     this.userName = username;
@@ -22,7 +22,7 @@ class User
     conversations = new List<String>();
   }
 
-  User.full(int userID, String username, String userEmail, List<String> friends, List<String> conversations)
+  User.full(String userID, String username, String userEmail, List<String> friends, List<String> conversations)
   {
     this.userID = userID;
     this.userName = username;
@@ -32,11 +32,11 @@ class User
   }
 
   //TODO: edit so that it uses UID instead of email
-  User userFromDatabase(int uID)
+  User userFromDatabase(String uID)
   {
     User user;
-    Firestore.instance.collection('users').where('email', isEqualTo: userEmail).getDocuments()
-      .then((documentSnapshot) => user = new User.full(uID, documentSnapshot.documents[0].data['userName']
+    Firestore.instance.collection('users').document(uID).then((documentSnapshot)
+                          => user = new User.full(uID, documentSnapshot.documents[0].data['userName'],
                                                       documentSnapshot.documents[0].data['email'],
                                                       documentSnapshot.documents[0].data['friends'],
                                                       documentSnapshot.documents[0].data['conversations'])
