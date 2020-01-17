@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 
 class User
 {
-  // UserIDs will be a unique int
+  // UserIDs will be a unique string
   String userID;
   String userName;
   String userEmail;
@@ -31,7 +31,6 @@ class User
     this.conversations = conversations;
   }
 
-  //TODO: edit so that it uses UID instead of email
   User userFromDatabase(String uID)
   {
     User user;
