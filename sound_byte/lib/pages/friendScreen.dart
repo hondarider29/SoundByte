@@ -102,15 +102,15 @@ class _FriendScreenState extends State<FriendScreen> {
               //friend list
               //TODO: add real data
               friendButton(
-                  'images/headShot1.jpeg', "John", "this is a test"),
+                  'images/headShot1.jpeg', "John", "this is a test", 0),
               friendButton(
-                  'images/headShot2.jpeg', "John", "this is a test"),
+                  'images/headShot2.jpeg', "John", "this is a test", 0),
               friendButton(
-                  'images/headShot3.jpeg', "John", "this is a test"),
+                  'images/headShot3.jpeg', "John", "this is a test", 0),
               friendButton(
-                  'images/headShot4.jpeg', "John", "this is a test"),
+                  'images/headShot4.jpeg', "John", "this is a test", 0),
               friendButton(
-                  'images/headShot5.png', "John", "this is a test")
+                  'images/headShot5.png', "John", "this is a test", 0)
             ],
           ),
         ),
@@ -119,7 +119,7 @@ class _FriendScreenState extends State<FriendScreen> {
   }
 
   //creates a button displaying all the information about a friend
-  Widget friendButton(String imageName, String name, String subText) {
+  Widget friendButton(String imageName, String name, String subText, int convoID) {
     double size = 50;
 
     return Column(
