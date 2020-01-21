@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sound_byte/chatScreen.dart';
+import 'package:sound_byte/pages/friendScreen.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -8,12 +8,12 @@ class HomePage extends StatelessWidget {
       color: Colors.red,
       home: PageView(
         children: <Widget> [
-          ChatScreen(),
+          FriendScreen(),
           Container(
-            color: Colors.red,
+            color: Colors.blue,
           ),
           Container(
-            color: Colors.green,
+            color: Colors.grey,
           ),
         ],
       ),
