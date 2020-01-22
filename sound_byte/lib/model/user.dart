@@ -12,6 +12,23 @@ class User
   List<String> friends;
   //List of Conversations by string based ID
   List<String> conversations;
+
+  static User currentUser = null;
+
+  static User instance(String uID)
+  {
+    if (User.currentUser == null)
+    {
+      User.currentUser = User.userFromDatabase(uID);
+    }
+
+    return User.currentUser;
+  }
+
+  static void clearCurrentUser()
+  {
+    User.currentUser = null;
+  }
   
   User(String username, String email, String id)
   {

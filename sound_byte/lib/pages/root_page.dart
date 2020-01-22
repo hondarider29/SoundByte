@@ -46,7 +46,7 @@ class _RootPageState extends State<RootPage> {
     setState(() {
       authStatus = AuthStatus.LOGGED_IN;
     });
-    global.currentUser = User.userFromDataBase(_userId);
+    User.instance(_userId);
   }
 
   void logoutCallback() {
