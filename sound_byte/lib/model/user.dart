@@ -31,7 +31,7 @@ class User
     this.conversations = conversations;
   }
 
-  User userFromDatabase(String uID)
+  User.userFromDatabase(String uID)
   {
     User user;
     Firestore.instance.collection('users').document(uID).then((documentSnapshot)
