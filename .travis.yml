@@ -1,15 +1,5 @@
 language: dart
 dart_task:
   - test: --platform vm
-
-paths: [sound_byte/test]
-paths: 
-  - sound_byte/test
-  
-filename: "*_test.dart"
-
-jobs:
-  include:
-    - stage: test
-  
-      script: flutter test
+  - paths: [sound_byte/test]
+  - filename: "*_test.dart"
