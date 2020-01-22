@@ -102,15 +102,7 @@ class _FriendScreenState extends State<FriendScreen> {
               //friend list
               //TODO: add real data
               friendButton(
-                  'images/headShot1.jpeg', "John", "this is a test", 0),
-              friendButton(
-                  'images/headShot2.jpeg', "John", "this is a test", 0),
-              friendButton(
-                  'images/headShot3.jpeg', "John", "this is a test", 0),
-              friendButton(
-                  'images/headShot4.jpeg', "John", "this is a test", 0),
-              friendButton(
-                  'images/headShot5.png', "John", "this is a test", 0)
+                  'images/headShot1.jpeg', "John", "this is a test", "0yXlaPkPRdwCItEQF8Ix"),
             ],
           ),
         ),
@@ -119,7 +111,7 @@ class _FriendScreenState extends State<FriendScreen> {
   }
 
   //creates a button displaying all the information about a friend
-  Widget friendButton(String imageName, String name, String subText, int convoID) {
+  Widget friendButton(String imageName, String name, String subText, String friendID) {
     double size = 50;
 
     return Column(
@@ -136,7 +128,9 @@ class _FriendScreenState extends State<FriendScreen> {
                 context,
                 //TODO: add name to navigator to allow chat screen to load correct conversation
                 MaterialPageRoute(
-                  builder: (context) => ChatScreen(),
+                  builder: (context) => ChatScreen(
+                    friendID: friendID
+                  ),
                 ),
               );
             },

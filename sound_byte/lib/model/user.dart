@@ -1,10 +1,13 @@
-import 'package:intl/intl.dart';
-
 class User{
-  int id;
+  String id;
   String email;
-  List<int> convoList;
   String name;
+
+  User(String id, String email,  String name){
+    this.id = id;
+    this.email = email;
+    this.name = name;
+  }
 }
 
 // class User

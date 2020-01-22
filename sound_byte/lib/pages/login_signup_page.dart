@@ -18,7 +18,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   String _password;
   String _errorMessage;
 
-    bool _isLoginForm;
+  bool _isLoginForm;
   bool _isLoading;
 
   // Check if form is valid before perform login or signup
@@ -195,18 +195,19 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget showPrimaryButton() {
     return Padding(
-        padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
-        child: SizedBox(
-          height: 40.0,
-          child: RaisedButton(
-            elevation: 5.0,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0)),
-            color: Colors.blue,
-            child: Text(_isLoginForm ? 'Login' : 'Create account',
-                style: TextStyle(fontSize: 20.0, color: Colors.white)),
-            onPressed: validateAndSubmit,
-          ),
-        ));
+      padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
+      child: SizedBox(
+        height: 40.0,
+        child: RaisedButton(
+          elevation: 5.0,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+          color: Colors.blue,
+          child: Text(_isLoginForm ? 'Login' : 'Create account',
+              style: TextStyle(fontSize: 20.0, color: Colors.white)),
+          onPressed: validateAndSubmit,
+        ),
+      ),
+    );
   }
 }
