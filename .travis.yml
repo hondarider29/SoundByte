@@ -1,4 +1,4 @@
-sudo true
+sudo: true
 language: dart
 
 include: ../sound_byte/test/dart_test.yaml
