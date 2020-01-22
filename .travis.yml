@@ -1,8 +1,9 @@
-sudo: true
+
 language: dart
 dart:
   - stable
-
+  
+sudo: false
 include: ../sound_byte/test/dart_test.yaml
 
 dart_task:
