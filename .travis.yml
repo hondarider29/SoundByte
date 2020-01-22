@@ -5,3 +5,5 @@ dart_task:
 paths: [sound_byte/test]
 paths: 
   - sound_byte/test
+  
+filename: "*_test.dart"
