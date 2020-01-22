@@ -9,4 +9,6 @@ include: ../sound_byte/test/dart_test.yaml
 dart_task:
   - test: --platform vm
 
-script: pub run test
+script: 
+  cd/sound_byte
+  pub run test
