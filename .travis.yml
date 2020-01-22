@@ -1,5 +1,7 @@
 sudo: true
 language: dart
+dart:
+  - stable
 
 include: ../sound_byte/test/dart_test.yaml
 
