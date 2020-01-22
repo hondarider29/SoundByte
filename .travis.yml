@@ -2,8 +2,3 @@ sudo: true
 language: dart
 dart:
   - stable
-
-include: ../sound_byte/test/dart_test.yaml
-
-dart_task:
-  - test: --platform vm
