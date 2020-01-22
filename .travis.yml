@@ -1,5 +1,5 @@
 language: dart
 dart_task:
   - test: --platform vm
-  - paths: [sound_byte/test]
-  - filename: "*_test.dart"
+
+include: ../sound_byte/test/dart_test.yaml
