@@ -2,5 +2,6 @@ language: dart
 dart_task:
   - test: --platform vm
 
+paths: [sound_byte/test]
 paths: 
-  - sound_byte/test/
+  - sound_byte/test
