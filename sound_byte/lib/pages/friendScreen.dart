@@ -43,21 +43,26 @@ class _FriendScreenState extends State<FriendScreen> {
         elevation: 0,
         title: Text('Byte Chat'),
         actions: <Widget>[
-          FlatButton(child: Text('Logout',
+          FlatButton(child: Text('Profile',
             style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-          onPressed: signOut
-          )
-        ],
-        // back button
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => UserProfilePage()),
             );
-          },
-        ),
+          }
+          )
+        ],
+        // back button
+        // leading: IconButton(
+        //   icon: Icon(Icons.arrow_back_ios),
+        //   onPressed: () {
+        //     Navigator.push(
+        //       context,
+        //       MaterialPageRoute(builder: (context) => UserProfilePage()),
+        //     );
+        //   },
+        // ),
       ),
       //list of all contacts and search
       //IDEA: maybe turn into a stream
