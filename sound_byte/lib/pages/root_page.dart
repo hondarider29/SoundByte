@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sound_byte/pages/login_signup_page.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'package:sound_byte/pages/friendScreen.dart';
-import 'constants.dart' as global;
 
 enum AuthStatus {
   NOT_DETERMINED,
