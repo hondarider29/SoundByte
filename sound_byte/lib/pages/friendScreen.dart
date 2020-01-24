@@ -3,6 +3,7 @@ import 'package:sound_byte/pages/chatScreen.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'login_signup_page.dart';
 import 'package:sound_byte/pages/userProfile.dart';
+import 'package:sound_byte/pages/root_page.dart';
 
 //screen to see all recent chats with friends and access to contact list
 class FriendScreen extends StatefulWidget {
@@ -25,14 +26,6 @@ class _FriendScreenState extends State<FriendScreen> {
     super.initState();
   }
 
-  signOut() async {
-    try {
-      await widget.auth.signOut();
-      widget.logoutCallback();
-    } catch (e) {
-      print(e);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,21 +41,16 @@ class _FriendScreenState extends State<FriendScreen> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => UserProfilePage()),
+              MaterialPageRoute(builder: (context) => 
+                UserProfilePage(
+                  auth: widget.auth,
+                  //userId: ,
+                  //logoutCallback: ,
+                )),
             );
           }
           )
         ],
-        // back button
-        // leading: IconButton(
-        //   icon: Icon(Icons.arrow_back_ios),
-        //   onPressed: () {
-        //     Navigator.push(
-        //       context,
-        //       MaterialPageRoute(builder: (context) => UserProfilePage()),
-        //     );
-        //   },
-        // ),
       ),
       //list of all contacts and search
       //IDEA: maybe turn into a stream

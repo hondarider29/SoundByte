@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:sound_byte/pages/friendScreen.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'login_signup_page.dart';
+import 'package:sound_byte/pages/root_page.dart';
 
 class UserProfilePage extends StatefulWidget {
   @override
-  UserProfilePage({Key key, this.auth, this.userId, this.logoutCallback})
-      : super(key: key);
+  // UserProfilePage({this.auth, this.userId, this.logoutCallback});
+  UserProfilePage({Key key, this.auth, this.userId,this.logoutCallback})
+    : super(key: key);
 
   _UserProfilePageState createState() => _UserProfilePageState();
   final BaseAuth auth;
@@ -37,7 +39,7 @@ class _UserProfilePageState extends State<UserProfilePage>
       appBar: AppBar(
         backgroundColor: Colors.lightBlueAccent,
         elevation: 0,
-        title: Text('User Info'),
+        title: Text("Sound Byte"),
         actions: <Widget>[
           FlatButton(child: Text('Logout',
             style: new TextStyle(fontSize: 17.0, color: Colors.white)),
@@ -61,10 +63,12 @@ class _UserProfilePageState extends State<UserProfilePage>
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: screenSize.height / 6.4),
+                  SizedBox(height: screenSize.height / 30),
                   _buildProfileImage(),
                   _buildFullName(),
                   _buildStatus(context),
+                  _buildBio(),
+                  _buildFavSongs(),
                 ],
               ),
             ),
@@ -81,11 +85,11 @@ class _UserProfilePageState extends State<UserProfilePage>
   Widget _buildProfileImage() {
     return Center(
       child: Container(
-        width: 140.0,
-        height: 140.0,
+        width: 100.0,
+        height: 100.0,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage( 'images/headshot1.jpeg'),
+            image: AssetImage( 'images/headShot1.jpeg'),
             fit: BoxFit.cover,
           ), // Decoration Image
           borderRadius: BorderRadius.circular(80.0),
@@ -105,7 +109,7 @@ class _UserProfilePageState extends State<UserProfilePage>
       fontWeight: FontWeight.w700,
     );
     return Text (
-    "Michael Michaels",
+    _fullName,
     style: _nameTextStyle,
     );
   }
@@ -114,8 +118,10 @@ class _UserProfilePageState extends State<UserProfilePage>
     return Container(
       padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 6.0),
       decoration: BoxDecoration(
+        
         color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(4.0),
+    
       ),
       child: Text(
         _status,
@@ -128,6 +134,27 @@ class _UserProfilePageState extends State<UserProfilePage>
       ),
     );
   }
+
+  Widget _buildBio() {
+    return Text (
+      "Hello, my name is " + _fullName + " and I love music!"
+    );
+  }
+
+  Widget _buildFavSongs() {
+    return Text (
+      "Favorite Songs:\nStar Spangled Banner"
+    );
+  }
  
+
 }
+//problem, cant pass a logoutcallback to user and cant go back
   
+
+  // decoration: BoxDecoration(
+        
+  //       color: Theme.of(context).scaffoldBackgroundColor,
+  //       borderRadius: BorderRadius.circular(4.0),
+    
+  //     ),
