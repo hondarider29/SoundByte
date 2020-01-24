@@ -8,6 +8,11 @@
 .buildlog/
 .history
 .svn/
+gradle-wrapper.properties
+gradlew
+gradlew.bat
+local.properties
+
 
 # IntelliJ related
 *.iml
