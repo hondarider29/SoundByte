@@ -1,11 +1,11 @@
 import 'package:intl/intl.dart';
-import 'package:pointycastle/pointycastle.dart';
 
 class User
 {
   // UserIDs will be in the format userName#xxxx
   // Where xxxx is a 4 digit int
   String userID;
+  String hash;
   var formatter = new NumberFormat("0000", "en_US");
   
   User(String username, int id)
