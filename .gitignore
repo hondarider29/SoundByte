@@ -39,3 +39,4 @@ lib/generated_plugin_registrant.dart
 sound_byte/ios/Flutter/flutter_export_environment.sh
 */flutter_export_environment.sh
 */.flutter-plugins-dependencies
+sound_byte/pubspec.lock
