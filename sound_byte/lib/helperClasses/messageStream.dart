@@ -4,18 +4,33 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sound_byte/helperClasses/messageBubble.dart';
 
 final _firestore = Firestore.instance;
-//FirebaseUser loggedInUser;
 
-class MessagesStream extends StatelessWidget {
-  final String loggedInUserEmail;
+class MessagesStream extends StatefulWidget {
+  final String userID;
+  final String friendID;
 
-  MessagesStream(this.loggedInUserEmail);
+  MessagesStream(this.userID, this.friendID);
+
+  @override
+  _MessagesStreamState createState() => _MessagesStreamState();
+}
+
+class _MessagesStreamState extends State<MessagesStream> {
+
+  String saveChatID;
+
+  @override
+  void initState() {
+    saveChatID = getChatID();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       //TODO: change firestore collection to be actual ones. Here lie demos
-      stream: _firestore.collection('Messages').orderBy('TimeSent').snapshots(),
+      stream: _firestore.collection('Chats').document(saveChatID).collection('Messages').orderBy('timesent').snapshots(),
       builder: (context, snapshot) {
         //loading screen
         if (!snapshot.hasData) {
@@ -30,11 +45,11 @@ class MessagesStream extends StatelessWidget {
           final messages = snapshot.data.documents.reversed;
           List<MessageBubble> messageBubbles = [];
           for (var message in messages) {
-            final messageText = message.data['Messages'];
-            final senderText = message.data['Sender'];
-            final timeStamp = message.data['TimeSent'];
+            final messageText = message.data['data'];
+            final senderText = message.data['senderID'];
+            final timeStamp = message.data['timesent'];
 
-            final currentUser = loggedInUserEmail;
+            final currentUser = widget.userID;
 
             //create a new message bubble widget to load
             messageBubbles.add(
@@ -58,5 +73,10 @@ class MessagesStream extends StatelessWidget {
         }
       },
     );
+  }
+
+  getChatID() async{
+    DocumentSnapshot snapshot = await _firestore.collection('Users').document(widget.userID).collection('Chats').document(widget.userID + "-" + widget.friendID).get();
+    return snapshot.data['chatID'];
   }
 }
