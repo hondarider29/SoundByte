@@ -67,7 +67,16 @@ class _UserProfilePageState extends State<UserProfilePage>
                   _buildProfileImage(),
                   _buildFullName(),
                   _buildStatus(context),
+                  Divider(color: Colors.black),
+                  SizedBox(
+                    height: 10,
+                  ),
                   _buildBio(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Divider(color: Colors.black),
+                  Text("Favorite Songs"),
                   _buildFavSongs(),
                 ],
               ),
@@ -143,7 +152,7 @@ class _UserProfilePageState extends State<UserProfilePage>
 
   Widget _buildFavSongs() {
     return Text (
-      "Favorite Songs:\nStar Spangled Banner"
+      "Star Spangled Banner"
     );
   }
  
