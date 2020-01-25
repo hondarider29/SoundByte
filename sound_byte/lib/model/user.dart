@@ -1,6 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
 
 class User
 {
@@ -19,7 +17,7 @@ class User
   {
     if (User.currentUser == null)
     {
-      User.currentUser = User.userFromDatabase(uID);
+      User.currentUser = userFromDatabase(uID);
     }
 
     return User.currentUser;
@@ -48,14 +46,14 @@ class User
     this.conversations = conversations;
   }
 
-  User.userFromDatabase(String uID)
+  static User userFromDatabase(String uID)
   {
     User user;
-    Firestore.instance.collection('users').document(uID).then((documentSnapshot)
-                          => user = new User.full(uID, documentSnapshot.documents[0].data['userName'],
-                                                      documentSnapshot.documents[0].data['email'],
-                                                      documentSnapshot.documents[0].data['friends'],
-                                                      documentSnapshot.documents[0].data['conversations'])
+    Firestore.instance.collection('users').document(uID).get().then((documentSnapshot)
+                          => user = new User.full(uID, documentSnapshot.data['userName'],
+                                                      documentSnapshot.data['email'],
+                                                      documentSnapshot.data['friends'],
+                                                      documentSnapshot.data['conversations'])
         );
     return user;
   }
