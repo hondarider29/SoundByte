@@ -50,7 +50,7 @@ class User
   {
     User user;
     Firestore.instance.collection('users').document(uID).get().then((documentSnapshot)
-                          => user = new User.full(uID, documentSnapshot.data['userName'],
+                          => user = new User.full(uID, documentSnapshot.data['name'],
                                                       documentSnapshot.data['email'],
                                                       documentSnapshot.data['friends'],
                                                       documentSnapshot.data['conversations'])
