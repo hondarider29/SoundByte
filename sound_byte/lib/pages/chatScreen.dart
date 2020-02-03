@@ -9,9 +9,10 @@ final _firestore = Firestore.instance;
 
 //screen to display and send all chats
 class ChatScreen extends StatefulWidget {
+  final String userID;
   final String friendID;
 
-  ChatScreen({Key key, @required this.friendID}) : super(key: key);
+  ChatScreen({Key key, @required this.userID, @required this.friendID}) : super(key: key);
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -27,14 +28,10 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void initState() {
-    getUserID();
-    getUserInfo(chatUserID).then((val){
-      user = new User(
-        chatUserID,
-        val.data['email'],
-        val.data['name']
-      );
-    });
+    // getUserID();
+    // getUserInfo(chatUserID).then((val) {
+    //   user = new User(chatUserID, val.data['email'], val.data['name']);
+    // });
 
     messageTextController = new TextEditingController();
     super.initState();
@@ -59,7 +56,7 @@ class _ChatScreenState extends State<ChatScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          MessagesStream(user.id, widget.friendID),
+          MessagesStream(widget.userID, widget.friendID),
           Container(
             decoration: BoxDecoration(
               borderRadius: new BorderRadius.all(new Radius.circular(24.0)),
@@ -89,7 +86,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     messageTextController.clear();
                     _firestore.collection('Messages').add({
                       'Messages': messageText,
-                      'Sender': loggedInUser.email,
+                      'Sender': widget.userID,
                       'TimeSent': DateTime.now(),
                     });
                   },
@@ -109,17 +106,20 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  void getUserID() async {
-    await _auth.currentUser().then((user) {
-      if(user != null){
+  String getUserID() {
+     _auth.currentUser().then((user) {
+      if (user != null) {
         print(user.uid);
-        setState(() {
-          chatUserID = user.uid;
-        });
-      }else{
-        print("ERROR getting user id");
-      }
+        // setState(() {
+        //   chatUserID = user.uid;
+        // });
+        return user.uid.toString();
+      } 
+      print("ERROR getting user id");
+      return "";
     });
+    print("ERROR getting user id");
+    return "";
 
     // _auth.currentUser().then((user) {
     //   print(user.uid);
@@ -143,6 +143,6 @@ class _ChatScreenState extends State<ChatScreen> {
   // }
 
   getUserInfo(String groupId) async {
-    return _firestore.collection("Users").document(groupId).get();
+    return await _firestore.collection("Users").document(groupId).get();
   }
 }

@@ -102,7 +102,7 @@ class _FriendScreenState extends State<FriendScreen> {
               //friend list
               //TODO: add real data
               friendButton(
-                  'images/headShot1.jpeg', "John", "this is a test", "0yXlaPkPRdwCItEQF8Ix"),
+                  'images/headShot1.jpeg', "John", "this is a test", "a5MiGciTJ1MinyFaNVcldQLyT4m1"),
             ],
           ),
         ),
@@ -129,6 +129,7 @@ class _FriendScreenState extends State<FriendScreen> {
                 //TODO: add name to navigator to allow chat screen to load correct conversation
                 MaterialPageRoute(
                   builder: (context) => ChatScreen(
+                    userID: widget.userId,
                     friendID: friendID
                   ),
                 ),

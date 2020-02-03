@@ -21,7 +21,7 @@ class _MessagesStreamState extends State<MessagesStream> {
 
   @override
   void initState() {
-    saveChatID = getChatID();
+    getChatID();
 
     super.initState();
   }
@@ -76,7 +76,16 @@ class _MessagesStreamState extends State<MessagesStream> {
   }
 
   getChatID() async{
-    DocumentSnapshot snapshot = await _firestore.collection('Users').document(widget.userID).collection('Chats').document(widget.userID + "-" + widget.friendID).get();
-    return snapshot.data['chatID'];
+    if(widget.userID != "" && widget.friendID != ""){
+      print("User ID: " + widget.userID);
+      print("Friend ID: " + widget.friendID);
+      DocumentSnapshot snapshot = await _firestore.collection('Users').document(widget.userID).collection('Chats').document(widget.userID + "-" + widget.friendID).get();
+      setState(() {
+          saveChatID = snapshot.data['chatID'];
+      });
+      //return snapshot.data['chatID'];
+    }else{
+      print("ERROR with id for chatID");
+    }
   }
 }
