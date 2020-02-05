@@ -8,8 +8,8 @@ class User
   String userEmail;
   // List of friends stored as userIDs
   List<String> friends;
-  //List of Conversations by string based ID
-  List<String> conversations;
+  //List of Chats by string based ID
+  List<String> chats;
 
   static User currentUser = null;
 
@@ -34,16 +34,16 @@ class User
     this.userName = username;
     this.userEmail = email;
     friends = new List<String>();
-    conversations = new List<String>();
+    chats = new List<String>();
   }
 
-  User.full(String userID, String username, String userEmail, List<String> friends, List<String> conversations)
+  User.full(String userID, String username, String userEmail, List<String> friends, List<String> chats)
   {
     this.userID = userID;
     this.userName = username;
     this.userEmail = userEmail;
     this.friends = friends;
-    this.conversations = conversations;
+    this.chats = chats;
   }
 
   static User userFromDatabase(String uID)
@@ -53,7 +53,7 @@ class User
                           => user = new User.full(uID, documentSnapshot.data['name'],
                                                       documentSnapshot.data['email'],
                                                       documentSnapshot.data['friends'],
-                                                      documentSnapshot.data['conversations'])
+                                                      documentSnapshot.data['chats'])
         );
     return user;
   }
