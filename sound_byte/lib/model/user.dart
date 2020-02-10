@@ -58,6 +58,17 @@ class User
     return user;
   }
 
+  void addFriend(String id)
+  {
+    this.friends.add(id);
+    userDataUpdate();
+  }
+
+  void userDataUpdate()
+  {
+    //WIP
+  }
+
   @override
   bool operator ==(Object other) => other is User && this.userID == other.userID;
 
