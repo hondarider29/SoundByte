@@ -49,7 +49,7 @@ class User
   static User userFromDatabase(String uID)
   {
     User user;
-    Firestore.instance.collection('users').document(uID).get().then((documentSnapshot)
+    Firestore.instance.collection('Users').document(uID).get().then((documentSnapshot)
                           => user = new User.full(uID, documentSnapshot.data['name'],
                                                       documentSnapshot.data['email'],
                                                       documentSnapshot.data['friends'],
@@ -61,12 +61,14 @@ class User
   void addFriend(String id)
   {
     this.friends.add(id);
-    userDataUpdate();
+    userDataAddFriend(id);
   }
 
-  void userDataUpdate()
+  void userDataAddFriend(String id)
   {
-    //WIP
+    var ref = Firestore.instance.collection('Users').document(this.userID);
+
+    ref.updateData({'friends': FieldValue.arrayUnion([id])});
   }
 
   @override
