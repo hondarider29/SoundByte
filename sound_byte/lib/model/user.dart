@@ -58,12 +58,14 @@ class User
     return user;
   }
 
+  // Takes a User ID  and adds it to the friends list in local data
   void addFriend(String id)
   {
-    this.friends.add(id);
+    currentUser.friends.add(id);
     userDataAddFriend(id);
   }
 
+  // Takes a User ID and adds it to the friends list in firestore
   void userDataAddFriend(String id)
   {
     var ref = Firestore.instance.collection('Users').document(this.userID);
