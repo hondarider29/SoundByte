@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "923064510653",
+    "firebase_url": "https://soundbyte-b20d7.firebaseio.com",
+    "project_id": "soundbyte-b20d7",
+    "storage_bucket": "soundbyte-b20d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923064510653:android:091e59626def7fc84e6fd4",
+        "android_client_info": {
+          "package_name": "com.example.sound_byte"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923064510653-prshhankko90uf128u31a1o6rd17ilij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAar_lvfrOaSkSlHzHfT3oEG54IDx36IyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923064510653-prshhankko90uf128u31a1o6rd17ilij.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "923064510653-66ku3639pt9hc883rrik4ihq2r1bqtgb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.soundByte"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

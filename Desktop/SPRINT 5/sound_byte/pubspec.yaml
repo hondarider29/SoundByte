@@ -1,0 +1,33 @@
+name: sound_byte
+description: A new Flutter project.
+
+version: 0.0.1+0.0.1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  
+  flutter_gherkin: 1.1.7+3
+
+  cupertino_icons: ^0.1.2
+  firebase_auth: ^0.14.0+5
+  firebase_database: ^3.0.7
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_driver:
+    sdk: flutter
+  test: any
+
+flutter:
+  uses-material-design: true
+
+  assets:
+  - images/
