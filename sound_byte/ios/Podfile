@@ -1,5 +1,5 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '9.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
@@ -33,6 +33,7 @@ def parse_KV_file(file, separator='=')
 end
 
 target 'Runner' do
+
   # Flutter Pod
 
   copied_flutter_dir = File.join(__dir__, 'Flutter')
@@ -42,6 +43,7 @@ target 'Runner' do
     # Copy Flutter.framework and Flutter.podspec to Flutter/ to have something to link against if the xcode backend script has not run yet.
     # That script will copy the correct debug/profile/release version of the framework based on the currently selected Xcode configuration.
     # CocoaPods will not embed the framework on pod install (before any build phases can generate) if the dylib does not exist.
+
 
     generated_xcode_build_settings_path = File.join(copied_flutter_dir, 'Generated.xcconfig')
     unless File.exist?(generated_xcode_build_settings_path)

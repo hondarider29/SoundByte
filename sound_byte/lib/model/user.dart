@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:crypto/crypto.dart';
 
 class User
 {
