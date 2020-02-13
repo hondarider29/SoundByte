@@ -18,7 +18,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   String _password;
   String _errorMessage;
 
-    bool _isLoginForm;
+  bool _isLoginForm;
   bool _isLoading;
 
   // Check if form is valid before perform login or signup
