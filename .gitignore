@@ -10,6 +10,11 @@
 .buildlog/
 .history
 .svn/
+gradle-wrapper.properties
+gradlew
+gradlew.bat
+local.properties
+
 
 # IntelliJ related
 *.iml
@@ -30,6 +35,10 @@
 .pub-cache/
 .pub/
 /build/
+Podfile
+Podfile.lock
+.flutter-plugins-dependencies
+pubspec.lock
 
 # Web related
 lib/generated_plugin_registrant.dart
