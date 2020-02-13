@@ -56,21 +56,34 @@ class User
                                                       documentSnapshot.data['chats'])
         );
     return user;
-  }
+  } 
 
-  // Takes a User ID  and adds it to the friends list in local data
+  // Takes a User ID  and adds it to the friends list
   void addFriend(String id)
   {
-    currentUser.friends.add(id);
-    userDataAddFriend(id);
+    this.friends.add(id);
+    this.userDataAddFriend(id);
   }
 
   // Takes a User ID and adds it to the friends list in firestore
   void userDataAddFriend(String id)
   {
     var ref = Firestore.instance.collection('Users').document(this.userID);
-
     ref.updateData({'friends': FieldValue.arrayUnion([id])});
+  }
+
+  // Takes a User ID and removes it from friends list
+  void removeFriend(String id)
+  {
+    this.friends.remove(id);
+    this.userDataRemoveFriend(id);
+  }
+
+  // Takes a User ID and removes it from the friends list in firestore
+  void userDataRemoveFriend(String id)
+  {
+    var ref = Firestore.instance.collection('Users').document(this.userID);
+    ref.updateData({'friends' : FieldValue.arrayRemove([id])});
   }
 
   @override
