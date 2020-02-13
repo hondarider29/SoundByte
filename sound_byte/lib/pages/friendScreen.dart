@@ -6,13 +6,12 @@ import 'login_signup_page.dart';
 //screen to see all recent chats with friends and access to contact list
 class FriendScreen extends StatefulWidget {
   @override
-  FriendScreen({Key key, this.auth, this.userId, this.logoutCallback})
+  FriendScreen({Key key, this.auth, this.logoutCallback})
       : super(key: key);
 
   _FriendScreenState createState() => _FriendScreenState();
   final BaseAuth auth;
   final VoidCallback logoutCallback;
-  final String userId;
 }
 
 class _FriendScreenState extends State<FriendScreen> {
@@ -136,7 +135,9 @@ class _FriendScreenState extends State<FriendScreen> {
                 context,
                 //TODO: add name to navigator to allow chat screen to load correct conversation
                 MaterialPageRoute(
-                  builder: (context) => ChatScreen(),
+                  builder: (context) => ChatScreen(
+                    "xuAoPiLJgAa7LZc0Y0b7"
+                  ),
                 ),
               );
             },
