@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sound_byte/pages/login_signup_page.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'package:sound_byte/pages/friendScreen.dart';
+import 'package:sound_byte/model/user.dart';
 
 enum AuthStatus {
   NOT_DETERMINED,
@@ -46,6 +47,7 @@ class _RootPageState extends State<RootPage> {
     setState(() {
       authStatus = AuthStatus.LOGGED_IN;
     });
+    User.instance(_userId);
   }
 
   void logoutCallback() {

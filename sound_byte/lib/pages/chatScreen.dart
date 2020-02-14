@@ -59,7 +59,7 @@ class _ChatScreenState extends State<ChatScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          MessagesStream(user.id, widget.friendID),
+          MessagesStream(user.userID, widget.friendID),
           Container(
             decoration: BoxDecoration(
               borderRadius: new BorderRadius.all(new Radius.circular(24.0)),
