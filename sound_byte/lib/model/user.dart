@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class User
@@ -13,21 +15,11 @@ class User
   // Document Refrence for the user
   DocumentReference _reference;
 
-  static User _currentUser = null;
-
-  static User instance(String uID)
-  {
-    if (User._currentUser == null)
-    {
-      User._currentUser = userFromDatabase(uID);
-    }
-
-    return User._currentUser;
-  }
-
+  static User currentUser; 
+  
   static void clearCurrentUser()
   {
-    User._currentUser = null;
+    User.currentUser = new User.nullUser();
   }
   
   User(String username, String email, String id)
@@ -39,6 +31,16 @@ class User
     chats = new List<String>();
   }
 
+  User.nullUser()
+  {
+    this.userID = '';
+    this.userName = '';
+    this.userEmail = '';
+    this.friends = null;
+    this.chats = null;
+    this._reference = null;
+  }
+
   User.full(String userID, String username, String userEmail, List<String> friends, List<String> chats)
   {
     this.userID = userID;
@@ -48,16 +50,20 @@ class User
     this.chats = chats;
   }
 
-  static User userFromDatabase(String uID)
+  static Future<User> userFromDatabase(String uID) async
   {
     User user;
+    Completer<User> completer = new Completer();
     DocumentReference ref = Firestore.instance.collection('Users').document(uID);
-    ref.get().then((documentSnapshot) => user = new User.full(uID, documentSnapshot.data['name'],
-                                                              documentSnapshot.data['email'],
-                                                              documentSnapshot.data['friends'],
-                                                              documentSnapshot.data['chats']));
-    user._reference = ref;
-    return user;
+    ref.get().then((documentSnapshot) {
+      user = new User.full(uID, documentSnapshot.data['name'],
+                                documentSnapshot.data['email'],
+                                documentSnapshot.data['friends'].cast<String>().toList(),
+                                documentSnapshot.data['chats'].cast<String>().toList());
+      user._reference = ref;
+      completer.complete(user); 
+    });
+    return completer.future;
   } 
 
   // Takes a User ID  and adds it to the friends list

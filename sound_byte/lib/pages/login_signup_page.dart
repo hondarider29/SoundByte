@@ -49,8 +49,8 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
           //widget.auth.sendEmailVerification();
           //_showVerifyEmailSentDialog();
           print('Signed up user: $userId');
-          User.setCurrentUser(userId);
         }
+        User.currentUser = await User.userFromDatabase(userId);
         setState(() {
           _isLoading = false;
         });
