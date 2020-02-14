@@ -39,11 +39,10 @@ Podfile
 Podfile.lock
 .flutter-plugins-dependencies
 pubspec.lock
+flutter_export_environment.sh
 
 # Web related
 lib/generated_plugin_registrant.dart
 
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
-sound_byte/ios/Flutter/flutter_export_environment.sh
-*/flutter_export_environment.sh
