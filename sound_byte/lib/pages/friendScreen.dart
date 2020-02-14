@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sound_byte/pages/chatScreen.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'package:sound_byte/pages/userProfile.dart';
 import 'package:sound_byte/pages/friendProfile.dart';
+import 'package:sound_byte/model/user.dart';
 
 //screen to see all recent chats with friends and access to contact list
 class FriendScreen extends StatefulWidget {
@@ -18,6 +20,7 @@ class FriendScreen extends StatefulWidget {
 
 class _FriendScreenState extends State<FriendScreen> {
   TextEditingController nameTextController;
+  User searchedUser;
 
   @override
   void initState() {
@@ -74,7 +77,12 @@ class _FriendScreenState extends State<FriendScreen> {
               Container(
                 child: TextField(
                   onChanged: (String input) {
-                    //TODO: update the list based on input
+                    Firestore.instance.collection('users').where("name", isEqualTo: input).getDocuments().then((querySnapshot)
+                      => searchedUser = new User.full(querySnapshot.documents[0].documentID,
+                                                      querySnapshot.documents[0].data['name'],
+                                                      querySnapshot.documents[0].data['email'],
+                                                      querySnapshot.documents[0].data['friends'],
+                                                      querySnapshot.documents[0].data['chats']));
                   },
                   decoration: InputDecoration(
                     border: InputBorder.none,
