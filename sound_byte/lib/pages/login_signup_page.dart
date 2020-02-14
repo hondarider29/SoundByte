@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sound_byte/services/authentication.dart';
+import 'package:sound_byte/model/user.dart';
 
 class LoginSignupPage extends StatefulWidget {
   LoginSignupPage({this.auth, this.loginCallback});
@@ -48,6 +49,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
           //widget.auth.sendEmailVerification();
           //_showVerifyEmailSentDialog();
           print('Signed up user: $userId');
+          User.setCurrentUser(userId);
         }
         setState(() {
           _isLoading = false;
