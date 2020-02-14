@@ -8,24 +8,26 @@ class User
   String userEmail;
   // List of friends stored as userIDs
   List<String> friends;
-  //List of Chats by string based ID
+  // List of Chats by string based ID
   List<String> chats;
+  // Document Refrence for the user
+  DocumentReference _reference;
 
-  static User currentUser = null;
+  static User _currentUser = null;
 
   static User instance(String uID)
   {
-    if (User.currentUser == null)
+    if (User._currentUser == null)
     {
-      User.currentUser = userFromDatabase(uID);
+      User._currentUser = userFromDatabase(uID);
     }
 
-    return User.currentUser;
+    return User._currentUser;
   }
 
   static void clearCurrentUser()
   {
-    User.currentUser = null;
+    User._currentUser = null;
   }
   
   User(String username, String email, String id)
@@ -49,12 +51,12 @@ class User
   static User userFromDatabase(String uID)
   {
     User user;
-    Firestore.instance.collection('Users').document(uID).get().then((documentSnapshot)
-                          => user = new User.full(uID, documentSnapshot.data['name'],
-                                                      documentSnapshot.data['email'],
-                                                      documentSnapshot.data['friends'],
-                                                      documentSnapshot.data['chats'])
-        );
+    DocumentReference ref = Firestore.instance.collection('Users').document(uID);
+    ref.get().then((documentSnapshot) => user = new User.full(uID, documentSnapshot.data['name'],
+                                                              documentSnapshot.data['email'],
+                                                              documentSnapshot.data['friends'],
+                                                              documentSnapshot.data['chats']));
+    user._reference = ref;
     return user;
   } 
 
@@ -62,28 +64,34 @@ class User
   void addFriend(String id)
   {
     this.friends.add(id);
-    this.userDataAddFriend(id);
-  }
-
-  // Takes a User ID and adds it to the friends list in firestore
-  void userDataAddFriend(String id)
-  {
-    var ref = Firestore.instance.collection('Users').document(this.userID);
-    ref.updateData({'friends': FieldValue.arrayUnion([id])});
+    this._reference.updateData({'friends': FieldValue.arrayUnion([id])});
   }
 
   // Takes a User ID and removes it from friends list
   void removeFriend(String id)
   {
     this.friends.remove(id);
-    this.userDataRemoveFriend(id);
+    this._reference.updateData({'friends' : FieldValue.arrayRemove([id])});
   }
 
-  // Takes a User ID and removes it from the friends list in firestore
-  void userDataRemoveFriend(String id)
+  // Takes a chat ID and adds it from the chats list
+  void addChat(String id)
   {
-    var ref = Firestore.instance.collection('Users').document(this.userID);
-    ref.updateData({'friends' : FieldValue.arrayRemove([id])});
+    this.chats.add(id);
+    this._reference.updateData({'chats' : FieldValue.arrayUnion([id])});
+  }
+
+  // Takes a chat ID and removes it from the chats list
+  void removeChat(String id)
+  {
+    this.chats.remove(id);
+    this._reference.updateData({'chats' : FieldValue.arrayRemove([id])});
+  }
+
+  // Updates the Document Refrence
+  void updateDocRef()
+  {
+    this._reference = Firestore.instance.collection('User').document(this.userID);
   }
 
   @override
