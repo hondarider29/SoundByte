@@ -11,11 +11,11 @@ class User
   //List of Chats by string based ID
   List<String> chats;
 
-  static User currentUser = null;
+  static User currentUser = new User.nullUser();
 
   static User instance(String uID)
   {
-    if (User.currentUser == null)
+    if (User.currentUser == new User.nullUser())
     {
       User.currentUser = userFromDatabase(uID);
     }
@@ -37,6 +37,15 @@ class User
     chats = new List<String>();
   }
 
+  User.nullUser()
+  {
+    this.userID = null;
+    this.userName = null;
+    this.chats = null;
+    this.friends = null;
+    this.userEmail = null;
+  }
+
   User.full(String userID, String username, String userEmail, List<String> friends, List<String> chats)
   {
     this.userID = userID;
@@ -49,12 +58,12 @@ class User
   static User userFromDatabase(String uID)
   {
     User user;
-    Firestore.instance.collection('users').document(uID).get().then((documentSnapshot)
-                          => user = new User.full(uID, documentSnapshot.data['name'],
-                                                      documentSnapshot.data['email'],
-                                                      documentSnapshot.data['friends'],
-                                                      documentSnapshot.data['chats'])
-        );
+    Firestore.instance.collection('Users').document(uID).get().then((documentSnapshot) async {
+      user = User.full(uID, await documentSnapshot.data['name'],
+                            await documentSnapshot.data['email'],
+                            await documentSnapshot.data['friends'].cast<String>().toList(),
+                            await documentSnapshot.data['chats'].cast<String>().toList());
+    });
     return user;
   }
 

@@ -38,7 +38,7 @@ class _MessagesStreamState extends State<MessagesStream> {
             final senderText = message.data['Sender'];
             final timeStamp = message.data['TimeSent'];
 
-            final currentUser = User.currentUser.userID;
+            final currentUser = User.instance("").userID;
 
             //create a new message bubble widget to load
             messageBubbles.add(

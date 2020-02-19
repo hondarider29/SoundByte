@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sound_byte/model/user.dart';
 import 'package:sound_byte/services/authentication.dart';
 
 class LoginSignupPage extends StatefulWidget {
@@ -43,12 +44,15 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         if (_isLoginForm) {
           userId = await widget.auth.signIn(_email, _password);
           print('Signed in: $userId');
+          print(User.instance(userId).userID);
+          print(User.instance("").userID);
+          print("done");
         } else {
           userId = await widget.auth.signUp(_email, _password);
-          //widget.auth.sendEmailVerification();
-          //_showVerifyEmailSentDialog();
           print('Signed up user: $userId');
+          User.instance(userId);
         }
+
         setState(() {
           _isLoading = false;
         });

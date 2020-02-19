@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sound_byte/helperClasses/messageStream.dart';
-import '../model/user.dart';
+import 'package:sound_byte/model/user.dart';
 
 FirebaseUser loggedInUser;
 final _firestore = Firestore.instance;
@@ -76,7 +76,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     messageTextController.clear();
                     _firestore.collection('Chats').document(widget.chatID).collection('Messages').add({
                       'data': messageText,
-                      'senderID': User.currentUser.userID,
+                      'senderID': User.instance("").userID,
                       'timesent': DateTime.now(),
                     });
                     // _firestore.collection('Messages').add({
