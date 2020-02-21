@@ -10,4 +10,4 @@ dart_task:
   - test: --platform vm
 
 script: 
-  pub run test
+  cd/sound_byte
