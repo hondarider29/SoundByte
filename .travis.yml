@@ -10,4 +10,4 @@ dart_task:
   - test: --platform vm
 
 script: 
-  - ./flutter/bin/flutter test
+  - flutter test
