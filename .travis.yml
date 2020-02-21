@@ -8,6 +8,8 @@ include: ../sound_byte/test/dart_test.yaml
 
 dart_task:
   - test: --platform vm
-
+  
+before script:
+  - cd/sound_byte
 script: 
   - ./flutter/bin/flutter test
