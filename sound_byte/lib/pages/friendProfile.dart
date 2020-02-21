@@ -11,7 +11,7 @@ class FriendProfile extends StatelessWidget {
 
   String _image;
   String _fullName;
-  int _id;
+  String _id;
   String _status;
   @override
   @override
@@ -122,7 +122,7 @@ class FriendProfile extends StatelessWidget {
     );
   }
 
-  Widget _buildBio(int id) {
+  Widget _buildBio(String id) {
     return Text (
       
       "Hello, my name is " + _fullName + " and I love music!"
@@ -130,7 +130,7 @@ class FriendProfile extends StatelessWidget {
     );
   }
 
-  Widget _buildFavSongs(int id) {
+  Widget _buildFavSongs(String id) {
     String va;
     if(id == 1){
       va = "Star Spangled Banner";
