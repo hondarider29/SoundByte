@@ -14,7 +14,6 @@ class FriendProfile extends StatelessWidget {
   String _id;
   String _status;
   @override
-  @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
