@@ -44,14 +44,12 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         if (_isLoginForm) {
           userId = await widget.auth.signIn(_email, _password);
           print('Signed in: $userId');
-          print(User.instance(userId).userID);
-          print(User.instance("").userID);
           print("done");
         } else {
           userId = await widget.auth.signUp(_email, _password);
           print('Signed up user: $userId');
-          User.instance(userId);
         }
+        User.currentUser = await User.userFromDatabase(userId);
 
         setState(() {
           _isLoading = false;

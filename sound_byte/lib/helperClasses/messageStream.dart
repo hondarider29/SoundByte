@@ -34,13 +34,14 @@ class _MessagesStreamState extends State<MessagesStream> {
           final messages = snapshot.data.documents.reversed;
           List<MessageBubble> messageBubbles = [];
           for (var message in messages) {
-            final messageText = message.data['Messages'];
-            final senderText = message.data['Sender'];
-            final timeStamp = message.data['TimeSent'];
+            final messageText = message.data['data'];
+            final senderText = message.data['senderID'];
+            final timeStamp = message.data['timesent'];
 
-            final currentUser = User.instance("").userID;
+            final currentUser = User.currentUser.userID;
 
             //create a new message bubble widget to load
+            if(messageText != null){
             messageBubbles.add(
               MessageBubble(
                 text: messageText,
@@ -49,6 +50,7 @@ class _MessagesStreamState extends State<MessagesStream> {
                 isMe: currentUser == senderText,
               ),
             );
+          }
           }
 
           //actual displaying of the messages
