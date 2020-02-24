@@ -10,5 +10,4 @@ dart_task:
   - test: --platform vm
 
 script: 
-  cd/sound_byte
-  pub run test
+  - flutter test
