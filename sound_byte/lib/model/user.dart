@@ -12,6 +12,7 @@ class User
   List<String> friends;
   // List of Chats by string based ID
   List<String> chats;
+  List<String> _friends_list;
   // Document Refrence for the user
   DocumentReference _reference;
 
@@ -29,6 +30,7 @@ class User
     this.userEmail = email;
     friends = new List<String>();
     chats = new List<String>();
+    this._friends_list = new List<String>();
   }
 
   User.nullUser()
@@ -39,15 +41,16 @@ class User
     this.friends = null;
     this.chats = null;
     this._reference = null;
+    this._friends_list = new List<String>();
   }
 
-  User.full(String userID, String username, String userEmail, List<String> friends, List<String> chats)
-  {
+  User.full(String userID, String username, String userEmail, List<String> friends, List<String> chats) {
     this.userID = userID;
     this.userName = username;
     this.userEmail = userEmail;
     this.friends = friends;
     this.chats = chats;
+    this._friends_list = new List<String>();
   }
 
   static Future<User> userFromDatabase(String uID) async
