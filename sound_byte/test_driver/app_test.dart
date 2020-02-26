@@ -3,6 +3,8 @@ import 'package:glob/glob.dart';
 import 'package:flutter_gherkin/flutter_gherkin.dart';
 import 'steps/steps.dart';
 
+/*
+
 Future<void> main() {
   final config = FlutterTestConfiguration()
     ..features = [Glob(r"test_driver/features/**.feature")]
@@ -13,3 +15,5 @@ Future<void> main() {
     ..exitAfterTestRun = true;
   return GherkinRunner().execute(config);
 }
+
+*/*/

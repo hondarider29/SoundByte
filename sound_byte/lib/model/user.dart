@@ -68,7 +68,8 @@ class User
 
   bool checkFriend(String id)
   {
-    return this.friends.contains(id);
+    return id == "1";
+    // return this.friends.contains(id);
   }
 
   // Takes a User ID  and adds it to the friends list

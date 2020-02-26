@@ -124,10 +124,11 @@ class FriendProfile extends StatelessWidget {
 
   Widget _buildFriendButton()
   {
-    if (User.currentUser.checkFriend(_id))
+    User curr = User.nullUser(); // User.currentUser;
+    if (curr.checkFriend(_id))
     {
       return FlatButton(
-        onPressed: () { User.currentUser.removeFriend(_id); },
+        onPressed: () { /*curr.removeFriend(_id);*/ },
         color: Colors.white,
         child: Text(
           'Remove Friend',
@@ -143,7 +144,7 @@ class FriendProfile extends StatelessWidget {
     else
     {
       return RaisedButton(
-        onPressed: () { User.currentUser.addFriend(_id); },
+        onPressed: () { /*curr.addFriend(_id);*/ },
         color: Colors.blue,
         child: Text(
           'Add Friend',
