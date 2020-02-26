@@ -47,10 +47,10 @@ class _RootPageState extends State<RootPage> {
     setState(() {
       authStatus = AuthStatus.LOGGED_IN;
     });
-    User.instance(_userId);
   }
 
   void logoutCallback() {
+    User.clearCurrentUser();
     setState(() {
       authStatus = AuthStatus.NOT_LOGGED_IN;
       _userId = "";
