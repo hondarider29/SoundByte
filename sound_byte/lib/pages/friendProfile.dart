@@ -127,7 +127,7 @@ class FriendProfile extends StatelessWidget {
     if (User.currentUser.checkFriend(_id))
     {
       return FlatButton(
-        onPressed: () {},
+        onPressed: () { User.currentUser.removeFriend(_id); },
         color: Colors.white,
         child: Text(
           'Remove Friend',
@@ -143,7 +143,7 @@ class FriendProfile extends StatelessWidget {
     else
     {
       return RaisedButton(
-        onPressed: () {},
+        onPressed: () { User.currentUser.addFriend(_id); },
         color: Colors.blue,
         child: Text(
           'Add Friend',
