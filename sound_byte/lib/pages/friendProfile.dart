@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sound_byte/pages/chatScreen.dart';
 import 'package:sound_byte/services/authentication.dart';
-import 'package:sound_byte/pages/userProfile.dart';
-import 'package:sound_byte/pages/friendProfile.dart';
+import 'package:sound_byte/model/user.dart';
 import 'package:sound_byte/pages/friendScreen.dart';
 
 class FriendProfile extends StatelessWidget {
@@ -11,7 +10,7 @@ class FriendProfile extends StatelessWidget {
 
   String _image;
   String _fullName;
-  int _id;
+  String _id;
   String _status;
   @override
   @override
@@ -45,6 +44,7 @@ class FriendProfile extends StatelessWidget {
                   _buildProfileImage(),
                   _buildFullName(),
                   _buildStatus(context),
+                  _buildFriendButton(),
                   Divider(color: Colors.black),
                   SizedBox(
                     height: 10,
@@ -122,7 +122,44 @@ class FriendProfile extends StatelessWidget {
     );
   }
 
-  Widget _buildBio(int id) {
+  Widget _buildFriendButton()
+  {
+    User curr = User.nullUser(); // User.currentUser;
+    if (curr.checkFriend(_id))
+    {
+      return FlatButton(
+        onPressed: () { /*curr.removeFriend(_id);*/ },
+        color: Colors.white,
+        child: Text(
+          'Remove Friend',
+          style: TextStyle(
+            fontFamily: 'Spectral',
+            color: Colors.blue,
+            fontSize: 20.0,
+            fontWeight: FontWeight.w300,
+          ),
+        ),
+      );
+    }
+    else
+    {
+      return RaisedButton(
+        onPressed: () { /*curr.addFriend(_id);*/ },
+        color: Colors.blue,
+        child: Text(
+          'Add Friend',
+          style: TextStyle(
+            fontFamily: 'Spectral',
+            color: Colors.white,
+            fontSize: 20.0,
+            fontWeight: FontWeight.w300,
+          ),
+        ),
+      );
+    }
+  }
+
+  Widget _buildBio(String id) {
     return Text (
       
       "Hello, my name is " + _fullName + " and I love music!"
@@ -130,7 +167,7 @@ class FriendProfile extends StatelessWidget {
     );
   }
 
-  Widget _buildFavSongs(int id) {
+  Widget _buildFavSongs(String id) {
     String va;
     if(id == 1){
       va = "Star Spangled Banner";

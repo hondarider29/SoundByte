@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:sound_byte/services/authentication.dart';
+import 'package:password/password.dart';
+import 'package:sound_byte/helperClasses/messageEncrypter.dart';
 import 'package:sound_byte/model/user.dart';
 
 class LoginSignupPage extends StatefulWidget {
