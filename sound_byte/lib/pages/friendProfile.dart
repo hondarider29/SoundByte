@@ -44,7 +44,7 @@ class FriendProfile extends StatelessWidget {
                   _buildProfileImage(),
                   _buildFullName(),
                   _buildStatus(context),
-                  // _buildFriendButton(),
+                  _buildFriendButton(),
                   Divider(color: Colors.black),
                   SizedBox(
                     height: 10,
@@ -124,24 +124,38 @@ class FriendProfile extends StatelessWidget {
 
   Widget _buildFriendButton()
   {
-    if (true)//User.currentUser.checkFriend(this._id))
+    // TODO: Replace with User.currentUser
+    User curr = User.nullUser();
+    if (curr.checkFriend(_id))
     {
-      return const RaisedButton(
-        onPressed: null,
+      return FlatButton(
+        onPressed: () {},
+        color: Colors.white,
         child: Text(
-          'Remove Friend'
+          'Remove Friend',
+          style: TextStyle(
+            fontFamily: 'Spectral',
+            color: Colors.blue,
+            fontSize: 20.0,
+            fontWeight: FontWeight.w300,
+          ),
         ),
-        color: Colors.white
       );
     }
     else
     {
-      return const FlatButton(
-        onPressed: null,
+      return RaisedButton(
+        onPressed: () {},
+        color: Colors.blue,
         child: Text(
-          'Add Friend'
+          'Add Friend',
+          style: TextStyle(
+            fontFamily: 'Spectral',
+            color: Colors.white,
+            fontSize: 20.0,
+            fontWeight: FontWeight.w300,
+          ),
         ),
-        color: Colors.blue
       );
     }
   }
