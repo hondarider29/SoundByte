@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class User
@@ -16,7 +15,7 @@ class User
   // Document Refrence for the user
   DocumentReference _reference;
 
-  static User currentUser; 
+  static User currentUser = User.nullUser(); 
   
   static void clearCurrentUser()
   {
