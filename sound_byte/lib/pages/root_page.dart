@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sound_byte/pages/login_signup_page.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'package:sound_byte/pages/friendScreen.dart';
+import 'package:sound_byte/model/user.dart';
 
 enum AuthStatus {
   NOT_DETERMINED,
@@ -21,6 +22,7 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   AuthStatus authStatus = AuthStatus.NOT_DETERMINED;
   String _userId = "";
+  String _hash = "";
 
   @override
   void initState() {
@@ -48,6 +50,7 @@ class _RootPageState extends State<RootPage> {
   }
 
   void logoutCallback() {
+    User.clearCurrentUser();
     setState(() {
       authStatus = AuthStatus.NOT_LOGGED_IN;
       _userId = "";
