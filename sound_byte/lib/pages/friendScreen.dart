@@ -77,7 +77,7 @@ class _FriendScreenState extends State<FriendScreen> {
               Container(
                 child: TextField(
                   onChanged: (String input) {
-                    Firestore.instance.collection('users').where("name", isEqualTo: input).getDocuments().then((querySnapshot)
+                    Firestore.instance.collection('Users').where("name", isEqualTo: input).getDocuments().then((querySnapshot)
                       => searchedUser = new User.full(querySnapshot.documents[0].documentID,
                                                       querySnapshot.documents[0].data['name'],
                                                       querySnapshot.documents[0].data['email'],
