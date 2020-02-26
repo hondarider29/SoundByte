@@ -1,0 +1,4 @@
+paths:
+  - sound_byte/test
+  
+filename: "*_test.dart"

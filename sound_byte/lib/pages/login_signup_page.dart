@@ -1,6 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:sound_byte/model/user.dart';
 import 'package:sound_byte/services/authentication.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:password/password.dart';
+import 'package:sound_byte/helperClasses/messageEncrypter.dart';
+import 'package:sound_byte/model/user.dart';
 
 class LoginSignupPage extends StatefulWidget {
   LoginSignupPage({this.auth, this.loginCallback});
@@ -12,6 +17,8 @@ class LoginSignupPage extends StatefulWidget {
   State<StatefulWidget> createState() => new _LoginSignupPageState();
 }
 
+final _firestore = Firestore.instance;
+
 class _LoginSignupPageState extends State<LoginSignupPage> {
   final _formKey = new GlobalKey<FormState>();
 
@@ -19,7 +26,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   String _password;
   String _errorMessage;
 
-    bool _isLoginForm;
+  bool _isLoginForm;
   bool _isLoading;
 
   // Check if form is valid before perform login or signup
@@ -50,13 +57,20 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
           print('Signed up user: $userId');
         }
         User.currentUser = await User.userFromDatabase(userId);
-
         setState(() {
           _isLoading = false;
         });
 
         if (userId.length > 0 && userId != null && _isLoginForm) {
           widget.loginCallback();
+          await _firestore.collection("Users")
+            .document(userId)
+            .setData({
+                'email' : _email,
+                'name' : 'tempName',
+                'chats' : [],
+                'friends' : []               
+            });
         }
       } catch (e) {
         print('Error: $e');

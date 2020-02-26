@@ -22,6 +22,7 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   AuthStatus authStatus = AuthStatus.NOT_DETERMINED;
   String _userId = "";
+  String _hash = "";
 
   @override
   void initState() {
