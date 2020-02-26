@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sound_byte/services/authentication.dart';
+import 'package:sound_byte/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginSignupPage extends StatefulWidget {
@@ -20,6 +21,9 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   String _email;
   String _password;
   String _errorMessage;
+  String _userName;
+  String _first;
+  String _last;
 
   bool _isLoginForm;
   bool _isLoading;
@@ -51,22 +55,26 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
           //widget.auth.sendEmailVerification();
           //_showVerifyEmailSentDialog();
           print('Signed up user: $userId');
-        }
-        setState(() {
-          _isLoading = false;
-        });
-
-        if (userId.length > 0 && userId != null && _isLoginForm) {
-          widget.loginCallback();
           await _firestore.collection("Users")
             .document(userId)
             .setData({
                 'email' : _email,
-                'name' : 'tempName',
                 'chats' : [],
-                'friends' : []               
+                'friends' : [],
+                'firstName' : _first,
+                'lastName' : _last,
+                'userName' : _userName               
             });
         }
+        if (userId.length > 0 && userId != null && _isLoginForm) {
+          widget.loginCallback();
+        }
+
+        User.currentUser = await User.userFromDatabase(userId);
+        setState(() {
+          _isLoading = false;
+        });
+
       } catch (e) {
         print('Error: $e');
         setState(() {
@@ -100,7 +108,8 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    if (_isLoginForm) {
+      return Scaffold(
         appBar: AppBar(
           title: Text('SoundByte'),
         ),
@@ -110,6 +119,18 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
             _showCircularProgress(),
           ],
         ));
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('SoundByte'),
+        ),
+        body: Stack(
+          children: <Widget>[
+            _showCreateForm(),
+            _showCircularProgress(),
+          ],
+        ));
+    }
   }
 
   Widget _showCircularProgress() {
@@ -141,6 +162,28 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         ));
   }
 
+  Widget _showCreateForm() {
+    return new Container(
+        padding: EdgeInsets.all(16.0),
+        child: new Form(
+          key: _formKey,
+          child: new ListView(
+            shrinkWrap: true,
+            children: <Widget>[
+              //showLogo(),
+              showEmailInput(),
+              showFirstNameInput(),
+              showLastNameInput(),
+              showUserInput(),
+              showPasswordInput(),
+              showPrimaryButton(),
+              showSecondaryButton(),
+              showErrorMessage(),
+            ],
+          ),
+        ));
+  }
+
   Widget showErrorMessage() {
     if (_errorMessage.length > 0 && _errorMessage != null) {
       return new Text(
@@ -156,6 +199,60 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         height: 0.0,
       );
     }
+  }
+
+  Widget showUserInput() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
+      child: new TextFormField(
+        maxLines: 1,
+        autofocus: false,
+        decoration: new InputDecoration(
+            hintText: 'Username',
+            icon: new Icon(
+              Icons.verified_user,
+              color: Colors.grey,
+            )),
+        validator: (value) => value.isEmpty ? 'Username can\'t be empty' : null,
+        onSaved: (value) => _userName = value.trim(),
+      ),
+    );
+  }
+
+  Widget showLastNameInput() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
+      child: new TextFormField(
+        maxLines: 1,
+        autofocus: false,
+        decoration: new InputDecoration(
+            hintText: 'Last Name',
+            icon: new Icon(
+              Icons.verified_user,
+              color: Colors.grey,
+            )),
+        validator: (value) => value.isEmpty ? 'Last Name can\'t be empty' : null,
+        onSaved: (value) => _last = value.trim(),
+      ),
+    );
+  }
+
+  Widget showFirstNameInput() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
+      child: new TextFormField(
+        maxLines: 1,
+        autofocus: false,
+        decoration: new InputDecoration(
+            hintText: 'First Name',
+            icon: new Icon(
+              Icons.verified_user,
+              color: Colors.grey,
+            )),
+        validator: (value) => value.isEmpty ? 'First Name can\'t be empty' : null,
+        onSaved: (value) => _first = value.trim(),
+      ),
+    );
   }
 
   Widget showEmailInput() {
