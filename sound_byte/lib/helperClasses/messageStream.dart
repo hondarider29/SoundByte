@@ -4,33 +4,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sound_byte/helperClasses/messageBubble.dart';
 
 final _firestore = Firestore.instance;
+//FirebaseUser loggedInUser;
 
-class MessagesStream extends StatefulWidget {
-  final String userID;
-  final String friendID;
+class MessagesStream extends StatelessWidget {
+  final String loggedInUserEmail;
 
-  MessagesStream(this.userID, this.friendID);
-
-  @override
-  _MessagesStreamState createState() => _MessagesStreamState();
-}
-
-class _MessagesStreamState extends State<MessagesStream> {
-
-  String saveChatID;
-
-  @override
-  void initState() {
-    saveChatID = getChatID();
-
-    super.initState();
-  }
+  MessagesStream(this.loggedInUserEmail);
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       //TODO: change firestore collection to be actual ones. Here lie demos
-      stream: _firestore.collection('Chats').document(saveChatID).collection('Messages').orderBy('timesent').snapshots(),
+      stream: _firestore.collection('Messages').orderBy('TimeSent').snapshots(),
       builder: (context, snapshot) {
         //loading screen
         if (!snapshot.hasData) {
@@ -45,11 +30,11 @@ class _MessagesStreamState extends State<MessagesStream> {
           final messages = snapshot.data.documents.reversed;
           List<MessageBubble> messageBubbles = [];
           for (var message in messages) {
-            final messageText = message.data['data'];
-            final senderText = message.data['senderID'];
-            final timeStamp = message.data['timesent'];
+            final messageText = message.data['Messages'];
+            final senderText = message.data['Sender'];
+            final timeStamp = message.data['TimeSent'];
 
-            final currentUser = widget.userID;
+            final currentUser = loggedInUserEmail;
 
             //create a new message bubble widget to load
             messageBubbles.add(
@@ -73,10 +58,5 @@ class _MessagesStreamState extends State<MessagesStream> {
         }
       },
     );
-  }
-
-  getChatID() async{
-    DocumentSnapshot snapshot = await _firestore.collection('Users').document(widget.userID).collection('Chats').document(widget.userID + "-" + widget.friendID).get();
-    return snapshot.data['chatID'];
   }
 }
