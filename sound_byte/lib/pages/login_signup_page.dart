@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'package:sound_byte/model/user.dart';
