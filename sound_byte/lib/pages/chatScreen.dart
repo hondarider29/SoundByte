@@ -2,17 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sound_byte/helperClasses/messageStream.dart';
-import 'package:sound_byte/model/user.dart';
 
 FirebaseUser loggedInUser;
 final _firestore = Firestore.instance;
 
 //screen to display and send all chats
 class ChatScreen extends StatefulWidget {
-  final String friendID;
-
-  ChatScreen({Key key, @required this.friendID}) : super(key: key);
-
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -21,21 +16,10 @@ class _ChatScreenState extends State<ChatScreen> {
   TextEditingController messageTextController;
   String messageText = '';
   final _auth = FirebaseAuth.instance;
-  String chatUserID = '';
-
-  User user;
 
   @override
   void initState() {
-    getUserID();
-    getUserInfo(chatUserID).then((val){
-      user = new User(
-        chatUserID,
-        val.data['email'],
-        val.data['name']
-      );
-    });
-
+    getCurrentUser();
     messageTextController = new TextEditingController();
     super.initState();
   }
@@ -59,7 +43,7 @@ class _ChatScreenState extends State<ChatScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          MessagesStream(user.userID, widget.friendID),
+          MessagesStream("test2@test.com"),
           Container(
             decoration: BoxDecoration(
               borderRadius: new BorderRadius.all(new Radius.circular(24.0)),
@@ -109,40 +93,15 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  void getUserID() async {
-    await _auth.currentUser().then((user) {
-      if(user != null){
-        print(user.uid);
-        setState(() {
-          chatUserID = user.uid;
-        });
-      }else{
-        print("ERROR getting user id");
+  void getCurrentUser() async {
+    final user = await _auth.currentUser();
+    if (user != null) {
+      try {
+        loggedInUser = user;
+        print(loggedInUser.email);
+      } catch (e) {
+        print(e);
       }
-    });
-
-    // _auth.currentUser().then((user) {
-    //   print(user.uid);
-    //   if (user != null) {
-    //     return user.uid;
-    //   }
-    // });
-  }
-
-  // void getLoggedInUser() async {
-  //   final user = await _auth.currentUser();
-  //   if (user != null) {
-  //     try {
-  //       loggedInUser = user;
-  //       print(loggedInUser.email);
-  //     } catch (e) {
-  //       print("Not logged in");
-  //       print(e);
-  //     }
-  //   }
-  // }
-
-  getUserInfo(String groupId) async {
-    return _firestore.collection("Users").document(groupId).get();
+    }
   }
 }

@@ -138,7 +138,7 @@ class _FriendScreenState extends State<FriendScreen> {
                 context,
                 //TODO: add name to navigator to allow chat screen to load correct conversation
                 MaterialPageRoute(
-                  builder: (context) => ChatScreen(friendID: id),
+                  builder: (context) => ChatScreen(),
                 ),
               );
             },
