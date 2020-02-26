@@ -124,9 +124,7 @@ class FriendProfile extends StatelessWidget {
 
   Widget _buildFriendButton()
   {
-    // TODO: Replace with User.currentUser
-    User curr = User.nullUser();
-    if (curr.checkFriend(_id))
+    if (User.currentUser.checkFriend(_id))
     {
       return FlatButton(
         onPressed: () {},
