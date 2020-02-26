@@ -60,7 +60,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     },
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Type your message here...',
+                      hintText: 'Please enter a message...',
                       contentPadding: EdgeInsets.all(12.0),
                       hintStyle: TextStyle(
                         color: Colors.grey,

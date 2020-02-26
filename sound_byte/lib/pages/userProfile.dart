@@ -14,8 +14,8 @@ class UserProfilePage extends StatefulWidget {
   final BaseAuth auth;
   final VoidCallback logoutCallback;
   final String userId;
-
 }
+
 
 class _UserProfilePageState extends State<UserProfilePage>
 {
@@ -91,6 +91,7 @@ class _UserProfilePageState extends State<UserProfilePage>
   }
 
 
+
   Widget _buildProfileImage() {
     return Center(
       child: Container(
@@ -152,14 +153,12 @@ class _UserProfilePageState extends State<UserProfilePage>
 
   Widget _buildFavSongs() {
     return Text (
-      "Star Spangled Banner"
+      "Old Town Road"
     );
   }
- 
-
 }
 //problem, cant pass a logoutcallback to user and cant go back
-  
+
 
   // decoration: BoxDecoration(
         
