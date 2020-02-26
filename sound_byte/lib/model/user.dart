@@ -64,7 +64,12 @@ class User
       completer.complete(user); 
     });
     return completer.future;
-  } 
+  }
+
+  bool checkFriend(String id)
+  {
+    return this.friends.contains(id);
+  }
 
   // Takes a User ID  and adds it to the friends list
   void addFriend(String id)
