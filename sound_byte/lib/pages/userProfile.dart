@@ -145,10 +145,6 @@ class _UserProfilePageState extends State<UserProfilePage>
     );
   }
 
-  Widget _friendsList () {
-    for (int i = 0; )
-  }
-
   Widget _buildBio() {
     return Text (
       "Hello, my name is " + _fullName + " and I love music!"
