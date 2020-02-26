@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class User
@@ -15,7 +14,7 @@ class User
   // Document Refrence for the user
   DocumentReference _reference;
 
-  static User currentUser; 
+  static User currentUser = User.nullUser(); 
   
   static void clearCurrentUser()
   {
@@ -41,8 +40,7 @@ class User
     this._reference = null;
   }
 
-  User.full(String userID, String username, String userEmail, List<String> friends, List<String> chats)
-  {
+  User.full(String userID, String username, String userEmail, List<String> friends, List<String> chats) {
     this.userID = userID;
     this.userName = username;
     this.userEmail = userEmail;
