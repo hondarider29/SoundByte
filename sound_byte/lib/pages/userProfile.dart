@@ -14,7 +14,6 @@ class UserProfilePage extends StatefulWidget {
   final BaseAuth auth;
   final VoidCallback logoutCallback;
   final String userId;
-
 }
 
 class _UserProfilePageState extends State<UserProfilePage>
@@ -26,6 +25,16 @@ class _UserProfilePageState extends State<UserProfilePage>
     try {
       await widget.auth.signOut();
       widget.logoutCallback();
+      print('does route in  signout');
+      //return RootPage();
+      Navigator.push(
+        
+        context,
+        MaterialPageRoute(
+         
+          builder: (context) => RootPage(),
+        )
+      );
     } catch (e) {
       print(e);
     }
@@ -44,6 +53,7 @@ class _UserProfilePageState extends State<UserProfilePage>
           FlatButton(child: Text('Logout',
             style: new TextStyle(fontSize: 17.0, color: Colors.white)),
           onPressed: signOut
+          
           )
         ],
         //back button

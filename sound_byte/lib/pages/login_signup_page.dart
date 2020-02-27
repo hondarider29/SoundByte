@@ -56,6 +56,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         });
 
         if (userId.length > 0 && userId != null && _isLoginForm) {
+          _isLoading = true;
           widget.loginCallback();
         }
       } catch (e) {
@@ -92,15 +93,32 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('SoundByte'),
-        ),
-        body: Stack(
-          children: <Widget>[
-            _showForm(),
-            _showCircularProgress(),
-          ],
-        ));
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: <Widget>[
+          _callBegin(),
+          //_showCircularProgress()
+        ],
+      ),
+    );
+  }
+
+  Widget _callBegin () {
+    return new Container(
+      child: new Form(
+          key: _formKey,
+          child: new Stack( 
+            children: <Widget>[
+              showBackground(),
+              showLogo(),
+              showEmailInput(),
+              showPrimaryButton(),
+              showSecondaryButton(),
+              showErrorMessage()
+            ], 
+          ),
+        )
+    );
   }
 
   Widget _showCircularProgress() {
@@ -112,34 +130,15 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
       width: 0.0,
     );
   }
-
-  Widget _showForm() {
-    return new Container(
-        padding: EdgeInsets.all(16.0),
-        child: new Form(
-          key: _formKey,
-          child: new ListView(
-            shrinkWrap: true,
-            children: <Widget>[
-              //showLogo(),
-              showEmailInput(),
-              showPasswordInput(),
-              showPrimaryButton(),
-              showSecondaryButton(),
-              showErrorMessage(),
-            ],
-          ),
-        ));
-  }
-
+  
   Widget showErrorMessage() {
     if (_errorMessage.length > 0 && _errorMessage != null) {
-      return new Text(
+      return Text(
         _errorMessage,
         style: TextStyle(
             fontSize: 13.0,
             color: Colors.red,
-            height: 1.0,
+            height: 45.0,
             fontWeight: FontWeight.w300),
       );
     } else {
@@ -149,57 +148,109 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     }
   }
 
-  Widget showEmailInput() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
-      child: new TextFormField(
-        maxLines: 1,
-        keyboardType: TextInputType.emailAddress,
-        autofocus: false,
-        decoration: new InputDecoration(
-            hintText: 'Email',
-            icon: new Icon(
-              Icons.mail,
-              color: Colors.grey,
-            )),
-        validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
-        onSaved: (value) => _email = value.trim(),
+  Widget showLogo() {
+    return Container(
+      child: Positioned(
+        top: 210,
+        left: 70,
+        child: Text(
+          "SoundByte",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 60,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Laq'
+          ),
+        ),
       ),
     );
   }
 
-  Widget showPasswordInput() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
-      child: TextFormField(
-        maxLines: 1,
-        obscureText: true,
-        autofocus: false,
-        decoration: InputDecoration(
-            hintText: 'Password',
-            icon: Icon(
-              Icons.lock,
-              color: Colors.grey,
-            )),
-        validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
-        onSaved: (value) => _password = value.trim(),
+  Widget showEmailInput() {
+    return SingleChildScrollView( //helps MOVE KEYBOARD
+      padding: EdgeInsets.only(left: 50, right: 50, top: 300),
+      child: Column(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.all(2),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromRGBO(143, 148, 51, 1)
+                )
+              ]
+            ),
+            child: Column(
+              children : <Widget>[
+                  Container(
+                    padding: EdgeInsets.all(7),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                     child: new TextFormField(
+                      maxLines: 1,
+                      keyboardType: TextInputType.emailAddress,
+                      autofocus: false,
+                      decoration: new InputDecoration(
+                          hintText: 'Email',
+                          icon: new Icon(
+                            Icons.mail,
+                            color: Colors.grey,
+                          )),
+                      validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
+                      onSaved: (value) => _email = value.trim(),
+                    )
+                  ),
+                  //password
+                  Container(
+                    padding: EdgeInsets.all(7),
+                     child: new TextFormField(
+                       maxLines: 1,
+                        obscureText: true,
+                        autofocus: false,
+                        decoration: InputDecoration(
+                            hintText: 'Password',
+                            icon: Icon(
+                              Icons.lock,
+                              color: Colors.grey,
+                            )),
+                        validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
+                        onSaved: (value) => _password = value.trim()
+                    )
+                  )
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
 
   Widget showSecondaryButton() {
-    return FlatButton(
-        child: Text(
-            _isLoginForm ? 'Create an account' : 'Have an account? Sign in',
-            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300)),
-        onPressed: toggleFormMode);
+    return Container(
+      padding: _isLoginForm ? EdgeInsets.fromLTRB(100, 600, 0, 0) : EdgeInsets.fromLTRB(80, 600, 0, 0),
+    
+        child: RaisedButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30)
+        ),
+        color: Colors.blue,
+         child: Text(_isLoginForm ? 'Create an account' : 'Have an account? Sign in',
+            style: TextStyle(fontSize: 20.0, color: Colors.white)),
+            onPressed: toggleFormMode,
+        )
+    );
+          
+    
   }
 
   Widget showPrimaryButton() {
-    return Padding(
-        padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
-        child: SizedBox(
-          height: 40.0,
+    return Container(
+      child: Padding(
+          padding: _isLoginForm ? EdgeInsets.fromLTRB(160, 480, 0, 100) : EdgeInsets.fromLTRB(125, 480, 0, 100),
+          //padding: EdgeInsets.fromLTRB(160, 450, 0, 100),
           child: RaisedButton(
             elevation: 5.0,
             shape: RoundedRectangleBorder(
@@ -209,6 +260,35 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                 style: TextStyle(fontSize: 20.0, color: Colors.white)),
             onPressed: validateAndSubmit,
           ),
-        ));
+      )
+    );
+  }
+
+  Widget showBackground() {
+    return Container(
+          height: 683,
+          decoration: BoxDecoration(
+          image: DecorationImage(
+          image: AssetImage('assets/background.png'),
+          fit: BoxFit.fill
+        )
+      ),
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            top: -20,
+            width: 420,
+            height: 350,
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/waves.png')
+                )
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

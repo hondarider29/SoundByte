@@ -29,5 +29,14 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+  fonts:
+  - family: Laq
+    fonts:
+    - asset: fonts/Lacquer-Regular.ttf
+  - family: Mont
+    fonts:
+    - asset: fonts/Montserrat-Black.ttf
+
   assets:
-  - images/
+  - assets/waves.png
+  - assets/background.png
