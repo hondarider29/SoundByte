@@ -240,6 +240,7 @@ class _UserProfilePageState extends State<UserProfilePage>
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       body: Stack(
         children: <Widget>[
           //showBackground(screenSize),

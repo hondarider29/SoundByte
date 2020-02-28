@@ -90,37 +90,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Stack(
-        children: <Widget>[
-          _callBegin(),
-          //_showCircularProgress()
-        ],
-      ),
-    );
-  }
-
-  Widget _callBegin () {
-    return new Container(
-      child: new Form(
-          key: _formKey,
-          child: new Stack( 
-            children: <Widget>[
-              showBackground(),
-              showLogo(),
-              showEmailInput(),
-              showPrimaryButton(),
-              showSecondaryButton(),
-              showErrorMessage()
-            ], 
-          ),
-        )
-    );
-  }
-
   Widget _showCircularProgress() {
     if (_isLoading) {
       return Center(child: CircularProgressIndicator());
@@ -148,21 +117,37 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     }
   }
 
-  Widget showLogo() {
+  Widget showSecondaryButton() {
     return Container(
-      child: Positioned(
-        top: 210,
-        left: 70,
-        child: Text(
-          "SoundByte",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 60,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Laq'
-          ),
+      padding: _isLoginForm ? EdgeInsets.fromLTRB(100, 600, 0, 0) : EdgeInsets.fromLTRB(80, 600, 0, 0),
+    
+        child: RaisedButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30)
         ),
-      ),
+        color: Colors.blue,
+         child: Text(_isLoginForm ? 'Create an account' : 'Have an account? Sign in',
+            style: TextStyle(fontSize: 20.0, color: Colors.white)),
+            onPressed: toggleFormMode,
+        )
+    );
+  }
+
+  Widget showPrimaryButton() {
+    return Container(
+      child: Padding(
+          padding: _isLoginForm ? EdgeInsets.fromLTRB(160, 480, 0, 100) : EdgeInsets.fromLTRB(125, 480, 0, 100),
+          //padding: EdgeInsets.fromLTRB(160, 450, 0, 100),
+          child: RaisedButton(
+            elevation: 5.0,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0)),
+            color: Colors.blue,
+            child: Text(_isLoginForm ? 'Login' : 'Create account',
+                style: TextStyle(fontSize: 20.0, color: Colors.white)),
+            onPressed: validateAndSubmit,
+          ),
+      )
     );
   }
 
@@ -184,6 +169,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
             ),
             child: Column(
               children : <Widget>[
+                //email
                   Container(
                     padding: EdgeInsets.all(7),
                     decoration: BoxDecoration(
@@ -228,43 +214,27 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     );
   }
 
-  Widget showSecondaryButton() {
+   Widget showLogo() {
     return Container(
-      padding: _isLoginForm ? EdgeInsets.fromLTRB(100, 600, 0, 0) : EdgeInsets.fromLTRB(80, 600, 0, 0),
-    
-        child: RaisedButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30)
-        ),
-        color: Colors.blue,
-         child: Text(_isLoginForm ? 'Create an account' : 'Have an account? Sign in',
-            style: TextStyle(fontSize: 20.0, color: Colors.white)),
-            onPressed: toggleFormMode,
-        )
-    );
-  }
-
-  Widget showPrimaryButton() {
-    return Container(
-      child: Padding(
-          padding: _isLoginForm ? EdgeInsets.fromLTRB(160, 480, 0, 100) : EdgeInsets.fromLTRB(125, 480, 0, 100),
-          //padding: EdgeInsets.fromLTRB(160, 450, 0, 100),
-          child: RaisedButton(
-            elevation: 5.0,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0)),
-            color: Colors.blue,
-            child: Text(_isLoginForm ? 'Login' : 'Create account',
-                style: TextStyle(fontSize: 20.0, color: Colors.white)),
-            onPressed: validateAndSubmit,
+      child: Positioned(
+        top: 210,
+        left: 70,
+        child: Text(
+          "SoundByte",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 60,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Laq'
           ),
-      )
+        ),
+      ),
     );
   }
 
-  Widget showBackground() {
+  Widget showBackground(Size screenSize) {
     return Container(
-          height: 683,
+          height: screenSize.height,
           decoration: BoxDecoration(
           image: DecorationImage(
           image: AssetImage('assets/background.png'),
@@ -290,4 +260,35 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     );
   }
 
+  Widget _callBegin (Size screenSize) {
+    return new Container(
+      child: new Form(
+          key: _formKey,
+          child: new Stack( 
+            children: <Widget>[
+              showBackground(screenSize),
+              showLogo(),
+              showEmailInput(),
+              showPrimaryButton(),
+              showSecondaryButton(),
+              showErrorMessage()
+            ], 
+          ),
+        )
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: <Widget>[
+          _callBegin(screenSize),
+          //_showCircularProgress()
+        ],
+      ),
+    );
+  }
 }

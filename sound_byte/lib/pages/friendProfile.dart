@@ -32,7 +32,6 @@ class FriendProfile extends StatelessWidget {
           ),
         ),
       ),
-      
     );
   }
   Widget _buildFullName() {
@@ -72,7 +71,7 @@ class FriendProfile extends StatelessWidget {
       fontFamily: 'Spectral',
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.italic,
-      color: Color(0xFF799497),
+      color: Colors.black,
       fontSize: 16.0,
     );
 
@@ -232,6 +231,7 @@ class FriendProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
+      //backgroundColor: Color.fromRGBO(0, 0, 140, 0),
       body: Stack(
         children: <Widget>[
           //showBackground(screenSize),
