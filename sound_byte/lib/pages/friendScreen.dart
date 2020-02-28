@@ -25,6 +25,16 @@ class _FriendScreenState extends State<FriendScreen> {
     super.initState();
   }
 
+
+  signOut() async {
+    try {
+      await widget.auth.signOut();
+      widget.logoutCallback();
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,20 +45,9 @@ class _FriendScreenState extends State<FriendScreen> {
         title: Text('Byte Chat'),
         //title: Text(),
         actions: <Widget>[
-          FlatButton(child: Text('Profile',
+          FlatButton(child: Text('Logout',
             style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-            onPressed: () 
-          {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => 
-                UserProfilePage(
-                   auth: widget.auth,
-                   userId: widget.userId,
-                   logoutCallback: widget.logoutCallback,
-                )),
-            );
-          }
+            onPressed: signOut
           )
         ],
       ),
@@ -96,15 +95,15 @@ class _FriendScreenState extends State<FriendScreen> {
               //friend list
               //TODO: add real data
               friendButton(
-                  'images/headShot1.jpeg', "John", "last online: 2 hours ago", 1, "Software Engineer"),
+                  'images/headShot1.jpeg', "John", "last online: 2 hours ago", "1", "Software Engineer"),
               friendButton(
-                  'images/headShot2.jpeg', "David", "Online", 2 ,"Soccer Player"),
+                  'images/headShot2.jpeg', "David", "Online", "2" ,"Soccer Player"),
               friendButton(
-                  'images/headShot3.jpeg', "Xavier", "last online: 3 minutes ago", 3, "Teacher"),
+                  'images/headShot3.jpeg', "Xavier", "last online: 3 minutes ago", "3", "Teacher"),
               friendButton(
-                  'images/headShot4.jpeg', "Sarah", "last online: 4 seconds ago", 4, "Nurse"),
+                  'images/headShot4.jpeg', "Sarah", "last online: 4 seconds ago", "4", "Nurse"),
               friendButton(
-                  'images/headShot5.png', "Jennifer", "Online", 5, "Lawyer")
+                  'images/headShot5.png', "Jennifer", "Online", "5", "Lawyer")
             ],
           ),
         ),
@@ -113,7 +112,7 @@ class _FriendScreenState extends State<FriendScreen> {
   }
 
   //creates a button displaying all the information about a friend
-  Widget friendButton(String imageName, String name, String subText, int id, String status) {
+  Widget friendButton(String imageName, String name, String subText, String id, String status) {
     double size = 50;
 
     return Column(

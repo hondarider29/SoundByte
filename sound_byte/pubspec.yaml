@@ -40,3 +40,9 @@ flutter:
   assets:
   - assets/waves.png
   - assets/background.png
+  - assets/instr.jpg
+  - images/headShot1.jpeg
+  - images/headShot2.jpeg
+  - images/headShot3.jpeg
+  - images/headShot4.jpeg
+  - images/headShot5.png

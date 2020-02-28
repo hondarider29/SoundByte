@@ -130,7 +130,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
       width: 0.0,
     );
   }
-  
+
   Widget showErrorMessage() {
     if (_errorMessage.length > 0 && _errorMessage != null) {
       return Text(
@@ -242,8 +242,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
             onPressed: toggleFormMode,
         )
     );
-          
-    
   }
 
   Widget showPrimaryButton() {
@@ -291,4 +289,5 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
       ),
     );
   }
+
 }

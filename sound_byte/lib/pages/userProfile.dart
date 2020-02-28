@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sound_byte/pages/friendScreen.dart';
 import 'package:sound_byte/services/authentication.dart';
-import 'login_signup_page.dart';
-import 'package:sound_byte/pages/root_page.dart';
 
 class UserProfilePage extends StatefulWidget {
   @override
-  // UserProfilePage({this.auth, this.userId, this.logoutCallback});
   UserProfilePage({Key key, this.auth, this.userId,this.logoutCallback})
     : super(key: key);
 
@@ -21,104 +17,31 @@ class _UserProfilePageState extends State<UserProfilePage>
   final String _fullName = "David Sann";
   final String _status = "Software Engineer";
 
-  signOut() async {
-    try {
-      await widget.auth.signOut();
-      widget.logoutCallback();
-      print('does route in  signout');
-      //return RootPage();
-      Navigator.push(
-        
-        context,
-        MaterialPageRoute(
-         
-          builder: (context) => RootPage(),
-        )
-      );
-    } catch (e) {
-      print(e);
-    }
-  }
+  final String _followers = "173";
+  final String _playlists = "24";
+  final String _views = "450";
+  final String _bio = "Hello, I am David and love music!";
+  final String _favSongs = "Star Spangled Banner";
 
-  @override
-  Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.lightBlueAccent,
-        elevation: 0,
-        title: Text("Sound Byte"),
-        actions: <Widget>[
-          FlatButton(child: Text('Logout',
-            style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-          onPressed: signOut
-          
-          )
-        ],
-        //back button
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => FriendScreen()),
-            );
-          },
-        ), // IconButton
-      ), // AppBar
-      body: Stack(
-        children: <Widget> [
-          SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: screenSize.height / 30),
-                  _buildProfileImage(),
-                  _buildFullName(),
-                  _buildStatus(context),
-                  Divider(color: Colors.black),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  _buildBio(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Divider(color: Colors.black),
-                  Text("Favorite Songs"),
-                  _buildFavSongs(),
-                ],
-              ),
-            ),
-          ),
-        ],
-
-      //list of all contacts and search
-      //IDEA: maybe turn into a stream 
-      )
-    );
-  }
-
-
-  Widget _buildProfileImage() {
+  Widget _buildProfileImage(Size screenSize) {
     return Center(
       child: Container(
-        width: 100.0,
-        height: 100.0,
+        width: 140.0,
+        height: 140.0,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage( 'images/headShot1.jpeg'),
             fit: BoxFit.cover,
-          ), // Decoration Image
+        ), // Decoration Image
           borderRadius: BorderRadius.circular(80.0),
           border: Border.all(
-            color: Colors.black,
+            color: Colors.white,
             width: 5.0,
           ), // Border.all
         ), // BoxDecoration
-      ), // Container
-    ); // Center
+      ),
+      
+    );
   }
   Widget _buildFullName() {
     TextStyle _nameTextStyle = TextStyle (
@@ -133,14 +56,12 @@ class _UserProfilePageState extends State<UserProfilePage>
     );
   }
 
-   Widget _buildStatus(BuildContext context) {
+  Widget _buildStatus(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 6.0),
       decoration: BoxDecoration(
-        
         color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(4.0),
-    
       ),
       child: Text(
         _status,
@@ -155,25 +76,193 @@ class _UserProfilePageState extends State<UserProfilePage>
   }
 
   Widget _buildBio() {
-    return Text (
-      "Hello, my name is " + _fullName + " and I love music!"
+    TextStyle bioTextStyle = TextStyle(
+      fontFamily: 'Spectral',
+      fontWeight: FontWeight.w400,//try changing weight to w500 if not thin
+      fontStyle: FontStyle.italic,
+      color: Color(0xFF799497),
+      fontSize: 16.0,
+    );
+    return Container(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      padding: EdgeInsets.all(8.0),
+      child: Text(
+        _bio,
+        textAlign: TextAlign.center,
+        style: bioTextStyle,
+      ),
     );
   }
 
   Widget _buildFavSongs() {
-    return Text (
-      "Star Spangled Banner"
+    return Container(
+      child: Text(
+        _favSongs
+      ),
+    );
+  }
+
+  Widget showBackground(Size screenSize) {
+    return Container(
+          height: screenSize.height,
+          decoration: BoxDecoration(
+          image: DecorationImage(
+          image: AssetImage('assets/background.png'),
+          fit: BoxFit.fill
+        )
+      ),
+    );
+  }
+
+  Widget buildCoverImage(Size screenSize) {
+    return Container(
+      height: screenSize.height / 2.6,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/instr.jpg'),
+          fit: BoxFit.cover
+        )
+      ),
     );
   }
  
+  Widget _buildStatContainer() {
+    return Container(
+      height: 60,
+      margin: EdgeInsets.only(top: 8.0),
+      decoration: BoxDecoration(
+        color: Color(0xFFEFF4F7)
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          _buildStatItem("Followers", _followers),
+          _buildStatItem("PlayLists", _playlists),
+          _buildStatItem("Views", _views),
+          
+        ],
+      ),
+    );
+  }
 
-}
-//problem, cant pass a logoutcallback to user and cant go back
+  Widget _buildStatItem(String label, String count) {
+    TextStyle _statLabelTextStyle = TextStyle(
+      fontFamily: 'Roboto',
+      color: Colors.black,
+      fontSize: 16.0,
+      fontWeight: FontWeight.w200,
+    );
+
+    TextStyle _statCountTextStyle = TextStyle(
+      color: Colors.black54,
+      fontSize: 24.0,
+      fontWeight: FontWeight.bold,
+    );
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          count,
+          style: _statCountTextStyle,
+        ),
+        Text(
+          label,
+          style: _statLabelTextStyle,
+        ),
+      ],
+    );
+  }
+
+
+    Widget _buildSeparator(Size screenSize) {
+    return Container(
+      width: screenSize.width / 1.6,
+      height: 2.0,
+      color: Colors.black54,
+      margin: EdgeInsets.only(top: 4.0),
+    );
+  }
+
+   Widget _buildButtons() {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: InkWell(
+              onTap: () => print("followed"),
+              child: Container(
+                height: 40.0,
+                decoration: BoxDecoration(
+                  border: Border.all(),
+                  color: Color(0xFF404A5C),
+                ),
+                child: Center(
+                  child: Text(
+                    "FOLLOW",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: 10.0),
+          Expanded(
+            child: InkWell(
+              onTap: () => print("Message"),
+              child: Container(
+                height: 40.0,
+                decoration: BoxDecoration(
+                  border: Border.all(),
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text(
+                      "MESSAGE",
+                      style: TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
   
-
-  // decoration: BoxDecoration(
-        
-  //       color: Theme.of(context).scaffoldBackgroundColor,
-  //       borderRadius: BorderRadius.circular(4.0),
-    
-  //     ),
+   @override
+  Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          //showBackground(screenSize),
+          buildCoverImage(screenSize),
+          SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: screenSize.height / 6.4),
+                  _buildProfileImage(screenSize),
+                  _buildFullName(),
+                  _buildStatus(context),
+                  _buildStatContainer(),
+                  _buildBio(),
+                  _buildSeparator(screenSize),
+                  //_buildFavSongs(),
+                  //_buildButtons() only for friends profile
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
