@@ -29,6 +29,10 @@ See [current sprint](https://github.com/hondarider29/SoundByte/projects/4).
 
 https://dart.dev/guides/language/effective-dart/style
 
+## Static Code Analysis
+
+All static code analysis is done using the built-in Flutter analyzer, which can be run using ```flutter analyze```
+
 ## Authors
 
 - [Carlos Ayala](github.com/cayalame) (cayalame)
