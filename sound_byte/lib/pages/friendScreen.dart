@@ -47,7 +47,7 @@ class _FriendScreenState extends State<FriendScreen> {
               MaterialPageRoute(builder: (context) => 
                 UserProfilePage(
                    auth: widget.auth,
-                   userId: User.currentUser.userId,
+                   userId: User.currentUser.userID,
                    logoutCallback: widget.logoutCallback,
                 )),
             );
