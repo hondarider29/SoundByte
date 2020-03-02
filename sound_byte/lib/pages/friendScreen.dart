@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sound_byte/pages/chatScreen.dart';
 import 'package:sound_byte/services/authentication.dart';
+import 'login_signup_page.dart';
 import 'package:sound_byte/pages/userProfile.dart';
 import 'package:sound_byte/pages/friendProfile.dart';
 import 'package:sound_byte/model/user.dart';
