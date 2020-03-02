@@ -79,11 +79,6 @@ class _ChatScreenState extends State<ChatScreen> {
                       'senderID': User.currentUser.userID,
                       'timesent': DateTime.now(),
                     });
-                    // _firestore.collection('Messages').add({
-                    //   'Messages': messageText,
-                    //   'Sender': User.currentUser.userEmail,
-                    //   'TimeSent': DateTime.now(),
-                    // });
                   },
                   child: Text(
                     'Send',
