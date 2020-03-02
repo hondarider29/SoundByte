@@ -42,15 +42,15 @@ class _MessagesStreamState extends State<MessagesStream> {
 
             //create a new message bubble widget to load
             if(messageText != null){
-            messageBubbles.add(
-              MessageBubble(
-                text: messageText,
-                sender: senderText,
-                timeStamp: timeStamp,
-                isMe: currentUser == senderText,
-              ),
-            );
-          }
+              messageBubbles.add(
+                MessageBubble(
+                  text: messageText,
+                  sender: senderText,
+                  timeStamp: timeStamp,
+                  isMe: currentUser == senderText,
+                ),
+              );
+            }
           }
 
           //actual displaying of the messages
