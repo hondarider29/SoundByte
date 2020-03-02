@@ -29,6 +29,19 @@ See [current sprint](https://github.com/hondarider29/SoundByte/projects/4).
 
 https://dart.dev/guides/language/effective-dart/style
 
+## Static Code Analysis
+
+All static code analysis is done using the built-in Flutter analyzer, which can be run using ```flutter analyze```
+
+## Getting Started
+- To get started, make sure to download a text editor or an IDE that you are comfortable with such as VS Code. 
+- Next, there needs to be the installation of Dart and Flutter. Each can be installed individually. However installing the Flutter SDK automatically install Dart on the user's machine. Links to download the Dart and Flutter SDK can be found in the Requirements section of the README. 
+- Once clicked on the install Flutter link, the user should chose for what operating system to install the framework and follow the steps and run the commands on that page. 
+- The user should then clone the repository using "git clone https://github.com/hondarider29/SoundByte.git" which will then create a clone of the repository on the user's machine.
+- The user should then enter the folder and run the command  "flutter doctor" to check for dependencies and install the appropriate dependencies.
+- The user should then run the command "flutter run" which would then start the flutter framework and compile the code and cause the flutter machine to start running.
+- At this point the user should open up the simulator whether from Android or IOS using their simulators respectively by running the command open -a simulator. 
+
 ## Authors
 
 - [Carlos Ayala](github.com/cayalame) (cayalame)
