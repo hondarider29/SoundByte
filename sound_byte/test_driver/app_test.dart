@@ -3,13 +3,8 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('Counter App', () {
-    // First, define the Finders and use them to locate widgets from the
-    // test suite. Note: the Strings provided to the `byValueKey` method must
-    // be the same as the Strings we used for the Keys in step 1.
-    final counterTextFinder = find.byValueKey('counter');
-    final buttonFinder = find.byValueKey('increment');
-
+  group('SoundByte', () {
+    
     FlutterDriver driver;
 
     // Connect to the Flutter driver before running any tests.
@@ -24,17 +19,40 @@ void main() {
       }
     });
 
-    test('starts at 0', () async {
+    Future<void> tap(SerializableFinder element) async {
+      await driver.tap(element);
+    }
+
+    Future<void> type(SerializableFinder element, String text) async {
+      await tap(element);
+      await driver.enterText(text);
+    }
+
+    SerializableFinder findByKey(String key) {
+      return find.byValueKey(key);
+    }
+
+    final email = findByKey('email');
+    final pwd = findByKey('pass');
+
+    test('Login Successfully', () async {
       // Use the `driver.getText` method to verify the counter starts at 0.
-      expect(await driver.getText(counterTextFinder), "0");
+
+      
+      type(email, "dsann@calpoly.edu");
+      type(pwd, "soccer");
+      
+      print("got here");
+      
+      final button = findByKey("login");
+      tap(button);
+      
+      //expect(await findByKey("authentication_success"), isTrue,
+      //    reason: "TEST KO: Authentication did not succeed.");
+          
+
+
     });
 
-    test('increments the counter', () async {
-      // First, tap the button.
-      await driver.tap(buttonFinder);
-
-      // Then, verify the counter text is incremented by 1.
-      expect(await driver.getText(counterTextFinder), "1");
-    });
   });
 }

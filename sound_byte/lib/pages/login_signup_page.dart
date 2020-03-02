@@ -257,6 +257,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget showEmailInput() {
     return Padding(
+      key: Key('email'),
       padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
       child: new TextFormField(
         maxLines: 1,
@@ -276,6 +277,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget showPasswordInput() {
     return Padding(
+      key: Key('pass'),
       padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
       child: TextFormField(
         maxLines: 1,
@@ -303,6 +305,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget showPrimaryButton() {
     return Padding(
+        key: Key("login"),
         padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
         child: SizedBox(
           height: 40.0,
