@@ -10,6 +10,7 @@ class Snapkit {
   String _clientOAuthIntegration;
   int numberOfEndPoints;
   bool connectedToEndPoint;
+  
 
   Snapkit (int numberOfEndPoints) {
     _clientOAuthIntegration = "fc8f651e-839f-471e-810a-ba81a9137d98";
@@ -29,8 +30,16 @@ class Snapkit {
     this.connectedToEndPoint = false;
   }
 
-    Widget _buildFriendsList () {
-      connectToEndPoint()
+  void connectOrDisconnect () {
+    if (!connectedToEndPoint) {
+      connectedToEndPoint();
+    } else {
+      disconnectEndPoint();
+    }
+  }
+
+  Widget _buildStoryChatter () {
+    connectedToEndPoint();
     return Center (
       child: Container (
         width: 500.0,
@@ -40,9 +49,10 @@ class Snapkit {
           border: Border.all(
             color: Colors.red,
             width: 100.0
-            ),
           ),
+        ),
       )
     );
+    disconnectEndPoint();
   }
 }
