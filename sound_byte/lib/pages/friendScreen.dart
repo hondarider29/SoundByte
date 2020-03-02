@@ -16,7 +16,6 @@ class FriendScreen extends StatefulWidget {
   _FriendScreenState createState() => _FriendScreenState();
   final BaseAuth auth;
   final VoidCallback logoutCallback;
-  final String userId;
 }
 
 class _FriendScreenState extends State<FriendScreen> {
@@ -139,7 +138,9 @@ class _FriendScreenState extends State<FriendScreen> {
                 context,
                 //TODO: add name to navigator to allow chat screen to load correct conversation
                 MaterialPageRoute(
-                  builder: (context) => ChatScreen(),
+                  builder: (context) => ChatScreen(
+                    "xuAoPiLJgAa7LZc0Y0b7"
+                  ),
                 ),
               );
             },

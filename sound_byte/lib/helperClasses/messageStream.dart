@@ -1,21 +1,25 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sound_byte/helperClasses/messageBubble.dart';
+import 'package:sound_byte/model/user.dart';
 
 final _firestore = Firestore.instance;
-//FirebaseUser loggedInUser;
 
-class MessagesStream extends StatelessWidget {
-  final String loggedInUserEmail;
+class MessagesStream extends StatefulWidget {
+  final String chatID;
 
-  MessagesStream(this.loggedInUserEmail);
+  MessagesStream(this.chatID);
 
+  @override
+  _MessagesStreamState createState() => _MessagesStreamState();
+}
+
+class _MessagesStreamState extends State<MessagesStream> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       //TODO: change firestore collection to be actual ones. Here lie demos
-      stream: _firestore.collection('Messages').orderBy('TimeSent').snapshots(),
+      stream: _firestore.collection('Chats').document(widget.chatID).collection('Messages').orderBy('timesent').snapshots(),
       builder: (context, snapshot) {
         //loading screen
         if (!snapshot.hasData) {
@@ -30,21 +34,23 @@ class MessagesStream extends StatelessWidget {
           final messages = snapshot.data.documents.reversed;
           List<MessageBubble> messageBubbles = [];
           for (var message in messages) {
-            final messageText = message.data['Messages'];
-            final senderText = message.data['Sender'];
-            final timeStamp = message.data['TimeSent'];
+            final messageText = message.data['data'];
+            final senderText = message.data['senderID'];
+            final timeStamp = message.data['timesent'];
 
-            final currentUser = loggedInUserEmail;
+            final currentUser = User.currentUser.userID;
 
             //create a new message bubble widget to load
-            messageBubbles.add(
-              MessageBubble(
-                text: messageText,
-                sender: senderText,
-                timeStamp: timeStamp,
-                isMe: currentUser == senderText,
-              ),
-            );
+            if(messageText != null){
+              messageBubbles.add(
+                MessageBubble(
+                  text: messageText,
+                  sender: senderText,
+                  timeStamp: timeStamp,
+                  isMe: currentUser == senderText,
+                ),
+              );
+            }
           }
 
           //actual displaying of the messages
