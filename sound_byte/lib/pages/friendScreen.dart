@@ -10,7 +10,7 @@ import 'package:sound_byte/model/user.dart';
 //screen to see all recent chats with friends and access to contact list
 class FriendScreen extends StatefulWidget {
  @override
-  FriendScreen({Key key, this.auth, this.userId, this.logoutCallback})
+  FriendScreen({Key key, this.auth, this.logoutCallback})
       : super(key: key); 
 
   _FriendScreenState createState() => _FriendScreenState();
