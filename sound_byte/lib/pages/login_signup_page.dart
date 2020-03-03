@@ -102,13 +102,33 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget showErrorMessage() {
     if (_errorMessage.length > 0 && _errorMessage != null) {
-      return Text(
-        _errorMessage,
-        style: TextStyle(
-            fontSize: 13.0,
-            color: Colors.red,
-            height: 45.0,
-            fontWeight: FontWeight.w300),
+      // return Center(
+      //   child: Row(
+      //     children: <Widget>[
+      //       Flexible(
+      //         child: Column(
+      //           children: <Widget>[
+      //             Text(
+      //               _errorMessage,
+      //               style: TextStyle(
+      //                 fontSize: 13.0,
+      //                 color: Colors.red,
+      //                 height: 20)
+      //               ),
+      //           ],
+      //         ),
+      //       )
+      //     ],),
+      // );
+      return Container(
+        child: Text(
+          _errorMessage,
+          style: TextStyle(
+              fontSize: 13.0,
+              color: Colors.red,
+              height: 2),
+              textAlign: TextAlign.center,
+        ),
       );
     } else {
       return new Container(
@@ -119,8 +139,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget showSecondaryButton() {
     return Container(
-      padding: _isLoginForm ? EdgeInsets.fromLTRB(100, 600, 0, 0) : EdgeInsets.fromLTRB(80, 600, 0, 0),
-    
+      padding: _isLoginForm ? EdgeInsets.fromLTRB(100, 600, 100, 0) : EdgeInsets.fromLTRB(80, 600, 0, 0),
         child: RaisedButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30)
@@ -136,7 +155,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   Widget showPrimaryButton() {
     return Container(
       child: Padding(
-          padding: _isLoginForm ? EdgeInsets.fromLTRB(160, 480, 0, 100) : EdgeInsets.fromLTRB(125, 480, 0, 100),
+          padding: _isLoginForm ? EdgeInsets.fromLTRB(160, 440, 0, 100) : EdgeInsets.fromLTRB(125, 440, 0, 100),
           //padding: EdgeInsets.fromLTRB(160, 450, 0, 100),
           child: RaisedButton(
             elevation: 5.0,
@@ -153,7 +172,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget showEmailInput() {
     return SingleChildScrollView( //helps MOVE KEYBOARD
-      padding: EdgeInsets.only(left: 50, right: 50, top: 300),
+      padding: EdgeInsets.only(left: 50, right: 50, top: 265),
       child: Column(
         children: <Widget>[
           Container(
@@ -217,7 +236,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
    Widget showLogo() {
     return Container(
       child: Positioned(
-        top: 210,
+        top: 180,
         left: 70,
         child: Text(
           "SoundByte",
@@ -244,7 +263,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
       child: Stack(
         children: <Widget>[
           Positioned(
-            top: -20,
+            top: -47,
             width: 420,
             height: 350,
             child: Container(

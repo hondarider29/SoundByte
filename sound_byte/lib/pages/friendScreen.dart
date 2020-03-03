@@ -25,7 +25,6 @@ class _FriendScreenState extends State<FriendScreen> {
     super.initState();
   }
 
-
   signOut() async {
     try {
       await widget.auth.signOut();
