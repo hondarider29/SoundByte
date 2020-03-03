@@ -20,19 +20,12 @@ class FriendList extends StatelessWidget{
   }
 
   FriendList.nullFriendList() {
-    this.user = new User("Sound Byte", 
-                        "Soundbyte@gmail.com", 
-                        "12345");
+    this.user = new User("Test", 
+                        "test@test.com", 
+                        "Test");
     this.user_friends = new List<String>();
     this.number_of_friends = 0;
     this.user_id = "12345";
-  }
-
-  FriendList.full(User user) {
-    this.user = user;
-    this.user_friends = user.friends;
-    this.number_of_friends = this.user_friends.length();
-    this.user_id = user.userId;
   }
 
   bool isNull () {
