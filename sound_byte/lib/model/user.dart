@@ -11,7 +11,6 @@ class User
   List<String> friends;
   // List of Chats by string based ID
   List<String> chats;
-  List<String> _friends_list;
   // Document Refrence for the user
   DocumentReference _reference;
 
