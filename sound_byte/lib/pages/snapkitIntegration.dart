@@ -24,7 +24,7 @@ class Snapkit {
     this.connectedToEndPoint = true;
   }
 
-  void connectToEndPoint () {
+  void disconnectFromEndPoint () {
     OAuthProvider.disconnectEndPortion(_clientOAuthIntegration);
     this.numberOfEndPoints -= 1;
     this.connectedToEndPoint = false;
@@ -34,7 +34,7 @@ class Snapkit {
     if (!connectedToEndPoint) {
       connectedToEndPoint();
     } else {
-      disconnectEndPoint();
+      disconnectFromEndPoint();
     }
   }
 
