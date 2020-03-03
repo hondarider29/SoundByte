@@ -28,7 +28,6 @@ class User
     this.userEmail = email;
     friends = new List<String>();
     chats = new List<String>();
-    this._friends_list = new List<String>();
   }
 
   User.nullUser()
@@ -39,7 +38,6 @@ class User
     this.friends = null;
     this.chats = null;
     this._reference = null;
-    this._friends_list = new List<String>();
   }
 
   User.full(String userID, String username, String userEmail, List<String> friends, List<String> chats) {
@@ -48,7 +46,6 @@ class User
     this.userEmail = userEmail;
     this.friends = friends;
     this.chats = chats;
-    this._friends_list = new List<String>();
   }
 
   static Future<User> userFromDatabase(String uID) async
@@ -65,8 +62,14 @@ class User
       completer.complete(user); 
     });
     return completer.future;
-  } 
+  }
 
+  bool checkFriend(String id)
+  {
+    return id == "1";
+    // return this.friends.contains(id);
+  }
+  
   // Takes a User ID  and adds it to the friends list
   void addFriend(String id)
   {

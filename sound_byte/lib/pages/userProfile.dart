@@ -30,7 +30,7 @@ class _UserProfilePageState extends State<UserProfilePage>
       print(e);
     }
   }
-
+  
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -90,8 +90,6 @@ class _UserProfilePageState extends State<UserProfilePage>
     );
   }
 
-
-
   Widget _buildProfileImage() {
     return Center(
       child: Container(
@@ -127,11 +125,9 @@ class _UserProfilePageState extends State<UserProfilePage>
    Widget _buildStatus(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 6.0),
-      decoration: BoxDecoration(
-        
+      decoration: BoxDecoration(        
         color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(4.0),
-    
       ),
       child: Text(
         _status,
@@ -143,10 +139,6 @@ class _UserProfilePageState extends State<UserProfilePage>
         ),
       ),
     );
-  }
-
-  Widget _friendsList () {
-    for (int i = 0; )
   }
 
   Widget _buildBio() {
@@ -161,12 +153,3 @@ class _UserProfilePageState extends State<UserProfilePage>
     );
   }
 }
-//problem, cant pass a logoutcallback to user and cant go back
-
-
-  // decoration: BoxDecoration(
-        
-  //       color: Theme.of(context).scaffoldBackgroundColor,
-  //       borderRadius: BorderRadius.circular(4.0),
-    
-  //     ),
