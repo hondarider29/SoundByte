@@ -27,11 +27,15 @@ See [current sprint](https://github.com/hondarider29/SoundByte/projects/4).
 
 ## Coding Style
 
-https://dart.dev/guides/language/effective-dart/style
+https://dart.dev/guides/language/effective-dart/style.
+
+## Continuous Integration
+
+Continuous integration is performed by [TravisCI](https://travis-ci.com/hondarider29/SoundByte/).
 
 ## Static Code Analysis
 
-All static code analysis is done using the built-in Flutter analyzer, which can be run using ```flutter analyze```
+All static code analysis is done using the built-in Flutter analyzer, which can be run using ```flutter analyze```, and is output to the file ```static_analysis_report.txt```.
 
 ## Getting Started
 - To get started, make sure to download a text editor or an IDE that you are comfortable with such as VS Code. 
