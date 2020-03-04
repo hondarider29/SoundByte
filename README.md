@@ -23,7 +23,7 @@ SoundByte uses Flutter, an open-source app development SDK for the Dart language
 
 ## Roadmap
 
-See [current sprint](https://github.com/hondarider29/SoundByte/projects/4).
+See [current sprint](https://github.com/hondarider29/SoundByte/projects/8).
 
 ## Coding Style
 
