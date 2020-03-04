@@ -102,21 +102,23 @@ class _FriendScreenState extends State<FriendScreen> {
               SizedBox(height: 16),
 
               //friend list
-              //TODO: add real data
-              friendButton(
-                  'images/headShot1.jpeg', "John", "last online: 2 hours ago", "1", "Software Engineer"),
-              friendButton(
-                  'images/headShot2.jpeg', "David", "Online", "2" ,"Soccer Player"),
-              friendButton(
-                  'images/headShot3.jpeg', "Xavier", "last online: 3 minutes ago", "3", "Teacher"),
-              friendButton(
-                  'images/headShot4.jpeg', "Sarah", "last online: 4 seconds ago", "4", "Nurse"),
-              friendButton(
-                  'images/headShot5.png', "Jennifer", "Online", "5", "Lawyer")
+              buildList(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildList() {
+    List<Widget> widgets = new List<Widget>();
+    for (var friend in User.currentUser.friends) {
+      String name;
+      Firestore.instance.collection('User').document('friend').get().then((documentSnapshot) => name = documentSnapshot.data['name']);
+      widgets.add(friendButton('images/headShot1.jpeg', name, "N/A", friend, "N/A"));
+    }
+    return ListView(
+      children: widgets,
     );
   }
 
