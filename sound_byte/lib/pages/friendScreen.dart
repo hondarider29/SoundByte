@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sound_byte/pages/chatScreen.dart';
+import 'package:sound_byte/pages/musicList.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'package:sound_byte/pages/userProfile.dart';
 import 'package:sound_byte/pages/friendProfile.dart';
@@ -128,7 +129,8 @@ class _FriendScreenState extends State<FriendScreen> {
                 context,
                 //TODO: add name to navigator to allow chat screen to load correct conversation
                 MaterialPageRoute(
-                  builder: (context) => ChatScreen(),
+                  //builder: (context) => ChatScreen(),
+                  builder: (context) => MusicList(),
                 ),
               );
             },

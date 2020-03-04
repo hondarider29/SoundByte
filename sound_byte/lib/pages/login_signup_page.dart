@@ -102,24 +102,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget showErrorMessage() {
     if (_errorMessage.length > 0 && _errorMessage != null) {
-      // return Center(
-      //   child: Row(
-      //     children: <Widget>[
-      //       Flexible(
-      //         child: Column(
-      //           children: <Widget>[
-      //             Text(
-      //               _errorMessage,
-      //               style: TextStyle(
-      //                 fontSize: 13.0,
-      //                 color: Colors.red,
-      //                 height: 20)
-      //               ),
-      //           ],
-      //         ),
-      //       )
-      //     ],),
-      // );
       return Container(
         child: Text(
           _errorMessage,
