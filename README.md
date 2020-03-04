@@ -43,8 +43,9 @@ All static code analysis is done using the built-in Flutter analyzer, which can 
 - Once clicked on the install Flutter link, the user should chose for what operating system to install the framework and follow the steps and run the commands on that page. 
 - The user should then clone the repository using "git clone https://github.com/hondarider29/SoundByte.git" which will then create a clone of the repository on the user's machine.
 - The user should then enter the folder and run the command  "flutter doctor" to check for dependencies and install the appropriate dependencies.
-- The user should then run the command "flutter run" which would then start the flutter framework and compile the code and cause the flutter machine to start running.
 - At this point the user should open up the simulator whether from Android or IOS using their simulators respectively by running the command "open -a simulator". 
+- The user should then run the command "flutter run" which would then start the flutter framework and compile the code and cause the flutter machine to start running.
+
 
 ## Authors
 
