@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sound_byte/main.dart';
 import 'package:sound_byte/model/user.dart';
+import 'package:sound_byte/pages/Songs.dart';
 
 void main() {
   test('Testing tests', () {
@@ -17,7 +18,37 @@ void main() {
     expect(test.friends, new List<String>());
     expect(test.chats, new List<String>());
   });
-  
+
+  test('Testing new User.nullUser', () {
+    User test = new User.nullUser();
+
+    expect(test.userEmail, '');
+    expect(test.userName, '');
+    expect(test.userID, '');
+    expect(test.friends, null);
+    expect(test.chats, null);
+  });
+
+  test('Testing new User.full', () {
+    List<String> friends = ["I", "have", "no", "firends"];
+    List<String> chats = ["My", "self"];
+    User test = new User.full('unittester01', 'unittester', 'unittest@1.non', friends, chats);
+
+    expect(test.userEmail, 'unittest@1.non');
+    expect(test.userName, 'unittester');
+    expect(test.userID, 'unittester01');
+    expect(test.friends, friends);
+    expect(test.chats, chats);
+  });
+
+  test('Testing clearCurrentUser', () {
+    User.currentUser = new User('unittester', 'unittest@1.non', 'unittester01');
+
+    User.clearCurrentUser();
+
+    expect(User.currentUser, new User.nullUser());
+  });
+
   test('Testing new Song', () {
     SongItem s = new SongItem("Star Spangled Banner", "Francis Scott Key", "img1");
 

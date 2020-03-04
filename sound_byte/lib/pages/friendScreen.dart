@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sound_byte/pages/chatScreen.dart';
+import 'package:sound_byte/pages/musicList.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'login_signup_page.dart';
 import 'package:sound_byte/pages/userProfile.dart';
@@ -28,6 +29,15 @@ class _FriendScreenState extends State<FriendScreen> {
     super.initState();
   }
 
+  signOut() async {
+    try {
+      await widget.auth.signOut();
+      widget.logoutCallback();
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,20 +48,9 @@ class _FriendScreenState extends State<FriendScreen> {
         title: Text('Byte Chat'),
         //title: Text(),
         actions: <Widget>[
-          FlatButton(child: Text('Profile',
+          FlatButton(child: Text('Logout',
             style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-            onPressed: () 
-          {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => 
-                UserProfilePage(
-                   auth: widget.auth,
-                   userId: User.currentUser.userID,
-                   logoutCallback: widget.logoutCallback,
-                )),
-            );
-          }
+            onPressed: signOut
           )
         ],
       ),
@@ -140,9 +139,12 @@ class _FriendScreenState extends State<FriendScreen> {
                 context,
                 //TODO: add name to navigator to allow chat screen to load correct conversation
                 MaterialPageRoute(
-                  builder: (context) => ChatScreen(
-                    "xuAoPiLJgAa7LZc0Y0b7"
-                  ),
+
+                 // builder: (context) => ChatScreen(
+                 //   "xuAoPiLJgAa7LZc0Y0b7"
+                //  ),
+                  //only testing the music player
+                  builder: (context) => MusicList(),
                 ),
               );
             },
