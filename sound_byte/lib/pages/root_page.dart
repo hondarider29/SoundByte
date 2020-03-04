@@ -27,6 +27,7 @@ class _RootPageState extends State<RootPage> {
   @override
   void initState() {
     super.initState();
+    print('inroot');
     widget.auth.getCurrentUser().then((user) {
       setState(() {
         if (user != null) {
@@ -70,7 +71,10 @@ class _RootPageState extends State<RootPage> {
   Widget build(BuildContext context) {
     switch (authStatus) {
       case AuthStatus.NOT_DETERMINED:
-        return buildWaitingScreen();
+        return LoginSignupPage(
+          auth: widget.auth,
+          loginCallback: loginCallback,
+        );
         break;
       case AuthStatus.NOT_LOGGED_IN:
         return LoginSignupPage(
@@ -85,10 +89,16 @@ class _RootPageState extends State<RootPage> {
             logoutCallback: logoutCallback,
           );
         } else
-          return buildWaitingScreen();
+          return LoginSignupPage(
+          auth: widget.auth,
+          loginCallback: loginCallback,
+        );
         break;
       default:
-        return buildWaitingScreen();
+        return LoginSignupPage(
+          auth: widget.auth,
+          loginCallback: loginCallback,
+        );
     }
   }
 }
