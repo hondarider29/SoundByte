@@ -17,4 +17,12 @@ void main() {
     expect(test.friends, new List<String>());
     expect(test.chats, new List<String>());
   });
+  
+  test('Testing new Song', () {
+    SongItem s = new SongItem("Star Spangled Banner", "Francis Scott Key", "img1");
+
+    expect(s.title, "Star Spangled Banner");
+    expect(s.artist, "Francis Scott Key");
+    expect(s.image, "img1");
+  });
 }
