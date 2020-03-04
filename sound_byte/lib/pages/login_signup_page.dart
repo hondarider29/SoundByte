@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:sound_byte/model/user.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:password/password.dart';
@@ -50,10 +51,9 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         if (_isLoginForm) {
           userId = await widget.auth.signIn(_email, _password);
           print('Signed in: $userId');
+          print("done");
         } else {
           userId = await widget.auth.signUp(_email, _password);
-          //widget.auth.sendEmailVerification();
-          //_showVerifyEmailSentDialog();
           print('Signed up user: $userId');
         }
         User.currentUser = await User.userFromDatabase(userId);
