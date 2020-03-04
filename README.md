@@ -29,6 +29,10 @@ See [current sprint](https://github.com/hondarider29/SoundByte/projects/4).
 
 https://dart.dev/guides/language/effective-dart/style.
 
+## Testing Strategy Document
+https://docs.google.com/document/d/1T2xsMfm-x3glku9qY-0on-asgXoOdzL7I0qZY4TWYU4/edit
+Testing Strategy document for the Project. 
+
 ## Continuous Integration
 
 Continuous integration is performed by [TravisCI](https://travis-ci.com/hondarider29/SoundByte/).
