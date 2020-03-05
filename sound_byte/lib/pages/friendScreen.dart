@@ -113,7 +113,7 @@ class _FriendScreenState extends State<FriendScreen> {
     List<Widget> widgets = new List<Widget>();
     for (var friend in User.currentUser.friends) {
       String name;
-      Firestore.instance.collection('User').document('friend').get().then((documentSnapshot) => name = documentSnapshot.data['name']);
+      Firestore.instance.collection('User').document(friend).get().then((documentSnapshot) => name = documentSnapshot.data['name']);
       widgets.add(friendButton('images/headShot1.jpeg', name, "N/A", friend, "N/A"));
     }
     return ListView(

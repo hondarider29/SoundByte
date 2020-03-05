@@ -44,8 +44,22 @@ class User
     this.userID = userID;
     this.userName = username;
     this.userEmail = userEmail;
-    this.friends = friends;
-    this.chats = chats;
+    if (friends == null)
+    {
+      this.friends = new List();
+    }
+    else
+    {
+      this.friends = friends;
+    }
+    if (chats == null)
+    {
+      this.chats = new List();
+    }
+    else
+    {
+      this.chats = chats;
+    }
   }
 
   static Future<User> userFromDatabase(String uID) async
