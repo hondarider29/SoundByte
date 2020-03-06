@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sound_byte/pages/chatScreen.dart';
@@ -111,10 +113,8 @@ class _FriendScreenState extends State<FriendScreen> {
 
   Widget buildList() {
     List<Widget> widgets = new List<Widget>();
-    for (var friend in User.currentUser.friends) {
-      String name;
-      Firestore.instance.collection('User').document(friend).get().then((documentSnapshot) => name = documentSnapshot.data['name']);
-      widgets.add(friendButton('images/headShot1.jpeg', name, "N/A", friend, "N/A"));
+    for (String friend in User.currentUser.friends) {
+      widgets.add(friendButton('images/headShot1.jpeg', User.currentUser.getFriendName(friend), "N/A", friend, "N/A"));
     }
     return ListView(
       children: widgets,
