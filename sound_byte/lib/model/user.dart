@@ -107,6 +107,11 @@ class User
     return completer.future;
   }
 
+  String getFriendName(String uid)
+  {
+    return this._idToName[uid];
+  }
+
   bool checkFriend(String id)
   {
     return this.friends.contains(id);
@@ -117,6 +122,7 @@ class User
   {
     this.friends.add(id);
     this._reference.updateData({'friends': FieldValue.arrayUnion([id])});
+    this._fillMap();
   }
 
   // Takes a User ID and removes it from friends list
@@ -124,6 +130,7 @@ class User
   {
     this.friends.remove(id);
     this._reference.updateData({'friends' : FieldValue.arrayRemove([id])});
+    this._idToName.remove(id);
   }
 
   // Takes a chat ID and adds it from the chats list
