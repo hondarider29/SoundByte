@@ -9,6 +9,7 @@ class User
   String userEmail;
   // List of friends stored as userIDs
   List<String> friends;
+  Map<String, String> _idToName;
   // List of Chats by string based ID
   List<String> chats;
   // Document Refrence for the user
@@ -26,8 +27,10 @@ class User
     this.userID = id;
     this.userName = username;
     this.userEmail = email;
-    friends = new List<String>();
-    chats = new List<String>();
+    this.friends = new List<String>();
+    this._idToName = new Map<String, String>();
+    this.chats = new List<String>();
+    this._reference = null;
   }
 
   User.nullUser()
@@ -36,6 +39,7 @@ class User
     this.userName = '';
     this.userEmail = '';
     this.friends = null;
+    this._idToName = null;
     this.chats = null;
     this._reference = null;
   }
@@ -52,6 +56,7 @@ class User
     {
       this.friends = friends;
     }
+    this._idToName = new Map();
     if (chats == null)
     {
       this.chats = new List();
@@ -74,12 +79,23 @@ class User
                                 documentSnapshot.data['friends'].cast<String>().toList(),
                                 documentSnapshot.data['chats'].cast<String>().toList());
       user._reference = ref;
+      user._fillMap();
       completer.complete(user); 
     });
     return completer.future;
   }
 
-  static Future<String> userNamefromUserID(String uID) async
+  void _fillMap() async
+  {
+    String name;
+    for(String friend in this.friends)
+    {
+      name = await _userNamefromUserID(friend);
+      this._idToName.putIfAbsent(friend, () => name);
+    }
+  }
+
+  Future<String> _userNamefromUserID(String uID) async
   {
     String name;
     Completer<String> completer = new Completer();
