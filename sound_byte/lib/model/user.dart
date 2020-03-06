@@ -67,13 +67,26 @@ class User
     User user;
     Completer<User> completer = new Completer();
     DocumentReference ref = Firestore.instance.collection('Users').document(uID);
-    ref.get().then((documentSnapshot) {
+    ref.get().then((documentSnapshot)
+    {
       user = new User.full(uID, documentSnapshot.data['name'],
                                 documentSnapshot.data['email'],
                                 documentSnapshot.data['friends'].cast<String>().toList(),
                                 documentSnapshot.data['chats'].cast<String>().toList());
       user._reference = ref;
       completer.complete(user); 
+    });
+    return completer.future;
+  }
+
+  static Future<String> userNamefromUserID(String uID) async
+  {
+    String name;
+    Completer<String> completer = new Completer();
+    Firestore.instance.collection('Users').document(uID).get().then((documentSnapshot)
+    {
+      name = documentSnapshot.data['name'];
+      completer.complete(name);
     });
     return completer.future;
   }
