@@ -186,6 +186,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                       color: Colors.white,
                     ),
                      child: new TextFormField(
+                      key: Key("mail"),
                       maxLines: 1,
                       keyboardType: TextInputType.emailAddress,
                       autofocus: false,
@@ -203,6 +204,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                   Container(
                     padding: EdgeInsets.all(7),
                      child: new TextFormField(
+                       key: Key("pass"),
                        maxLines: 1,
                         obscureText: true,
                         autofocus: false,

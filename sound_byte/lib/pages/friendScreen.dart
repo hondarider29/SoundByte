@@ -45,8 +45,8 @@ class _FriendScreenState extends State<FriendScreen> {
         title: Text('Byte Chat'),
         //title: Text(),
         actions: <Widget>[
-          FlatButton(child: Text('Profile',
-            key: Key('userProfile'),
+          FlatButton(child: Text('Logout',
+            key: Key('logOut'),
             style: new TextStyle(fontSize: 17.0, color: Colors.white)),
             onPressed: signOut
           )
@@ -55,7 +55,6 @@ class _FriendScreenState extends State<FriendScreen> {
       //list of all contacts and search
       //IDEA: maybe turn into a stream
       body: Container(
-        key: new Key('friendProf'),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,

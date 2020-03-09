@@ -12,7 +12,7 @@ void main() {
     final pwd = find.byValueKey('pass');
     final eml = find.byValueKey('mail');
     final button = find.byValueKey('login');
-    final userProf = find.byValueKey('userProfile');
+    final logout = find.byValueKey('logOut');
     final backProfile = find.byValueKey('backProfile');
     final friendProf = find.byValueKey('friendProf');
     final backFriendProfile = find.byValueKey('backFriendProfile');
@@ -34,13 +34,13 @@ void main() {
 
       print("Enter Email");
       await driver.tap(eml);
-      await driver.enterText("dsann@calpoly.edu");
+      await driver.enterText("test@test.com");
       
       sleep(Duration(seconds: 3));
       
       print("Enter Password");
       await driver.tap(pwd);
-      await driver.enterText("soccer");
+      await driver.enterText("123456");
       
       sleep(Duration(seconds: 2));
       
@@ -49,13 +49,12 @@ void main() {
       
     });
 
-    test('Enter/Leave User Profile Page', () async {
+    test('Logout', () async {
       sleep(Duration(seconds: 2));
-      await driver.tap(userProf);
-      print("Entering User Profile");
-      sleep(Duration(seconds: 2));
-      await driver.tap(backProfile);
-      print("Leaving user profile page");
+      print("Attempting Log Out");
+      await driver.tap(logout);
+      await driver.waitForAbsent(pwd);
+      print("Logged Out");
       sleep(Duration(seconds: 2));
     });
 
@@ -72,7 +71,5 @@ void main() {
     */
 
 
-    
-    
   });
 }
