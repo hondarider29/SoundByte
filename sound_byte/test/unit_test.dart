@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sound_byte/main.dart';
 import 'package:sound_byte/model/user.dart';
 import 'package:sound_byte/pages/Songs.dart';
+import 'package:sound_byte/pages/musicPlayer.dart';
 
 void main() {
   test('Testing tests', () {
@@ -18,7 +17,7 @@ void main() {
     expect(test.friends, new List<String>());
     expect(test.chats, new List<String>());
   });
-
+  
   test('Testing new User.nullUser', () {
     User test = new User.nullUser();
 
@@ -41,6 +40,16 @@ void main() {
     expect(test.chats, chats);
   });
 
+  test('Testing the other branch for User.full', () {
+    User test = new User.full('unittester01', 'unittester', 'unittest@1.non', null, null);
+
+    expect(test.userEmail, 'unittest@1.non');
+    expect(test.userName, 'unittester');
+    expect(test.userID, 'unittester01');
+    expect(test.friends, new List<String>());
+    expect(test.chats, new List<String>());
+  });
+
   test('Testing clearCurrentUser', () {
     User.currentUser = new User('unittester', 'unittest@1.non', 'unittester01');
 
@@ -56,4 +65,13 @@ void main() {
     expect(s.artist, "Francis Scott Key");
     expect(s.image, "img1");
   });
+  
+  test('Testing Music player', () {
+    MusicPlayer m = MusicPlayer("Star", "USA", "img1");
+    
+    expect(m.title, "Star");
+    expect(m.artist, "USA");
+    expect(m.image, "img1");
+  });
+
 }

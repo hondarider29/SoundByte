@@ -23,7 +23,6 @@ class _UserProfilePageState extends State<UserProfilePage>
   final String _playlists = "24";
   final String _views = "450";
   final String _bio = "Hello, I am David and love music!";
-  final String _favSongs = "Star Spangled Banner";
 
   Widget _buildProfileImage(Size screenSize) {
     return Center(
@@ -92,14 +91,6 @@ class _UserProfilePageState extends State<UserProfilePage>
         _bio,
         textAlign: TextAlign.center,
         style: bioTextStyle,
-      ),
-    );
-  }
-
-  Widget _buildFavSongs() {
-    return Container(
-      child: Text(
-        _favSongs
       ),
     );
   }
@@ -185,60 +176,8 @@ class _UserProfilePageState extends State<UserProfilePage>
       margin: EdgeInsets.only(top: 4.0),
     );
   }
-
-   Widget _buildButtons() {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: InkWell(
-              onTap: () => print("followed"),
-              child: Container(
-                height: 40.0,
-                decoration: BoxDecoration(
-                  border: Border.all(),
-                  color: Color(0xFF404A5C),
-                ),
-                child: Center(
-                  child: Text(
-                    "FOLLOW",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: 10.0),
-          Expanded(
-            child: InkWell(
-              onTap: () => print("Message"),
-              child: Container(
-                height: 40.0,
-                decoration: BoxDecoration(
-                  border: Border.all(),
-                ),
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Text(
-                      "MESSAGE",
-                      style: TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
   
-   @override
+  @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(

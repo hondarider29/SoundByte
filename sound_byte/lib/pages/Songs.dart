@@ -1,9 +1,5 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:sound_byte/pages/musicPlayer.dart';
-
-import 'musicList.dart';
 
 class SongItem extends StatelessWidget {
   final title;
