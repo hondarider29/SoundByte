@@ -130,13 +130,8 @@ class _FriendScreenState extends State<FriendScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                //TODO: add name to navigator to allow chat screen to load correct conversation
                 MaterialPageRoute(
-                 // builder: (context) => ChatScreen(
-                 //   "xuAoPiLJgAa7LZc0Y0b7"
-                //  ),
-                  //only testing the music player
-                  builder: (context) => MusicList(),
+                  builder: (context) => FriendProfile(name, imageName, status),
                 ),
               );
             },
