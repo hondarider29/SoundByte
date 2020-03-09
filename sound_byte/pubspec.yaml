@@ -7,6 +7,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  audioplayers: ^0.14.0
   flutter:
     sdk: flutter
 
@@ -16,7 +17,9 @@ dependencies:
   firebase_database: ^3.1.0
   cloud_firestore: ^0.12.11
   intl: ^0.16.0
-  crypto: ^2.1.3
+  pointycastle: ^1.0.0-rc4
+  encrypt: ^4.0.0
+  password: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -29,5 +32,20 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+  fonts:
+  - family: Laq
+    fonts:
+    - asset: fonts/Lacquer-Regular.ttf
+  - family: Mont
+    fonts:
+    - asset: fonts/Montserrat-Black.ttf
+
   assets:
-  - images/
+  - assets/waves.png
+  - assets/background.png
+  - assets/instr.jpg
+  - images/headShot1.jpeg
+  - images/headShot2.jpeg
+  - images/headShot3.jpeg
+  - images/headShot4.jpeg
+  - images/headShot5.png
