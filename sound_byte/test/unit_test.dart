@@ -54,4 +54,13 @@ void main() {
     expect(s.artist, "Francis Scott Key");
     expect(s.image, "img1");
   });
+  
+  test('Testing Music player', () {
+    MusicPlayer m = MusicPlayer("Star", "USA", "img1");
+    
+    expect(m.title, "Star");
+    expect(m.artist, "USA");
+    expect(m.image, "img1");
+  });
+
 }
