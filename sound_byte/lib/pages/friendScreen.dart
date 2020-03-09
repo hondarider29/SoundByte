@@ -73,6 +73,7 @@ class _FriendScreenState extends State<FriendScreen> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               //friend search bar bar
               Container(
@@ -103,21 +104,18 @@ class _FriendScreenState extends State<FriendScreen> {
               SizedBox(height: 16),
 
               //friend list
-              buildList(),
+              ListView.builder(
+                itemCount: User.currentUser == new User.nullUser() ? 0 : User.currentUser.friends.length,
+                itemBuilder: (BuildContext context, int index) {
+                  String friend = User.currentUser.friends[index];
+                  return friendButton('images/headShot1.jpeg', User.currentUser.getFriendName(friend), "N/A", friend, "N/A");
+                },
+                shrinkWrap: true,
+              ),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget buildList() {
-    List<Widget> widgets = new List<Widget>();
-    for (String friend in User.currentUser.friends) {
-      widgets.add(friendButton('images/headShot1.jpeg', User.currentUser.getFriendName(friend), "N/A", friend, "N/A"));
-    }
-    return ListView(
-      children: widgets,
     );
   }
 
