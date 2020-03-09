@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sound_byte/main.dart';
 import 'package:sound_byte/model/user.dart';
 import 'package:sound_byte/pages/Songs.dart';
 
