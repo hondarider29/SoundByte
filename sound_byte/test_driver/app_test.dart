@@ -53,8 +53,8 @@ void main() {
       sleep(Duration(seconds: 2));
       print("Attempting Log Out");
       await driver.tap(logout);
-      await driver.waitForAbsent(pwd);
-      print("Logged Out");
+      await driver.waitForAbsent(logout);
+      print("Sucessfully Logged Out");
       sleep(Duration(seconds: 2));
     });
 
