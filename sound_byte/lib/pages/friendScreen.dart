@@ -46,6 +46,7 @@ class _FriendScreenState extends State<FriendScreen> {
         //title: Text(),
         actions: <Widget>[
           FlatButton(child: Text('Logout',
+            key: Key('logOut'),
             style: new TextStyle(fontSize: 17.0, color: Colors.white)),
             onPressed: signOut
           )
@@ -117,7 +118,6 @@ class _FriendScreenState extends State<FriendScreen> {
   //creates a button displaying all the information about a friend
   Widget friendButton(String imageName, String name, String subText, String id, String status) {
     double size = 50;
-
     return Column(
       children: <Widget>[
         Container(
