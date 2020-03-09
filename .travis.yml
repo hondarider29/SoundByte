@@ -12,3 +12,5 @@ jobs:
   include:
     - stage: test 1
       script: ./flutter/bin/flutter test
+    - stage: test 2
+      script: ./flutter/bin/flutter drive --target=test_driver/app.dart
