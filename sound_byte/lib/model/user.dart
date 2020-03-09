@@ -69,7 +69,7 @@ class User
     return id == "1";
     // return this.friends.contains(id);
   }
-
+  
   // Takes a User ID  and adds it to the friends list
   void addFriend(String id)
   {

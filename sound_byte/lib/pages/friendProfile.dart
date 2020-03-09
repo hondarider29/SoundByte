@@ -1,92 +1,44 @@
 import 'package:flutter/material.dart';
+
 import 'package:sound_byte/pages/chatScreen.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'package:sound_byte/model/user.dart';
 import 'package:sound_byte/pages/friendScreen.dart';
 
+
 class FriendProfile extends StatelessWidget {
 
   FriendProfile(this._fullName, this._image, this._id, this._status);
 
-  String _image;
-  String _fullName;
-  String _id;
-  String _status;
-  @override
-  @override
-  Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.lightBlueAccent,
-        elevation: 0,
-        title: Text("Profile"),
-       
-        //back button
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => FriendScreen()),
-            );
-          },
-        ), // IconButton
-      ), // AppBar
-      body: Stack(
-        children: <Widget> [
-          SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: screenSize.height / 30),
-                  _buildProfileImage(),
-                  _buildFullName(),
-                  _buildStatus(context),
-                  _buildFriendButton(),
-                  Divider(color: Colors.black),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  _buildBio(_id),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Divider(color: Colors.black),
-                  Text("Favorite Songs"),
-                  _buildFavSongs(_id),
-                ],
-              ),
-            ),
-          ),
-        ],
+  final String _fullName;
+  final String _status;
+  final String _image;
+  final String _id;
 
-      //list of all contacts and search
-      //IDEA: maybe turn into a stream 
-      )
-    );
-  }
+  final String _followers = "173";
+  final String _playlists = "24";
+  final String _views = "450";
+  final String _bio = "Hello, I am David and love music!";
+  final String _favSongs = "Star Spangled Banner";
 
-
-  Widget _buildProfileImage() {
+  Widget _buildProfileImage(Size screenSize) {
     return Center(
       child: Container(
-        width: 100.0,
-        height: 100.0,
+        width: 140.0,
+        height: 140.0,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage( _image),
             fit: BoxFit.cover,
-          ), // Decoration Image
+        ),
           borderRadius: BorderRadius.circular(80.0),
           border: Border.all(
-            color: Colors.black,
+            color: Colors.white,
             width: 5.0,
-          ), // Border.all
-        ), // BoxDecoration
-      ), // Container
-    ); // Center
+          ),
+        ),
+      ),
+    );
   }
   Widget _buildFullName() {
     TextStyle _nameTextStyle = TextStyle (
@@ -105,10 +57,8 @@ class FriendProfile extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 6.0),
       decoration: BoxDecoration(
-        
         color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(4.0),
-    
       ),
       child: Text(
         _status,
@@ -122,69 +72,198 @@ class FriendProfile extends StatelessWidget {
     );
   }
 
-  Widget _buildFriendButton()
-  {
-    User curr = User.nullUser(); // User.currentUser;
-    if (curr.checkFriend(_id))
-    {
-      return FlatButton(
-        onPressed: () { /*curr.removeFriend(_id);*/ },
-        color: Colors.white,
-        child: Text(
-          'Remove Friend',
-          style: TextStyle(
-            fontFamily: 'Spectral',
-            color: Colors.blue,
-            fontSize: 20.0,
-            fontWeight: FontWeight.w300,
-          ),
-        ),
-      );
-    }
-    else
-    {
-      return RaisedButton(
-        onPressed: () { /*curr.addFriend(_id);*/ },
-        color: Colors.blue,
-        child: Text(
-          'Add Friend',
-          style: TextStyle(
-            fontFamily: 'Spectral',
-            color: Colors.white,
-            fontSize: 20.0,
-            fontWeight: FontWeight.w300,
-          ),
-        ),
-      );
-    }
-  }
+  Widget _buildBio() {
+    TextStyle bioTextStyle = TextStyle(
+      fontFamily: 'Spectral',
+      fontWeight: FontWeight.w400,
+      fontStyle: FontStyle.italic,
+      color: Colors.black,
+      fontSize: 16.0,
+    );
 
-  Widget _buildBio(String id) {
-    return Text (
-      
-      "Hello, my name is " + _fullName + " and I love music!"
-    
+    return Container(
+      padding: EdgeInsets.all(8.0),
+      child: Text(
+        _bio,
+        textAlign: TextAlign.center,
+        style: bioTextStyle,
+      ),
     );
   }
 
-  Widget _buildFavSongs(String id) {
-    String va;
-    if(id == 1){
-      va = "Star Spangled Banner";
-    }
-    else if(id == 2){
-      va = "Umbrella";
-    }
-     else if(id == 2){
-      va = "Fur Elise";
-    }
-    else {
-      va = "We are the Champions";
-    }
-    return Text (
-      va
+  Widget _buildFavSongs() {
+    return Container(
+      child: Text(
+        _favSongs
+      ),
     );
   }
+
+  Widget showBackground(Size screenSize) {
+    return Container(
+          height: screenSize.height,
+          decoration: BoxDecoration(
+          image: DecorationImage(
+          image: AssetImage('assets/background.png'),
+          fit: BoxFit.fill
+        )
+      ),
+    );
+  }
+
+  Widget buildCoverImage(Size screenSize) {
+    return Container(
+      height: screenSize.height / 2.6,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/instr.jpg'),
+          fit: BoxFit.cover
+        )
+      ),
+    );
+  }
+ 
+  Widget _buildStatContainer() {
+    return Container(
+      height: 60,
+      margin: EdgeInsets.only(top: 8.0),
+      decoration: BoxDecoration(
+        color: Color(0xFFEFF4F7)
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          _buildStatItem("Followers", _followers),
+          _buildStatItem("PlayLists", _playlists),
+          _buildStatItem("Views", _views),
+          
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatItem(String label, String count) {
+    TextStyle _statLabelTextStyle = TextStyle(
+      fontFamily: 'Roboto',
+      color: Colors.black,
+      fontSize: 16.0,
+      fontWeight: FontWeight.w200,
+    );
+
+    TextStyle _statCountTextStyle = TextStyle(
+      color: Colors.black54,
+      fontSize: 24.0,
+      fontWeight: FontWeight.bold,
+    );
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          count,
+          style: _statCountTextStyle,
+        ),
+        Text(
+          label,
+          style: _statLabelTextStyle,
+        ),
+      ],
+    );
+  }
+
+
+  Widget _buildSeparator(Size screenSize) {
+    return Container(
+      width: screenSize.width / 1.6,
+      height: 2.0,
+      color: Colors.black54,
+      margin: EdgeInsets.only(top: 4.0),
+    );
+  }
+
+   Widget _buildButtons() {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: InkWell(
+              onTap: () => print("followed"),
+              child: Container(
+                height: 40.0,
+                decoration: BoxDecoration(
+                  border: Border.all(),
+                  color: Color(0xFF404A5C),
+                ),
+                child: Center(
+                  child: Text(
+                    "FOLLOW",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: 10.0),
+          Expanded(
+            child: InkWell(
+              onTap: () => print("Message"),
+              child: Container(
+                height: 40.0,
+                decoration: BoxDecoration(
+                  border: Border.all(),
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text(
+                      "MESSAGE",
+                      style: TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  
+   @override
+  Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    return Scaffold(
+      //backgroundColor: Color.fromRGBO(0, 0, 140, 0),
+      body: Stack(
+        children: <Widget>[
+          //showBackground(screenSize),
+          buildCoverImage(screenSize),
+          SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: screenSize.height / 6.4),
+                  _buildProfileImage(screenSize),
+                  _buildFullName(),
+                  _buildStatus(context),
+                  _buildStatContainer(),
+                  _buildBio(),
+                  _buildSeparator(screenSize),
+                  //_buildFavSongs(), dont know how to make it look nice
+                  //_buildButtons() only for friends profile
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
 
 }
  
