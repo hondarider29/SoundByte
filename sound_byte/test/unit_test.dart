@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sound_byte/model/user.dart';
 import 'package:sound_byte/pages/Songs.dart';
+import 'package:sound_byte/pages/musicPlayer.dart';
 
 void main() {
   test('Testing tests', () {
@@ -37,6 +38,16 @@ void main() {
     expect(test.userID, 'unittester01');
     expect(test.friends, friends);
     expect(test.chats, chats);
+  });
+
+  test('Testing the other branch for USer.full', () {
+    User test = new User.full('unittester01', 'unittester', 'unittest@1.non', null, null);
+
+    expect(test.userEmail, 'unittest@1.non');
+    expect(test.userName, 'unittester');
+    expect(test.userID, 'unittest01');
+    expect(test.friends, new List<String>());
+    expect(test.chats, new List<String>());
   });
 
   test('Testing clearCurrentUser', () {
