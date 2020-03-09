@@ -54,6 +54,14 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
           print("done");
         } else {
           userId = await widget.auth.signUp(_email, _password);
+          await _firestore.collection("Users")
+            .document(userId)
+            .setData({
+                'email' : _email,
+                'name' : 'tempName',
+                'chats' : [],
+                'friends' : []               
+            });
           print('Signed up user: $userId');
         }
         User.currentUser = await User.userFromDatabase(userId);
@@ -64,14 +72,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         if (userId.length > 0 && userId != null && _isLoginForm) {
           _isLoading = true;
           widget.loginCallback();
-          await _firestore.collection("Users")
-            .document(userId)
-            .setData({
-                'email' : _email,
-                'name' : 'tempName',
-                'chats' : [],
-                'friends' : []               
-            });
         }
       } catch (e) {
         print('Error: $e');

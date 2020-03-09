@@ -72,27 +72,30 @@ class User
     User user;
     Completer<User> completer = new Completer();
     DocumentReference ref = Firestore.instance.collection('Users').document(uID);
-    ref.get().then((documentSnapshot)
+    ref.get().then((documentSnapshot) async
     {
       user = new User.full(uID, documentSnapshot.data['name'],
                                 documentSnapshot.data['email'],
                                 documentSnapshot.data['friends'].cast<String>().toList(),
                                 documentSnapshot.data['chats'].cast<String>().toList());
       user._reference = ref;
-      user._fillMap();
+      await user._fillMap();
       completer.complete(user); 
     });
     return completer.future;
   }
 
-  void _fillMap() async
+  Future<Map<String, String>> _fillMap() async
   {
     String name;
+    Completer<Map<String, String>> completer = new Completer();
     for(String friend in this.friends)
     {
       name = await _userNamefromUserID(friend);
       this._idToName.putIfAbsent(friend, () => name);
     }
+    completer.complete(this._idToName);
+    return completer.future;
   }
 
   Future<String> _userNamefromUserID(String uID) async
