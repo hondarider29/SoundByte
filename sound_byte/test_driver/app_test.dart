@@ -1,40 +1,75 @@
 // Imports the Flutter Driver API.
+import 'dart:io';
+
 import 'package:flutter_driver/flutter_driver.dart';
+import 'dart:async';
 import 'package:test/test.dart';
 
 void main() {
-  group('Counter App', () {
-    // First, define the Finders and use them to locate widgets from the
-    // test suite. Note: the Strings provided to the `byValueKey` method must
-    // be the same as the Strings we used for the Keys in step 1.
-    final counterTextFinder = find.byValueKey('counter');
-    final buttonFinder = find.byValueKey('increment');
-
+  group('SoundByte', () {
+    
     FlutterDriver driver;
+    final pwd = find.byValueKey('pass');
+    final eml = find.byValueKey('mail');
+    final button = find.byValueKey('login');
+    final logout = find.byValueKey('logOut');
+    final backProfile = find.byValueKey('backProfile');
+    final friendProf = find.byValueKey('friendProf');
+    final backFriendProfile = find.byValueKey('backFriendProfile');
 
     // Connect to the Flutter driver before running any tests.
     setUpAll(() async {
       driver = await FlutterDriver.connect();
     });
 
-    // Close the connection to the driver after the tests have completed.
     tearDownAll(() async {
       if (driver != null) {
         driver.close();
       }
     });
+    
+    test('Login Successfully', () async {
 
-    test('starts at 0', () async {
-      // Use the `driver.getText` method to verify the counter starts at 0.
-      expect(await driver.getText(counterTextFinder), "0");
+      await driver.waitFor(eml);
+
+      print("Enter Email");
+      await driver.tap(eml);
+      await driver.enterText("test@test.com");
+      
+      sleep(Duration(seconds: 3));
+      
+      print("Enter Password");
+      await driver.tap(pwd);
+      await driver.enterText("123456");
+      
+      sleep(Duration(seconds: 2));
+      
+      await driver.tap(button);
+      await driver.waitForAbsent(pwd);
+      
     });
 
-    test('increments the counter', () async {
-      // First, tap the button.
-      await driver.tap(buttonFinder);
-
-      // Then, verify the counter text is incremented by 1.
-      expect(await driver.getText(counterTextFinder), "1");
+    test('Logout', () async {
+      sleep(Duration(seconds: 2));
+      print("Attempting Log Out");
+      await driver.tap(logout);
+      await driver.waitForAbsent(pwd);
+      print("Logged Out");
+      sleep(Duration(seconds: 2));
     });
+
+    /*
+    test('Enter/Leave Friend Profile Page', () async {
+
+      await driver.tap(friendProf);
+      print("Entering Friend Profile");
+      sleep(Duration(seconds: 2));
+      await driver.tap(backFriendProfile);
+      print("Leaving Friend profile page");
+      sleep(Duration(seconds: 2));
+    });
+    */
+
+
   });
 }

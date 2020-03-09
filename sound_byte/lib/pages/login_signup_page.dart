@@ -22,7 +22,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   String _email;
   String _password;
   String _errorMessage;
-
+  String _userName;
   bool _isLoginForm;
 
   // Check if form is valid before perform login or signup
@@ -59,11 +59,13 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
             });
           print('Signed up user: $userId');
         }
+
         User.currentUser = await User.userFromDatabase(userId);
 
         if (userId.length > 0 && userId != null && _isLoginForm) {
           widget.loginCallback();
         }
+
       } catch (e) {
         print('Error: $e');
         setState(() {
@@ -133,6 +135,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
           padding: _isLoginForm ? EdgeInsets.fromLTRB(160, 440, 0, 100) : EdgeInsets.fromLTRB(125, 440, 0, 100),
           //padding: EdgeInsets.fromLTRB(160, 450, 0, 100),
           child: RaisedButton(
+            key: Key('login'),
             elevation: 5.0,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0)),
@@ -170,6 +173,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                       color: Colors.white,
                     ),
                      child: new TextFormField(
+                      key: Key("mail"),
                       maxLines: 1,
                       keyboardType: TextInputType.emailAddress,
                       autofocus: false,
@@ -187,6 +191,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                   Container(
                     padding: EdgeInsets.all(7),
                      child: new TextFormField(
+                       key: Key("pass"),
                        maxLines: 1,
                         obscureText: true,
                         autofocus: false,
