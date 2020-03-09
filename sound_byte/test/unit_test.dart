@@ -18,7 +18,7 @@ void main() {
     expect(test.friends, new List<String>());
     expect(test.chats, new List<String>());
   });
-
+  
   test('Testing new User.nullUser', () {
     User test = new User.nullUser();
 

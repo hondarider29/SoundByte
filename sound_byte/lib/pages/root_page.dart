@@ -84,6 +84,7 @@ class _RootPageState extends State<RootPage> {
         break;
       case AuthStatus.LOGGED_IN:
         if (_userId.length > 0 && _userId != null) {
+          
           return FriendScreen(
             auth: widget.auth,
             logoutCallback: logoutCallback,
