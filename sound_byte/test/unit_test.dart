@@ -40,12 +40,12 @@ void main() {
     expect(test.chats, chats);
   });
 
-  test('Testing the other branch for USer.full', () {
+  test('Testing the other branch for User.full', () {
     User test = new User.full('unittester01', 'unittester', 'unittest@1.non', null, null);
 
     expect(test.userEmail, 'unittest@1.non');
     expect(test.userName, 'unittester');
-    expect(test.userID, 'unittest01');
+    expect(test.userID, 'unittester01');
     expect(test.friends, new List<String>());
     expect(test.chats, new List<String>());
   });
