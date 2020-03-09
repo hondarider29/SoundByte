@@ -71,7 +71,7 @@ class MessageEncrypter
   Key _generateKeyFromPassword(String password)
   {
     final hash = Password.hash(password, PBKDF2(desiredKeyLength: length));
-    final key = Key.fromUtf8(hash.split('\$')[hash.split('\$').length - 1]);
+    final key = Key.fromUtf8(hash.split('\$')[hash.split('\$').length - 1].substring(0, length));
 
     return key;
   }
