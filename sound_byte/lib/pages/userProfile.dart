@@ -58,6 +58,7 @@ class UserProfilePage extends StatefulWidget {
           //back button
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
+            key: Key('backProfile'),
             onPressed: () {
               Navigator.push(
                 context,

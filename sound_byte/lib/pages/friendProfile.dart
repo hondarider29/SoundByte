@@ -27,6 +27,7 @@ class FriendProfile extends StatelessWidget {
         //back button
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
+          key: Key('backFriendProfile'),
           onPressed: () {
             Navigator.push(
               context,

@@ -12,6 +12,10 @@ void main() {
     final pwd = find.byValueKey('pass');
     final eml = find.byValueKey('mail');
     final button = find.byValueKey('login');
+    final userProf = find.byValueKey('userProfile');
+    final backProfile = find.byValueKey('backProfile');
+    final friendProf = find.byValueKey('friendProf');
+    final backFriendProfile = find.byValueKey('backFriendProfile');
 
     // Connect to the Flutter driver before running any tests.
     setUpAll(() async {
@@ -28,13 +32,13 @@ void main() {
 
       await driver.waitFor(eml);
 
-      print("1");
+      print("Enter Email");
       await driver.tap(eml);
       await driver.enterText("dsann@calpoly.edu");
       
       sleep(Duration(seconds: 3));
       
-      print("2");
+      print("Enter Password");
       await driver.tap(pwd);
       await driver.enterText("soccer");
       
@@ -45,12 +49,30 @@ void main() {
       
     });
 
-    /*
-    test('Click On Friends Profile', () async {
+    test('Enter/Leave User Profile Page', () async {
+      sleep(Duration(seconds: 2));
+      await driver.tap(userProf);
+      print("Entering User Profile");
+      sleep(Duration(seconds: 2));
+      await driver.tap(backProfile);
+      print("Leaving user profile page");
+      sleep(Duration(seconds: 2));
+    });
 
-      
+    /*
+    test('Enter/Leave Friend Profile Page', () async {
+
+      await driver.tap(friendProf);
+      print("Entering Friend Profile");
+      sleep(Duration(seconds: 2));
+      await driver.tap(backFriendProfile);
+      print("Leaving Friend profile page");
+      sleep(Duration(seconds: 2));
     });
     */
+
+
+    
     
   });
 }
