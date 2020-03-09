@@ -144,8 +144,6 @@ class _FriendScreenState extends State<FriendScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 //image of friend
-                //TODO: add default image if none is set
-                
                 Container(
                   
                   child: RaisedButton(
