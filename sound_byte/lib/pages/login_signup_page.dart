@@ -23,9 +23,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   String _password;
   String _errorMessage;
   String _userName;
-  String _first;
-  String _last;
-
   bool _isLoginForm;
 
   // Check if form is valid before perform login or signup
@@ -61,16 +58,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                 'friends' : []               
             });
           print('Signed up user: $userId');
-          await _firestore.collection("Users")
-            .document(userId)
-            .setData({
-                'email' : _email,
-                'chats' : [],
-                'friends' : [],
-                'firstName' : _first,
-                'lastName' : _last,
-                'userName' : _userName               
-            });
         }
 
         User.currentUser = await User.userFromDatabase(userId);
