@@ -1,58 +1,61 @@
 // Imports the Flutter Driver API.
+import 'dart:io';
+
 import 'package:flutter_driver/flutter_driver.dart';
+import 'dart:async';
 import 'package:test/test.dart';
 
 void main() {
   group('SoundByte', () {
     
     FlutterDriver driver;
+    final pwd = find.byValueKey('pass');
+    final eml = find.byValueKey('mail');
+    final button = find.byValueKey('login');
 
     // Connect to the Flutter driver before running any tests.
     setUpAll(() async {
       driver = await FlutterDriver.connect();
     });
 
-    // Close the connection to the driver after the tests have completed.
     tearDownAll(() async {
       if (driver != null) {
         driver.close();
       }
     });
-
-    Future<void> tap(SerializableFinder element) async {
-      await driver.tap(element);
-    }
-
-    Future<void> type(SerializableFinder element, String text) async {
-      await tap(element);
-      await driver.enterText(text);
-    }
-
-    SerializableFinder findByKey(String key) {
-      return find.byValueKey(key);
-    }
-
-    final email = findByKey('email');
-    final pwd = findByKey('pass');
-
+    
     test('Login Successfully', () async {
-      // Use the `driver.getText` method to verify the counter starts at 0.
 
-      
-      type(email, "dsann@calpoly.edu");
-      type(pwd, "soccer");
-      
-      print("got here");
-      
-      final button = findByKey("login");
-      tap(button);
-      
-      //expect(await findByKey("authentication_success"), isTrue,
-      //    reason: "TEST KO: Authentication did not succeed.");
-          
+      await driver.waitFor(eml);
 
+      print("1");
+      await driver.tap(eml);
+      await driver.enterText("dsann@calpoly.edu");
+      
+      sleep(Duration(seconds: 3));
+      
+      print("2");
+      await driver.tap(pwd);
+      await driver.enterText("soccer");
+      
+      sleep(Duration(seconds: 2));
+      
+      await driver.tap(button);
 
+      await driver.waitForAbsent(pwd);
+
+      sleep(Duration(seconds: 2));
+      
     });
+    
 
+    /*
+    test('Login Successfully', () async {
+       sleep(Duration(seconds: 3));
+       await driver.waitFor(eml);
+       expect(eml, eml);
+       sleep(Duration(seconds: 3));
+    });
+    */
   });
 }

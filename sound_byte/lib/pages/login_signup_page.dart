@@ -122,6 +122,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     } else {
       return Scaffold(
         appBar: AppBar(
+          key: Key("backGround"),
           title: Text('SoundByte'),
         ),
         body: Stack(
@@ -257,9 +258,9 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget showEmailInput() {
     return Padding(
-      key: Key('email'),
       padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
       child: new TextFormField(
+        key: Key('mail'),
         maxLines: 1,
         keyboardType: TextInputType.emailAddress,
         autofocus: false,
@@ -277,9 +278,9 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget showPasswordInput() {
     return Padding(
-      key: Key('pass'),
       padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
       child: TextFormField(
+        key: Key('pass'),
         maxLines: 1,
         obscureText: true,
         autofocus: false,
@@ -305,11 +306,11 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget showPrimaryButton() {
     return Padding(
-        key: Key("login"),
         padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
         child: SizedBox(
           height: 40.0,
           child: RaisedButton(
+            key: Key('login'),
             elevation: 5.0,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0)),

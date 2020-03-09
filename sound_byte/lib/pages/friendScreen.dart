@@ -115,7 +115,6 @@ class _FriendScreenState extends State<FriendScreen> {
   //creates a button displaying all the information about a friend
   Widget friendButton(String imageName, String name, String subText, int id, String status) {
     double size = 50;
-
     return Column(
       children: <Widget>[
         Container(
