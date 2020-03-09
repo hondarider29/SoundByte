@@ -1,25 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'package:sound_byte/pages/chatScreen.dart';
-import 'package:sound_byte/services/authentication.dart';
-import 'package:sound_byte/model/user.dart';
-import 'package:sound_byte/pages/friendScreen.dart';
-
-
 class FriendProfile extends StatelessWidget {
 
-  FriendProfile(this._fullName, this._image, this._id, this._status);
+  FriendProfile(this._fullName, this._image, this._status);
 
   final String _fullName;
   final String _status;
   final String _image;
-  final String _id;
 
   final String _followers = "173";
   final String _playlists = "24";
   final String _views = "450";
   final String _bio = "Hello, I am David and love music!";
-  final String _favSongs = "Star Spangled Banner";
 
   Widget _buildProfileImage(Size screenSize) {
     return Center(
@@ -87,14 +79,6 @@ class FriendProfile extends StatelessWidget {
         _bio,
         textAlign: TextAlign.center,
         style: bioTextStyle,
-      ),
-    );
-  }
-
-  Widget _buildFavSongs() {
-    return Container(
-      child: Text(
-        _favSongs
       ),
     );
   }
@@ -180,60 +164,8 @@ class FriendProfile extends StatelessWidget {
       margin: EdgeInsets.only(top: 4.0),
     );
   }
-
-   Widget _buildButtons() {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: InkWell(
-              onTap: () => print("followed"),
-              child: Container(
-                height: 40.0,
-                decoration: BoxDecoration(
-                  border: Border.all(),
-                  color: Color(0xFF404A5C),
-                ),
-                child: Center(
-                  child: Text(
-                    "FOLLOW",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: 10.0),
-          Expanded(
-            child: InkWell(
-              onTap: () => print("Message"),
-              child: Container(
-                height: 40.0,
-                decoration: BoxDecoration(
-                  border: Border.all(),
-                ),
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Text(
-                      "MESSAGE",
-                      style: TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
   
-   @override
+  @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
@@ -253,8 +185,6 @@ class FriendProfile extends StatelessWidget {
                   _buildStatContainer(),
                   _buildBio(),
                   _buildSeparator(screenSize),
-                  //_buildFavSongs(), dont know how to make it look nice
-                  //_buildButtons() only for friends profile
                 ],
               ),
             ),

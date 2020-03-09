@@ -20,8 +20,7 @@ class _MusicPlayerState extends State<MusicPlayer>{
   final image;
  
 
-  _MusicPlayerState(this.title, this.artist, this.image){
-  }
+  _MusicPlayerState(this.title, this.artist, this.image);
 
   @override
   Widget build(BuildContext context) {

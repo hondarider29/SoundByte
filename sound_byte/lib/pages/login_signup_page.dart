@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:sound_byte/model/user.dart';
 import 'package:sound_byte/services/authentication.dart';
-import 'package:sound_byte/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginSignupPage extends StatefulWidget {
@@ -28,7 +27,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   String _last;
 
   bool _isLoginForm;
-  bool _isLoading;
 
   // Check if form is valid before perform login or signup
   bool validateAndSave() {
@@ -44,7 +42,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   void validateAndSubmit() async {
     setState(() {
       _errorMessage = "";
-      _isLoading = true;
     });
     if (validateAndSave()) {
       String userId = "";
@@ -77,9 +74,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         }
 
         User.currentUser = await User.userFromDatabase(userId);
-        setState(() {
-          _isLoading = false;
-        });
 
         if (userId.length > 0 && userId != null && _isLoginForm) {
           widget.loginCallback();
@@ -88,7 +82,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
       } catch (e) {
         print('Error: $e');
         setState(() {
-          _isLoading = false;
           _errorMessage = e.message;
           _formKey.currentState.reset();
         });
@@ -99,7 +92,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   @override
   void initState() {
     _errorMessage = "";
-    _isLoading = false;
     _isLoginForm = true;
     super.initState();
   }
@@ -114,16 +106,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     setState(() {
       _isLoginForm = !_isLoginForm;
     });
-  }
-
-  Widget _showCircularProgress() {
-    if (_isLoading) {
-      return Center(child: CircularProgressIndicator());
-    }
-    return Container(
-      height: 0.0,
-      width: 0.0,
-    );
   }
 
   Widget showErrorMessage() {
