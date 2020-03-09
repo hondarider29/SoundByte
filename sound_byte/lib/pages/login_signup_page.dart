@@ -1,5 +1,10 @@
+
 import 'package:flutter/material.dart';
+import 'package:sound_byte/model/user.dart';
 import 'package:sound_byte/services/authentication.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:password/password.dart';
+import 'package:sound_byte/helperClasses/messageEncrypter.dart';
 import 'package:sound_byte/model/user.dart';
 
 class LoginSignupPage extends StatefulWidget {
@@ -11,6 +16,8 @@ class LoginSignupPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new _LoginSignupPageState();
 }
+
+final _firestore = Firestore.instance;
 
 class _LoginSignupPageState extends State<LoginSignupPage> {
   final _formKey = new GlobalKey<FormState>();
@@ -44,10 +51,17 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         if (_isLoginForm) {
           userId = await widget.auth.signIn(_email, _password);
           print('Signed in: $userId');
+          print("done");
         } else {
           userId = await widget.auth.signUp(_email, _password);
-          //widget.auth.sendEmailVerification();
-          //_showVerifyEmailSentDialog();
+          await _firestore.collection("Users")
+            .document(userId)
+            .setData({
+                'email' : _email,
+                'name' : 'tempName',
+                'chats' : [],
+                'friends' : []               
+            });
           print('Signed up user: $userId');
         }
         User.currentUser = await User.userFromDatabase(userId);

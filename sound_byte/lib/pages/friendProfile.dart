@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:sound_byte/pages/chatScreen.dart';
+import 'package:sound_byte/services/authentication.dart';
+import 'package:sound_byte/model/user.dart';
+import 'package:sound_byte/pages/friendScreen.dart';
+
+
 class FriendProfile extends StatelessWidget {
 
   FriendProfile(this._fullName, this._image, this._id, this._status);

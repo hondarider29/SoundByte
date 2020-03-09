@@ -12,10 +12,12 @@ class UserProfilePage extends StatefulWidget {
   final String userId;
 }
 
+
 class _UserProfilePageState extends State<UserProfilePage>
 {
   final String _fullName = "David Sann";
   final String _status = "Software Engineer";
+
 
   final String _followers = "173";
   final String _playlists = "24";

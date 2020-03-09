@@ -15,7 +15,6 @@ gradlew
 gradlew.bat
 local.properties
 
-
 # IntelliJ related
 *.iml
 *.ipr
@@ -40,6 +39,7 @@ Podfile.lock
 .flutter-plugins-dependencies
 pubspec.lock
 flutter_export_environment.sh
+Flutter.podspec
 
 # Web related
 lib/generated_plugin_registrant.dart
