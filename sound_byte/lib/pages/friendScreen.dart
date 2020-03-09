@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sound_byte/pages/chatScreen.dart';
@@ -71,6 +73,7 @@ class _FriendScreenState extends State<FriendScreen> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               //friend search bar bar
               Container(
@@ -101,17 +104,14 @@ class _FriendScreenState extends State<FriendScreen> {
               SizedBox(height: 16),
 
               //friend list
-              //TODO: add real data
-              friendButton(
-                  'images/headShot1.jpeg', "John", "last online: 2 hours ago", "1", "Software Engineer"),
-              friendButton(
-                  'images/headShot2.jpeg', "David", "Online", "2" ,"Soccer Player"),
-              friendButton(
-                  'images/headShot3.jpeg', "Xavier", "last online: 3 minutes ago", "3", "Teacher"),
-              friendButton(
-                  'images/headShot4.jpeg', "Sarah", "last online: 4 seconds ago", "4", "Nurse"),
-              friendButton(
-                  'images/headShot5.png', "Jennifer", "Online", "5", "Lawyer")
+              ListView.builder(
+                itemCount: User.currentUser == new User.nullUser() ? 0 : User.currentUser.friends.length,
+                itemBuilder: (BuildContext context, int index) {
+                  String friend = User.currentUser.friends[index];
+                  return friendButton('images/headShot1.jpeg', User.currentUser.getFriendName(friend), "N/A", friend, "N/A");
+                },
+                shrinkWrap: true,
+              ),
             ],
           ),
         ),
