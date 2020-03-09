@@ -41,21 +41,16 @@ void main() {
       sleep(Duration(seconds: 2));
       
       await driver.tap(button);
-
       await driver.waitForAbsent(pwd);
-
-      sleep(Duration(seconds: 2));
       
     });
-    
 
     /*
-    test('Login Successfully', () async {
-       sleep(Duration(seconds: 3));
-       await driver.waitFor(eml);
-       expect(eml, eml);
-       sleep(Duration(seconds: 3));
+    test('Click On Friends Profile', () async {
+
+      
     });
     */
+    
   });
 }
