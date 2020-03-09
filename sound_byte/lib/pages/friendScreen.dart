@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:sound_byte/pages/musicList.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'package:sound_byte/pages/friendProfile.dart';
 import 'package:sound_byte/model/user.dart';
