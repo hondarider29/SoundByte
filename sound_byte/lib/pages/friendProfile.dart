@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sound_byte/pages/friendScreen.dart';
+import 'package:sound_byte/pages/musicList.dart';
+import 'package:sound_byte/pages/userProfile.dart';
 
 class FriendProfile extends StatelessWidget {
 
@@ -164,6 +167,73 @@ class FriendProfile extends StatelessWidget {
       margin: EdgeInsets.only(top: 4.0),
     );
   }
+
+
+  int _pageT = 1;
+  Widget nav (BuildContext context) {
+    return Container(
+      alignment: Alignment.bottomCenter,
+      child: BottomNavigationBar(
+        currentIndex: _pageT,
+        onTap: (int index) {
+          test(index, context);
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.play_arrow),
+            title: Text('Player',
+             style: TextStyle(
+              fontFamily: 'Pop'
+            ),
+            )
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home',
+             style: TextStyle(
+              fontFamily: 'Pop'
+            ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.wifi),
+            title: Text('Profile',
+            style: TextStyle(
+              fontFamily: 'Pop'
+              ),
+            ),
+          )
+        ],
+       )
+      );
+  }
+
+  Widget test (int index, BuildContext context) {
+    if (index == 0) {
+       Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MusicList(),
+                ),
+       );
+    }
+    else if (index == 1) {
+      Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FriendScreen(),
+            ),
+       );
+    }
+    else if (index == 2) {
+      Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserProfilePage(),
+            ),
+       );
+    }
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -184,7 +254,9 @@ class FriendProfile extends StatelessWidget {
                   _buildStatus(context),
                   _buildStatContainer(),
                   _buildBio(),
-                  _buildSeparator(screenSize),
+                  SizedBox(height: screenSize.height / 5.6),
+                  //_buildSeparator(screenSize),
+                  nav(context)
                 ],
               ),
             ),
