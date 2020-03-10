@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sound_byte/pages/friendScreen.dart';
+import 'package:sound_byte/pages/userProfile.dart';
 
 import 'Songs.dart';
 
@@ -10,7 +12,8 @@ class MusicList extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           showBackground(screenSize),
-          buildMain(screenSize)
+          buildMain(screenSize),
+          nav(context)
         ],
       ),
     );
@@ -69,6 +72,66 @@ var rosieLowe =
     );
   }
 
+
+  int _pageT = 0;
+  Widget nav (BuildContext context) {
+    return Container(
+      alignment: Alignment.bottomCenter,
+      child: BottomNavigationBar(
+        currentIndex: _pageT,
+        onTap: (int index) {
+          test(index, context);
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.play_arrow),
+            title: Text('Player',
+             style: TextStyle(
+              fontFamily: 'Pop'
+            ),
+            )
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home',
+             style: TextStyle(
+              fontFamily: 'Pop'
+            ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.wifi),
+            title: Text('Profile',
+            style: TextStyle(
+              fontFamily: 'Pop'
+              ),
+            ),
+          )
+        ],
+       )
+      );
+  }
+
+  Widget test (int index, BuildContext context) {
+    if (index == 1) {
+       Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FriendScreen(),
+                ),
+       );
+    }
+    else if (index == 2) {
+      Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserProfilePage(),
+            ),
+       );
+    }
+
+  }
+
 class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -114,6 +177,8 @@ class SearchBar extends StatelessWidget {
   }
 }
 
+
+/*
 class ItemCard extends StatelessWidget {
   final image;
   final title;
@@ -165,4 +230,4 @@ class ItemCard extends StatelessWidget {
   }
 }
 
-
+*/

@@ -124,7 +124,7 @@ class _FriendScreenState extends State<FriendScreen> {
                 itemCount: User.currentUser == new User.nullUser() ? 0 : User.currentUser.friends.length,
                 itemBuilder: (BuildContext context, int index) {
                   String friend = User.currentUser.friends[index];
-                  return friendButton('images/headShot1.jpeg', User.currentUser.getFriendName(friend), "N/A", friend, "N/A");
+                  return friendButton('images/headShot2.jpeg', User.currentUser.getFriendName(friend), "N/A", friend, "N/A");
                 },
                 shrinkWrap: true,
               ),
@@ -136,7 +136,8 @@ class _FriendScreenState extends State<FriendScreen> {
         currentIndex: _pageT,
         onTap: (int index) {
           setState(() {
-            _pageT = index;
+            test(index);
+            //_pageT = index;
           });
         },
         items: [
@@ -161,12 +162,32 @@ class _FriendScreenState extends State<FriendScreen> {
             title: Text('Profile',
             style: TextStyle(
               fontFamily: 'Pop'
-            ),
+              ),
             ),
           )
         ],
       ),
     );
+  }
+
+  Widget test (int index) {
+    if (index == 0) {
+       Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MusicList(),
+                ),
+       );
+    }
+    else if (index == 2) {
+      Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserProfilePage(),
+            ),
+       );
+    }
+
   }
 
   //creates a button displaying all the information about a friend
