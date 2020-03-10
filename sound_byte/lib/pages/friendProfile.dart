@@ -34,7 +34,7 @@ class FriendProfile extends StatelessWidget {
   }
   Widget _buildFullName() {
     TextStyle _nameTextStyle = TextStyle (
-      fontFamily: 'Roboto',
+      fontFamily: 'Pop',
       color: Colors.black,
       fontSize: 28.0,
       fontWeight: FontWeight.w700,
@@ -55,7 +55,7 @@ class FriendProfile extends StatelessWidget {
       child: Text(
         _status,
         style: TextStyle(
-          fontFamily: 'Spectral',
+          fontFamily: 'Pop',
           color: Colors.black,
           fontSize: 20.0,
           fontWeight: FontWeight.w300,
@@ -66,7 +66,7 @@ class FriendProfile extends StatelessWidget {
 
   Widget _buildBio() {
     TextStyle bioTextStyle = TextStyle(
-      fontFamily: 'Spectral',
+      fontFamily: 'Pop',
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.italic,
       color: Colors.black,
@@ -128,7 +128,7 @@ class FriendProfile extends StatelessWidget {
 
   Widget _buildStatItem(String label, String count) {
     TextStyle _statLabelTextStyle = TextStyle(
-      fontFamily: 'Roboto',
+      fontFamily: 'Pop',
       color: Colors.black,
       fontSize: 16.0,
       fontWeight: FontWeight.w200,

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sound_byte/pages/musicList.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'package:sound_byte/pages/friendProfile.dart';
 import 'package:sound_byte/model/user.dart';
+import 'package:sound_byte/pages/userProfile.dart';
+
 
 //screen to see all recent chats with friends and access to contact list
 class FriendScreen extends StatefulWidget {
@@ -34,6 +37,14 @@ class _FriendScreenState extends State<FriendScreen> {
     }
   }
 
+  final _page = [
+    MusicList(),
+    FriendScreen(),
+    UserProfilePage()
+  ];
+
+  int _pageT = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,18 +52,23 @@ class _FriendScreenState extends State<FriendScreen> {
       appBar: AppBar(
         backgroundColor: Colors.lightBlueAccent,
         elevation: 0,
-        title: Text('Byte Chat'),
-        //title: Text(),
+        title: Text('Home Page',
+        style: TextStyle(
+          fontFamily: 'Pop'
+          ),
+        ),
         actions: <Widget>[
           FlatButton(child: Text('Logout',
             key: Key('logOut'),
-            style: new TextStyle(fontSize: 17.0, color: Colors.white)),
+            style: new TextStyle(fontSize: 17.0, 
+            color: Colors.white,
+            fontFamily: 'Pop'
+              )
+            ),
             onPressed: signOut
           )
         ],
       ),
-      //list of all contacts and search
-      //IDEA: maybe turn into a stream
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -73,6 +89,10 @@ class _FriendScreenState extends State<FriendScreen> {
               //friend search bar bar
               Container(
                 child: TextField(
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Pop'
+                  ),
                   onChanged: (String input) {
                     Firestore.instance.collection('Users').where("name", isEqualTo: input).getDocuments().then((querySnapshot)
                       => searchedUser = new User.full(querySnapshot.documents[0].documentID,
@@ -87,6 +107,7 @@ class _FriendScreenState extends State<FriendScreen> {
                     contentPadding: EdgeInsets.all(12.0),
                     hintStyle: TextStyle(
                       color: Colors.white,
+                      fontFamily: 'Pop'
                     ),
                   ),
                 ),
@@ -110,6 +131,40 @@ class _FriendScreenState extends State<FriendScreen> {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _pageT,
+        onTap: (int index) {
+          setState(() {
+            _pageT = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.play_arrow),
+            title: Text('Player',
+             style: TextStyle(
+              fontFamily: 'Pop'
+            ),
+            )
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home',
+             style: TextStyle(
+              fontFamily: 'Pop'
+            ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.wifi),
+            title: Text('Profile',
+            style: TextStyle(
+              fontFamily: 'Pop'
+            ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -139,24 +194,17 @@ class _FriendScreenState extends State<FriendScreen> {
               children: <Widget>[
                 //image of friend
                 Container(
-                  
                   child: RaisedButton(
-                    //shape: RoundedRectangleBorder(
-                    //borderRadius: new BorderRadius.circular(18),
                     shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)
                     ),
-                  
                       child: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                        
                             image: AssetImage(imageName),
                             fit: BoxFit.cover,
-                          
                           ),
                           borderRadius: BorderRadius.circular(30.0),
                         ),
-
                       ), 
                     //),
                     onPressed: () {
@@ -183,7 +231,7 @@ class _FriendScreenState extends State<FriendScreen> {
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 24,
-                        fontFamily: 'Montserrat'
+                        fontFamily: 'Pop'
                       ),
                     ),
                     Text(

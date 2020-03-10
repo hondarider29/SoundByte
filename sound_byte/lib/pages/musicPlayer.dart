@@ -94,7 +94,7 @@ Widget buildMain (Size screenSize, title, artist, image, BuildContext context) {
                                 Text(
                                   'PLAYLIST',
                                   style: TextStyle(
-                                      fontFamily: "Mont",
+                                      fontFamily: "Pop",
                                       color: Colors.white.withOpacity(0.6)),
                                 ),
                               ],
@@ -110,7 +110,7 @@ Widget buildMain (Size screenSize, title, artist, image, BuildContext context) {
                         Spacer(),
                         Text(title,
                             style: TextStyle(
-                              fontFamily: "Laq",
+                              fontFamily: "Pop",
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 32.0),
@@ -122,7 +122,7 @@ Widget buildMain (Size screenSize, title, artist, image, BuildContext context) {
                         Text(
                           artist,
                           style: TextStyle(
-                            fontFamily: "Laq",
+                            fontFamily: "Pop",
                               color: Colors.white.withOpacity(0.6),
                               fontSize: 18.0),
                         ),

@@ -122,7 +122,11 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         ),
         color: Colors.blue,
          child: Text(_isLoginForm ? 'Create an account' : 'Have an account? Sign in',
-            style: TextStyle(fontSize: 20.0, color: Colors.white)),
+            style: TextStyle(fontSize: 18.0, 
+            color: Colors.white,
+            fontFamily: 'Pop'
+              )
+            ),
             onPressed: toggleFormMode,
         )
     );
@@ -140,7 +144,11 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                 borderRadius: BorderRadius.circular(30.0)),
             color: Colors.blue,
             child: Text(_isLoginForm ? 'Login' : 'Create account',
-                style: TextStyle(fontSize: 20.0, color: Colors.white)),
+                style: TextStyle(fontSize: 20.0, 
+                color: Colors.white,
+                fontFamily: 'Pop'
+                  )
+                ),
             onPressed: validateAndSubmit,
           ),
       )
@@ -174,10 +182,16 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                      child: new TextFormField(
                       key: Key("mail"),
                       maxLines: 1,
+                      style: TextStyle(
+                        fontFamily: 'Pop'
+                      ),
                       keyboardType: TextInputType.emailAddress,
                       autofocus: false,
                       decoration: new InputDecoration(
                           hintText: 'Email',
+                          hintStyle: TextStyle(
+                            fontFamily: 'Pop'
+                          ),
                           icon: new Icon(
                             Icons.mail,
                             color: Colors.grey,
@@ -192,10 +206,16 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                      child: new TextFormField(
                        key: Key("pass"),
                        maxLines: 1,
+                       style: TextStyle(
+                         fontFamily: 'Pop'
+                       ),
                         obscureText: true,
                         autofocus: false,
                         decoration: InputDecoration(
                             hintText: 'Password',
+                            hintStyle: TextStyle(
+                              fontFamily: 'Pop'
+                            ),
                             icon: Icon(
                               Icons.lock,
                               color: Colors.grey,
@@ -215,15 +235,15 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
    Widget showLogo() {
     return Container(
       child: Positioned(
-        top: 180,
-        left: 70,
+        top: 175,
+        left: 50,
         child: Text(
           "SoundByte",
           style: TextStyle(
             color: Colors.white,
             fontSize: 60,
             fontWeight: FontWeight.bold,
-            fontFamily: 'Laq'
+            fontFamily: 'Pop'
           ),
         ),
       ),

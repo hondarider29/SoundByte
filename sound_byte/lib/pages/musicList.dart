@@ -34,7 +34,7 @@ var rosieLowe =
             Text(
               'Your Songs',
               style: TextStyle(
-                fontFamily: "Laq",
+                fontFamily: "Pop",
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 38.0),
@@ -89,7 +89,7 @@ class SearchBar extends StatelessWidget {
           Expanded(
             child: TextField(
               style: TextStyle(
-                fontFamily: "Laq",
+                fontFamily: "Pop",
               ),
               decoration: InputDecoration(
                   hintText: 'Search music...',
