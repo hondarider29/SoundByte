@@ -73,6 +73,7 @@ Widget buildMain (Size screenSize, title, artist, image, BuildContext context) {
                                   color: Colors.white.withOpacity(0.1),
                                   borderRadius: BorderRadius.circular(50.0)),
                               child: IconButton(
+                                key: Key('singleBackButton'),
                                 icon: Icon(Icons.arrow_drop_down),
                                 color: Colors.white,
                                 onPressed: () {

@@ -192,6 +192,7 @@ class _UserProfilePageState extends State<UserProfilePage>
           BottomNavigationBarItem(
             icon: Icon(Icons.play_arrow),
             title: Text('Player',
+            key: Key("playerPage"),
              style: TextStyle(
               fontFamily: 'Pop'
             ),
@@ -200,6 +201,7 @@ class _UserProfilePageState extends State<UserProfilePage>
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text('Home',
+            key: Key("homePage"),
              style: TextStyle(
               fontFamily: 'Pop'
             ),
@@ -208,6 +210,7 @@ class _UserProfilePageState extends State<UserProfilePage>
           BottomNavigationBarItem(
             icon: Icon(Icons.tag_faces),
             title: Text('Profile',
+            key: Key("profilePage"),
             style: TextStyle(
               fontFamily: 'Pop'
               ),
