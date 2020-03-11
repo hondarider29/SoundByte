@@ -24,6 +24,7 @@ class SongItem extends StatelessWidget {
                 Container(
                   height: 80.0,
                   width: 80.0,
+                  key: Key(this.title),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(

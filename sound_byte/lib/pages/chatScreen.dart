@@ -34,6 +34,7 @@ class _ChatScreenState extends State<ChatScreen> {
         //back button
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
+          key: Key("chatBack"),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -60,6 +61,7 @@ class _ChatScreenState extends State<ChatScreen> {
               children: <Widget>[
                 Expanded(
                   child: TextField(
+                    key: Key("chatBar"),
                     controller: messageTextController,
                     onChanged: (value) {
                       messageText = value;
@@ -75,6 +77,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                 ),
                 FlatButton(
+                  key: Key("sendMessage"),
                   onPressed: () {
                     messageTextController.clear();
                     _firestore.collection('Chats').document(widget.chatID).collection('Messages').add({

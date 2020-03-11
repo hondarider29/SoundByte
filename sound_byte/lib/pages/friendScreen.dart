@@ -89,6 +89,7 @@ class _FriendScreenState extends State<FriendScreen> {
               //friend search bar bar
               Container(
                 child: TextField(
+                  key: Key("friendSearchBar"),
                   style: TextStyle(
                     color: Colors.white,
                     fontFamily: 'Pop'
@@ -144,6 +145,7 @@ class _FriendScreenState extends State<FriendScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.play_arrow),
             title: Text('Player',
+             key: Key("playerPage"),
              style: TextStyle(
               fontFamily: 'Pop'
             ),
@@ -152,6 +154,7 @@ class _FriendScreenState extends State<FriendScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text('Home',
+             key: Key("homePage"),
              style: TextStyle(
               fontFamily: 'Pop'
             ),
@@ -160,7 +163,8 @@ class _FriendScreenState extends State<FriendScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.tag_faces),
             title: Text('Profile',
-            style: TextStyle(
+             key: Key("profilePage"),
+             style: TextStyle(
               fontFamily: 'Pop'
               ),
             ),

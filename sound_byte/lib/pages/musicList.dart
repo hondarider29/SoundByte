@@ -85,6 +85,7 @@ var rad = 'https://i.pinimg.com/originals/86/7c/5f/867c5fcbaac0e41e10bd2de274d82
           BottomNavigationBarItem(
             icon: Icon(Icons.play_arrow),
             title: Text('Player',
+            key: Key("playerPage"),
              style: TextStyle(
               fontFamily: 'Pop'
             ),
@@ -93,6 +94,7 @@ var rad = 'https://i.pinimg.com/originals/86/7c/5f/867c5fcbaac0e41e10bd2de274d82
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text('Home',
+            key: Key("homePage"),
              style: TextStyle(
               fontFamily: 'Pop'
             ),
@@ -101,6 +103,7 @@ var rad = 'https://i.pinimg.com/originals/86/7c/5f/867c5fcbaac0e41e10bd2de274d82
           BottomNavigationBarItem(
             icon: Icon(Icons.tag_faces),
             title: Text('Profile',
+            key: Key("profilePage"),
             style: TextStyle(
               fontFamily: 'Pop'
               ),
@@ -150,6 +153,7 @@ class SearchBar extends StatelessWidget {
           ),
           Expanded(
             child: TextField(
+              key: Key("musicSearch"),
               style: TextStyle(
                 fontFamily: "Pop",
               ),
