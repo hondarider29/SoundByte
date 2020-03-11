@@ -20,11 +20,12 @@ class MusicList extends StatelessWidget {
     }
 }
 
-var flume = 'https://i.scdn.co/image/8d84f7b313ca9bafcefcf37d4e59a8265c7d3fff';
+var rex = 'https://i2.wp.com/cornellsun.com/wp-content/uploads/2019/10/Pg-6-7-Arts-Pony-Alasdair-Mclellan-for-Rex-Orange-County.jpg?w=1600';
 var martinGarrix =
-    'https://c1.staticflickr.com/2/1841/44200429922_d0cbbf22ba_b.jpg';
+    'https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Wearethechampions.jpg/220px-Wearethechampions.jpg';
 var rosieLowe =
-    'https://i.scdn.co/image/db8382f6c33134111a26d4bf5a482a1caa5f151c';
+    'https://http2.mlstatic.com/eminem-the-eminem-show-cd-D_NQ_NP_725094-MLM29175119619_012019-F.jpg';
+var rad = 'https://i.pinimg.com/originals/86/7c/5f/867c5fcbaac0e41e10bd2de274d8233c.jpg';
 
   Widget buildMain(Size screenSize) {
     return Padding(
@@ -50,11 +51,11 @@ var rosieLowe =
             SizedBox(
               height: 16.0,
             ),
-            SongItem('Edition', 'Orange Rex County', martinGarrix),
-            SongItem('We Are The Champions', 'Queen', flume),
-            SongItem('Rap', 'Rapper', rosieLowe),
-            SongItem('Song', 'Artist', martinGarrix),
-            SongItem('Another Song', 'Maker', martinGarrix),
+            SongItem('Always', 'Orange Rex County', rex),
+            SongItem('We Are The Champions', 'Queen', martinGarrix),
+            SongItem('Rap', 'Eminem', rosieLowe),
+            SongItem('Song', 'Artist', rad),
+            SongItem('Another Song', 'Maker', rad),
           ],
         )
     );
