@@ -46,8 +46,7 @@ var rad = 'https://i.pinimg.com/originals/86/7c/5f/867c5fcbaac0e41e10bd2de274d82
             ),
             Divider(
               color: Colors.black,
-            )
-            ,
+            ),
             SizedBox(
               height: 16.0,
             ),
@@ -72,7 +71,6 @@ var rad = 'https://i.pinimg.com/originals/86/7c/5f/867c5fcbaac0e41e10bd2de274d82
       ),
     );
   }
-
 
   int _pageT = 0;
   Widget nav (BuildContext context) {

@@ -17,6 +17,7 @@ class _MusicPlayerState extends State<MusicPlayer>{
   final title;
   final artist;
   final image;
+  double value1 = 0.0;
 
   _MusicPlayerState(this.title, this.artist, this.image);
   Color _iconColorBM = Colors.pink;
@@ -37,7 +38,7 @@ class _MusicPlayerState extends State<MusicPlayer>{
 
 
 Widget buildMain (Size screenSize, title, artist, image, BuildContext context) {
-  double value1 = 0.0;
+  
     return Scaffold(
       backgroundColor: Colors.blue,
         body: Column(
@@ -133,14 +134,16 @@ Widget buildMain (Size screenSize, title, artist, image, BuildContext context) {
               ),
             ),
             SizedBox(height: 42.0),
-            Slider(
+            Slider.adaptive(
               value: value1,
               activeColor: Colors.pink,
-              label: "$value1",
               min: 0.0,
-              max: 10.0,
+              max: 3.56,
+              label: "$value1",
               onChanged: (double newVal) {
-                // = newVal;
+                setState(() {
+                  value1 = newVal;
+                });
               },
             ),
             Padding(
