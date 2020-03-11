@@ -72,6 +72,9 @@ Flutter's form of acceptance testing is integration testing. A flutter integrati
 - The user should then run the command "flutter run" which would then start the flutter framework and compile the code and cause the flutter machine to start running.
 - At this point the user should open up the simulator whether from Android or IOS using their simulators respectively by running the command open -a simulator. 
 
+## Link to the Slides Presentation
+https://docs.google.com/presentation/d/1d9COpIdtbxXAYIcxBjw95o3L9wDbs25LA99Z2isxOwQ/edit#slide=id.p
+
 ## Authors
 
 - [Carlos Ayala](github.com/cayalame) (cayalame)
