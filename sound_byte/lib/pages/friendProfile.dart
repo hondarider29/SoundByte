@@ -4,7 +4,7 @@ import 'package:sound_byte/pages/friendScreen.dart';
 import 'package:sound_byte/pages/musicList.dart';
 import 'package:sound_byte/pages/userProfile.dart';
 
-class FriendProfile extends StatelessWidget {
+class FriendProfile extends StatefulWidget {
 
   FriendProfile(this._fullName, this._image, this._status);
 
@@ -12,9 +12,17 @@ class FriendProfile extends StatelessWidget {
   final String _status;
   final String _image;
 
+  @override
+  _FriendProfileState createState() => _FriendProfileState();
+}
+
+class _FriendProfileState extends State<FriendProfile> {
   final String _followers = "173";
+
   final String _playlists = "24";
+
   final String _views = "450";
+
   final String _bio = "Hello, I am David and love music!";
 
   Widget _buildProfileImage(Size screenSize) {
@@ -24,7 +32,7 @@ class FriendProfile extends StatelessWidget {
         height: 140.0,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage( _image),
+            image: AssetImage( widget._image),
             fit: BoxFit.cover,
         ),
           borderRadius: BorderRadius.circular(80.0),
@@ -36,6 +44,7 @@ class FriendProfile extends StatelessWidget {
       ),
     );
   }
+
   Widget _buildFullName() {
     TextStyle _nameTextStyle = TextStyle (
       fontFamily: 'Pop',
@@ -44,7 +53,7 @@ class FriendProfile extends StatelessWidget {
       fontWeight: FontWeight.w700,
     );
     return Text (
-    _fullName,
+    widget._fullName,
     style: _nameTextStyle,
     );
   }
@@ -57,7 +66,7 @@ class FriendProfile extends StatelessWidget {
         borderRadius: BorderRadius.circular(4.0),
       ),
       child: Text(
-        _status,
+        widget._status,
         style: TextStyle(
           fontFamily: 'Pop',
           color: Colors.black,
@@ -110,7 +119,7 @@ class FriendProfile extends StatelessWidget {
       ),
     );
   }
- 
+
   Widget _buildStatContainer() {
     return Container(
       height: 60,
@@ -159,18 +168,8 @@ class FriendProfile extends StatelessWidget {
     );
   }
 
-
-  Widget _buildSeparator(Size screenSize) {
-    return Container(
-      width: screenSize.width / 1.6,
-      height: 2.0,
-      color: Colors.black54,
-      margin: EdgeInsets.only(top: 4.0),
-    );
-  }
-
-
   int _pageT = 1;
+
   Widget nav (BuildContext context) {
     return Container(
       alignment: Alignment.bottomCenter,
@@ -209,7 +208,7 @@ class FriendProfile extends StatelessWidget {
       );
   }
 
-  Widget test (int index, BuildContext context) {
+  void test (int index, BuildContext context) {
     if (index == 0) {
        Navigator.push(
                 context,
@@ -235,7 +234,7 @@ class FriendProfile extends StatelessWidget {
        );
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -286,8 +285,6 @@ class FriendProfile extends StatelessWidget {
       ),
     );
   }
-
-
 }
  
  
