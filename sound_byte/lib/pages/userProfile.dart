@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sound_byte/pages/friendScreen.dart';
+import 'package:sound_byte/pages/musicList.dart';
 import 'package:sound_byte/services/authentication.dart';
 
 class UserProfilePage extends StatefulWidget {
@@ -46,7 +48,7 @@ class _UserProfilePageState extends State<UserProfilePage>
   }
   Widget _buildFullName() {
     TextStyle _nameTextStyle = TextStyle (
-      fontFamily: 'Roboto',
+      fontFamily: 'Pop',
       color: Colors.black,
       fontSize: 28.0,
       fontWeight: FontWeight.w700,
@@ -67,7 +69,7 @@ class _UserProfilePageState extends State<UserProfilePage>
       child: Text(
         _status,
         style: TextStyle(
-          fontFamily: 'Spectral',
+          fontFamily: 'Pop',
           color: Colors.black,
           fontSize: 20.0,
           fontWeight: FontWeight.w300,
@@ -78,7 +80,7 @@ class _UserProfilePageState extends State<UserProfilePage>
 
   Widget _buildBio() {
     TextStyle bioTextStyle = TextStyle(
-      fontFamily: 'Spectral',
+      fontFamily: 'Pop',
       fontWeight: FontWeight.w400,//try changing weight to w500 if not thin
       fontStyle: FontStyle.italic,
       color: Color(0xFF799497),
@@ -140,7 +142,7 @@ class _UserProfilePageState extends State<UserProfilePage>
 
   Widget _buildStatItem(String label, String count) {
     TextStyle _statLabelTextStyle = TextStyle(
-      fontFamily: 'Roboto',
+      fontFamily: 'Pop',
       color: Colors.black,
       fontSize: 16.0,
       fontWeight: FontWeight.w200,
@@ -176,12 +178,71 @@ class _UserProfilePageState extends State<UserProfilePage>
       margin: EdgeInsets.only(top: 4.0),
     );
   }
+
+  int _pageT = 2;
+  Widget nav (BuildContext context) {
+    return Container(
+      alignment: Alignment.bottomCenter,
+      child: BottomNavigationBar(
+        currentIndex: _pageT,
+        onTap: (int index) {
+          test(index, context);
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.play_arrow),
+            title: Text('Player',
+             style: TextStyle(
+              fontFamily: 'Pop'
+            ),
+            )
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home',
+             style: TextStyle(
+              fontFamily: 'Pop'
+            ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.tag_faces),
+            title: Text('Profile',
+            style: TextStyle(
+              fontFamily: 'Pop'
+              ),
+            ),
+          )
+        ],
+       )
+      );
+  }
+
+  Widget test (int index, BuildContext context) {
+    if (index == 0) {
+       Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MusicList(),
+                ),
+       );
+    }
+    else if (index == 1) {
+      Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FriendScreen(),
+            ),
+       );
+    }
+
+  }
   
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.white,
       body: Stack(
         children: <Widget>[
           //showBackground(screenSize),
@@ -196,7 +257,9 @@ class _UserProfilePageState extends State<UserProfilePage>
                   _buildStatus(context),
                   _buildStatContainer(),
                   _buildBio(),
-                  _buildSeparator(screenSize),
+                  SizedBox(height: screenSize.height / 5.6),
+                  //_buildSeparator(screenSize),
+                  nav(context)
                   //_buildFavSongs(),
                   //_buildButtons() only for friends profile
                 ],

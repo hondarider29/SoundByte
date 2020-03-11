@@ -38,7 +38,10 @@ class _ChatScreenState extends State<ChatScreen> {
             Navigator.pop(context);
           },
         ),
-        title: Text('Byte Chat'),
+        title: Text('Byte Chat',
+        style: TextStyle(
+          fontFamily: 'Pop'
+        ),),
         backgroundColor: Colors.lightBlueAccent,
       ),
       //messages and chat bar

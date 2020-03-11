@@ -1,6 +1,8 @@
 // Imports the Flutter Driver API.
-import 'dart:io';
+// Command to run driver:  "flutter drive --target=test_driver/app.dart"
 
+
+import 'dart:io';
 import 'package:flutter_driver/flutter_driver.dart';
 import 'dart:async';
 import 'package:test/test.dart';

@@ -49,16 +49,16 @@ class SongItem extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    fontFamily: "Laq",
+                    fontFamily: "Pop",
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: 22.0),
+                      fontSize: 20.0),
                 ),
                 SizedBox(height: 8.0),
                 Text(
                   artist,
                   style: TextStyle(
-                    fontFamily: "Laq",
+                    fontFamily: "Pop",
                       color: Colors.white.withOpacity(0.5), fontSize: 18.0),
                 ),
               ],
