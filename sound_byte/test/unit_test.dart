@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sound_byte/helperClasses/messageEncrypter.dart';
+import 'package:sound_byte/model/chat.dart';
 import 'package:sound_byte/model/user.dart';
 import 'package:sound_byte/pages/Songs.dart';
 import 'package:sound_byte/pages/musicPlayer.dart';
@@ -16,7 +17,7 @@ void main() {
     expect(test.userName, 'unittester');
     expect(test.userID, 'unittester01');
     expect(test.friends, new List<String>());
-    expect(test.chats, new List<String>());
+    expect(test.chats, new List<Chat>());
   });
   
   test('Testing new User.nullUser', () {
@@ -32,13 +33,22 @@ void main() {
   test('Testing new User.full', () {
     List<String> friends = ["I", "have", "no", "firends"];
     List<String> chats = ["My", "self"];
+    List<Chat> cChats = new List();
+
+    chats.forEach((chat) =>
+      cChats.add(new Chat.fromId(chat))
+    );
     User test = new User.full('unittester01', 'unittester', 'unittest@1.non', friends, chats);
 
     expect(test.userEmail, 'unittest@1.non');
     expect(test.userName, 'unittester');
     expect(test.userID, 'unittester01');
     expect(test.friends, friends);
-    expect(test.chats, chats);
+    expect(cChats.length, test.chats.length);
+    for (int i = 0; i < cChats.length; i++)
+    {
+      expect(cChats[i], test.chats[i]);
+    }
   });
 
   test('Testing the other branch for User.full', () {
@@ -48,7 +58,7 @@ void main() {
     expect(test.userName, 'unittester');
     expect(test.userID, 'unittester01');
     expect(test.friends, new List<String>());
-    expect(test.chats, new List<String>());
+    expect(test.chats, new List<Chat>());
   });
 
   test('Testing clearCurrentUser', () {

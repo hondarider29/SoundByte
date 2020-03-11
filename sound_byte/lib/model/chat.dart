@@ -11,12 +11,19 @@ class Chat
     participants.add(User.currentUser.userID);
     participants.add(userId);
 
-    Firestore.instance.collection('Chats')
-      .where('participants', arrayContains: userId)
-      .where('participants', arrayContains: User.currentUser.userID)
-      .getDocuments().then((querySnapshot) =>
-          chatId = querySnapshot.documents[0].documentID
-        );
+    try
+    {
+      Firestore.instance.collection('Chats')
+        .where('participants', arrayContains: userId)
+        .where('participants', arrayContains: User.currentUser.userID)
+        .getDocuments().then((querySnapshot) =>
+            chatId = querySnapshot.documents[0].documentID
+          );
+    }
+    catch(e)
+    {
+      print(e.toString());
+    }
   }
 
   Chat.fromId(String chatId)
@@ -28,11 +35,18 @@ class Chat
 
   Future<void> _setParticipants(String chatId) async
   {
-    DocumentSnapshot doc = await Firestore.instance.collection('Chats')
-      .document(chatId)
-      .get();
+    try
+    {
+      DocumentSnapshot doc = await Firestore.instance.collection('Chats')
+        .document(chatId)
+        .get();
 
-    participants = doc.data['participants'].cast<String>().toList();
+      participants = doc.data['participants'].cast<String>().toList();
+    }
+    catch(e)
+    {
+      print(e.toString());
+    }
   }
 
   String getOtherUser()
@@ -42,4 +56,6 @@ class Chat
     );
     return otherId;
   }
+
+  bool operator ==(o) => this.chatId == o.chatId;
 }
