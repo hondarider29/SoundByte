@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sound_byte/pages/chatScreen.dart';
 import 'package:sound_byte/pages/friendScreen.dart';
 import 'package:sound_byte/pages/musicList.dart';
 import 'package:sound_byte/pages/userProfile.dart';
@@ -100,7 +101,7 @@ class FriendProfile extends StatelessWidget {
 
   Widget buildCoverImage(Size screenSize) {
     return Container(
-      height: screenSize.height / 2.6,
+      height: screenSize.height / 3.5,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/instr.jpg'),
@@ -239,6 +240,26 @@ class FriendProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        actions: <Widget>[
+          FlatButton(child: Text('Chat',
+            key: Key('Chat'),
+            style: new TextStyle(fontSize: 17.0, 
+            color: Colors.white,
+            fontFamily: 'Pop'
+              )
+            ),
+            onPressed: () {
+              Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ChatScreen("chatID"),
+                ),
+              );
+            }
+          )
+        ],
+      ),
       //backgroundColor: Color.fromRGBO(0, 0, 140, 0),
       body: Stack(
         children: <Widget>[
