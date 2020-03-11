@@ -23,6 +23,9 @@ void main() {
     final singleBackButton = find.byValueKey('singleBackButton');
     final friendSearch = find.byValueKey("friendSearchBar");
     final startChat = find.byValueKey("startChat");
+    final chatBar = find.byValueKey("chatBar");
+    final sendMessage = find.byValueKey("sendMessage");
+    final chatBack = find.byValueKey("chatBack");
 
     // Connect to the Flutter driver before running any tests.
     setUpAll(() async {
@@ -171,7 +174,32 @@ void main() {
       await driver.tap(startChat);
       print("Starting chat with Test User 3");
 
-      sleep(Duration(seconds: 5));
+      sleep(Duration(seconds: 2));
+    });
+
+    test('Send a Message to Test User 3', () async {
+      
+      await driver.waitFor(chatBar);
+      sleep(Duration(seconds: 1));
+      
+      await driver.tap(chatBar);
+      print("Entering Message: 'Hello User 3' ");
+      await driver.enterText('Hello User 3');
+      sleep(Duration(seconds: 2));
+
+      await driver.waitFor(sendMessage);
+      await driver.tap(sendMessage);
+      sleep(Duration(seconds: 1));
+      await driver.enterText('Success');
+      await driver.tap(sendMessage);
+      sleep(Duration(seconds: 2));
+    });
+
+    test('Leave chat screen', () async {
+      
+      await driver.waitFor(chatBack);
+      await driver.tap(chatBack);
+      sleep(Duration(seconds: 3));
     });
   });
 }
