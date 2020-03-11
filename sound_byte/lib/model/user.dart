@@ -64,8 +64,9 @@ class User
     }
     else
     {
+      this.chats = new List();
       chats.forEach((chatId) =>
-        this.chats.add(new Chat(chatId))
+        this.chats.add(new Chat.fromId(chatId))
       );
     }
   }

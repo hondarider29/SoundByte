@@ -4,16 +4,16 @@ import 'package:sound_byte/model/user.dart';
 class Chat
 {
   String chatId;
-  List<User> participants = [User.currentUser];
+  List<String> participants = [];
   
   Chat(String userId)
   {
-    User.userFromDatabase(userId).then((user) =>
-      participants.add(user)
-    );
+    participants.add(User.currentUser.userID);
+    participants.add(userId);
 
     Firestore.instance.collection('Chats')
-      .where("participants", isEqualTo: userId)
+      .where('participants', arrayContains: userId)
+      .where('participants', arrayContains: User.currentUser.userID)
       .getDocuments().then((querySnapshot) =>
           chatId = querySnapshot.documents[0].documentID
         );
@@ -21,30 +21,25 @@ class Chat
 
   Chat.fromId(String chatId)
   {
-    Firestore.instance.collection('Chats')
+    this.chatId = chatId;
+
+    _setParticipants(chatId);
+  }
+
+  Future<void> _setParticipants(String chatId) async
+  {
+    DocumentSnapshot doc = await Firestore.instance.collection('Chats')
       .document(chatId)
-      .get().then((chat) =>
-        _getParticipants(chat)
-      );
+      .get();
+
+    participants = doc.data['participants'].cast<String>().toList();
   }
 
-  void _getParticipants(DocumentSnapshot chat)
+  String getOtherUser()
   {
-    List<String> uIDs;
-
-    uIDs = chat.data['participants'].cast<String>().toList();
-    uIDs.forEach((uID) =>
-      User.userFromDatabase(uID).then((user) =>
-        participants.add(user)
-      )
+    String otherId = participants.firstWhere((user) =>
+      user != User.currentUser.userID
     );
-  }
-
-  User getOtherUser()
-  {
-    User other = participants.firstWhere((user) =>
-      user.userID != User.currentUser.userID
-    );
-    return other; 
+    return otherId;
   }
 }

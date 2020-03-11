@@ -133,7 +133,7 @@ class _FriendScreenState extends State<FriendScreen> {
                 MaterialPageRoute(
                   builder: (context) => ChatScreen(
                     User.currentUser.chats.firstWhere((chat) =>
-                      chat.getOtherUser().userID == id
+                      chat.getOtherUser() == id
                     ).chatId
                   ),
                 ),
