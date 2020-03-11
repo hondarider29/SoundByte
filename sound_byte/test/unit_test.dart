@@ -118,8 +118,6 @@ void main() {
     final password = 'password';
     
     var m = MessageEncrypter(password);
-    print(m.passkey.stretch(32).base64.length);
-    print(m.passKey.length);
     var data = m.encodeData();
     var mRehyd = MessageEncrypter.rehydrate(password, data);
 
