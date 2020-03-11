@@ -19,6 +19,27 @@ class Chat
         );
   }
 
+  Chat.fromId(String chatId)
+  {
+    Firestore.instance.collection('Chats')
+      .document(chatId)
+      .get().then((chat) =>
+        _getParticipants(chat)
+      );
+  }
+
+  void _getParticipants(DocumentSnapshot chat)
+  {
+    List<String> uIDs;
+
+    uIDs = chat.data['participants'].cast<String>().toList();
+    uIDs.forEach((uID) =>
+      User.userFromDatabase(uID).then((user) =>
+        participants.add(user)
+      )
+    );
+  }
+
   User getOtherUser()
   {
     User other = participants.firstWhere((user) =>

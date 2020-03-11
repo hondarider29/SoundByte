@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sound_byte/pages/login_signup_page.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'package:sound_byte/pages/friendScreen.dart';
-import 'package:sound_byte/pages/chatList.dart';
 import 'package:sound_byte/model/user.dart';
 
 enum AuthStatus {
