@@ -70,8 +70,8 @@ class MessageEncrypter
   /// [password] can be any string.
   Key _generateKeyFromPassword(String password)
   {
-    final hash = Password.hash(password, PBKDF2());
-    final key = Key.fromUtf8(hash.substring(0, length));
+    final hash = Password.hash(password, PBKDF2(desiredKeyLength: length));
+    final key = Key.fromUtf8(hash.split('\$')[hash.split('\$').length - 1].substring(0, length));
 
     return key;
   }

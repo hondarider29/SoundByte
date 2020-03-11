@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:sound_byte/model/user.dart';
 
 class FriendProfile extends StatelessWidget {
 
-  FriendProfile(this._fullName, this._image, this._status);
+  FriendProfile(this._fullName, this._image, this._status, this._id);
 
   final String _fullName;
+  final String _id;
   final String _status;
   final String _image;
 
@@ -164,7 +166,50 @@ class FriendProfile extends StatelessWidget {
       margin: EdgeInsets.only(top: 4.0),
     );
   }
-  
+ 
+  Widget _buildFriendButton(BuildContext context)
+  {
+    User curr = User.currentUser;
+    if (curr.checkFriend(_id))
+    {
+      return FlatButton(
+        onPressed: () { 
+          curr.removeFriend(_id);
+          (context as Element).markNeedsBuild();
+        },
+        color: Colors.white,
+        child: Text(
+          'Remove Friend',
+          style: TextStyle(
+            fontFamily: 'Spectral',
+            color: Colors.blue,
+            fontSize: 20.0,
+            fontWeight: FontWeight.w300,
+          ),
+        )
+      );
+    }
+    else
+    {
+      return RaisedButton(
+        onPressed: () {
+          curr.addFriend(_id);
+          (context as Element).markNeedsBuild();
+        },
+        color: Colors.blue,
+        child: Text(
+          'Add Friend',
+          style: TextStyle(
+            fontFamily: 'Spectral',
+            color: Colors.white,
+            fontSize: 20.0,
+            fontWeight: FontWeight.w300,
+          ),
+        )
+      );
+    }
+  }
+ 
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -181,7 +226,7 @@ class FriendProfile extends StatelessWidget {
                   SizedBox(height: screenSize.height / 6.4),
                   _buildProfileImage(screenSize),
                   _buildFullName(),
-                  _buildStatus(context),
+                  _buildFriendButton(context),
                   _buildStatContainer(),
                   _buildBio(),
                   _buildSeparator(screenSize),
@@ -193,8 +238,4 @@ class FriendProfile extends StatelessWidget {
       ),
     );
   }
-
-
 }
- 
- 

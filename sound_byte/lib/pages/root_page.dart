@@ -84,9 +84,13 @@ class _RootPageState extends State<RootPage> {
       case AuthStatus.LOGGED_IN:
         if (_userId.length > 0 && _userId != null) {
           
-          return FriendScreen(
-            auth: widget.auth,
-            logoutCallback: logoutCallback,
+          return PageView(
+            children: <Widget> [
+              FriendScreen(
+                auth: widget.auth,
+                logoutCallback: logoutCallback,
+              ),
+            ]
           );
         } else
           return LoginSignupPage(

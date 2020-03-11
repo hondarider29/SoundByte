@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sound_byte/pages/chatScreen.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'package:sound_byte/pages/friendProfile.dart';
 import 'package:sound_byte/model/user.dart';
@@ -17,7 +18,8 @@ class FriendScreen extends StatefulWidget {
 
 class _FriendScreenState extends State<FriendScreen> {
   TextEditingController nameTextController;
-  User searchedUser;
+  List<String> ids = User.currentUser.friends;
+  List<String> searchNames;
 
   @override
   void initState() {
@@ -73,13 +75,27 @@ class _FriendScreenState extends State<FriendScreen> {
               //friend search bar bar
               Container(
                 child: TextField(
-                  onChanged: (String input) {
-                    Firestore.instance.collection('Users').where("name", isEqualTo: input).getDocuments().then((querySnapshot)
-                      => searchedUser = new User.full(querySnapshot.documents[0].documentID,
-                                                      querySnapshot.documents[0].data['name'],
-                                                      querySnapshot.documents[0].data['email'],
-                                                      querySnapshot.documents[0].data['friends'],
-                                                      querySnapshot.documents[0].data['chats']));
+                  onSubmitted: (String input) {
+                    if (input == "")
+                    {
+                      setState(() =>
+                        ids = User.currentUser.friends
+                      );
+                    }
+                    else
+                    {
+                      Firestore.instance.collection('Users')
+                        .where("name", isEqualTo: input)
+                        .getDocuments().then(
+                          (querySnapshot) =>
+                            setState(()
+                            {
+                              ids = new List.from([querySnapshot.documents[0].documentID]);
+                              searchNames = new List.from([querySnapshot.documents[0].data['name']]);
+                            }
+                          )
+                        );
+                    }
                   },
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -100,10 +116,16 @@ class _FriendScreenState extends State<FriendScreen> {
 
               //friend list
               ListView.builder(
-                itemCount: User.currentUser == new User.nullUser() ? 0 : User.currentUser.friends.length,
+                itemCount: ids.length,
                 itemBuilder: (BuildContext context, int index) {
-                  String friend = User.currentUser.friends[index];
-                  return friendButton('images/headShot1.jpeg', User.currentUser.getFriendName(friend), "N/A", friend, "N/A");
+                  String user = ids[index];
+                  String name = User.currentUser.getFriendName(user);
+
+                  if (name == null)
+                  {
+                    name = searchNames[index];
+                  }
+                  return friendButton('images/headShot1.jpeg', name, "N/A", user, "N/A");
                 },
                 shrinkWrap: true,
               ),
@@ -130,7 +152,19 @@ class _FriendScreenState extends State<FriendScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => FriendProfile(name, imageName, status),
+                  builder: (context)
+                  {
+                    if (User.currentUser.chats.where((chat) =>
+                      chat.getOtherUser() == id).length == 0)
+                    {
+                      User.currentUser.addChat(id);
+                    }
+                    return ChatScreen(
+                      User.currentUser.chats.firstWhere((chat) =>
+                        chat.getOtherUser() == id
+                      ).chatId
+                    );
+                  },
                 ),
               );
             },
@@ -163,7 +197,7 @@ class _FriendScreenState extends State<FriendScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => FriendProfile(name, imageName, status),
+                          builder: (context) => FriendProfile(name, imageName, status, id),
                         ),
                       );
                     },
