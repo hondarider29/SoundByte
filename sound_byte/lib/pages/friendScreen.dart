@@ -37,12 +37,6 @@ class _FriendScreenState extends State<FriendScreen> {
     }
   }
 
-  final _page = [
-    MusicList(),
-    FriendScreen(),
-    UserProfilePage()
-  ];
-
   int _pageT = 1;
 
   @override
@@ -174,7 +168,7 @@ class _FriendScreenState extends State<FriendScreen> {
     );
   }
 
-  Widget test (int index) {
+  void test (int index) {
     if (index == 0) {
        Navigator.push(
                 context,
