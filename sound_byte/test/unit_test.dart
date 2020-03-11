@@ -3,6 +3,12 @@ import 'package:sound_byte/model/user.dart';
 import 'package:sound_byte/pages/Songs.dart';
 import 'package:sound_byte/pages/musicPlayer.dart';
 
+/* We are unable to test any method that makes a call to the database
+*  as the database requires an app in order to authenticate and connect.
+*  The unit tester is not considered commplete aplication and firebase
+*  refuses the connection.
+*/
+
 void main() {
   test('Testing tests', () {
    expect(true, true);

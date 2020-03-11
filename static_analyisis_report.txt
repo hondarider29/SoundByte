@@ -1,11 +1,4 @@
-   info - This class (or a class which this class inherits from) is marked as '@immutable', but one or more of its instance fields are not final:
-          FriendProfile._pageT - lib\pages\friendProfile.dart:7:7 - must_be_immutable
-   info - The declaration '_buildSeparator' isn't referenced - lib\pages\friendProfile.dart:163:10 - unused_element
-   info - This function has a return type of 'Widget', but doesn't end with a return statement - lib\pages\friendProfile.dart:212:10 - missing_return
-   info - The value of the field '_page' isn't used - lib\pages\friendScreen.dart:40:9 - unused_field
-   info - This function has a return type of 'Widget', but doesn't end with a return statement - lib\pages\friendScreen.dart:177:10 - missing_return
-   info - The value of the field '_userName' isn't used - lib\pages\login_signup_page.dart:25:10 - unused_field
-   info - This function has a return type of 'Widget', but doesn't end with a return statement - lib\pages\musicList.dart:117:10 - missing_return
-   info - The declaration '_buildSeparator' isn't referenced - lib\pages\userProfile.dart:173:12 - unused_element
-   info - This function has a return type of 'Widget', but doesn't end with a return statement - lib\pages\userProfile.dart:224:10 - missing_return
-   info - Unused import: 'dart:async' - test_driver\app_test.dart:7:8 - unused_import
+Analyzing sound_byte...
+No issues found! (ran in 6.2s)
+
+There are no issues in our codebase, we analyzed with "flutter analyze".
