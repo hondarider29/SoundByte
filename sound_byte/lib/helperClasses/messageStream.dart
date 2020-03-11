@@ -18,7 +18,6 @@ class _MessagesStreamState extends State<MessagesStream> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      //TODO: change firestore collection to be actual ones. Here lie demos
       stream: _firestore.collection('Chats').document(widget.chatID).collection('Messages').orderBy('timesent').snapshots(),
       builder: (context, snapshot) {
         //loading screen
