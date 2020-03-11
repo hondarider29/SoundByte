@@ -243,7 +243,7 @@ class FriendProfile extends StatelessWidget {
       appBar: AppBar(
         actions: <Widget>[
           FlatButton(child: Text('Chat',
-            key: Key('Chat'),
+            key: Key("startChat"),
             style: new TextStyle(fontSize: 17.0, 
             color: Colors.white,
             fontFamily: 'Pop'

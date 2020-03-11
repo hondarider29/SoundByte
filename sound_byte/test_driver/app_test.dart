@@ -21,6 +21,8 @@ void main() {
     final playerPage = find.byValueKey('playerPage');
     final singleSong = find.byValueKey('Always');
     final singleBackButton = find.byValueKey('singleBackButton');
+    final friendSearch = find.byValueKey("friendSearchBar");
+    final startChat = find.byValueKey("startChat");
 
     // Connect to the Flutter driver before running any tests.
     setUpAll(() async {
@@ -139,5 +141,37 @@ void main() {
       sleep(Duration(seconds: 2));
     });
 
+    test('Search Friends List', () async {
+      
+      await driver.waitFor(friendSearch);
+      sleep(Duration(seconds: 1));
+      
+      await driver.tap(friendSearch);
+      await driver.enterText("Search for a friend now");
+      print("Searching for a freind");
+      sleep(Duration(seconds: 3));
+    });
+
+    test('Visit Friend Profile of Test User 3', () async {
+      
+      await driver.waitFor(find.text("Test User 3"));
+      sleep(Duration(seconds: 1));
+      
+      await driver.tap(find.text("Test User 3"));
+      print("Visiting Friend Profile of Test User 3");
+
+      sleep(Duration(seconds: 5));
+    });
+
+    test('Start a chat with Given Friend', () async {
+      
+      await driver.waitFor(startChat);
+      sleep(Duration(seconds: 1));
+      
+      await driver.tap(startChat);
+      print("Starting chat with Test User 3");
+
+      sleep(Duration(seconds: 5));
+    });
   });
 }
