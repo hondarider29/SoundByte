@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sound_byte/model/chat.dart';
 
@@ -135,6 +136,7 @@ class User
         .get().then((user) =>
           ifFriend = user.data['name']
         );
+      sleep(const Duration(seconds: 3));
     }
 
     return ifFriend;
