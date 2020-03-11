@@ -9,6 +9,11 @@ import 'package:sound_byte/pages/musicPlayer.dart';
 *  refuses the connection.
 */
 
+/* We have 8 testable funtions in user.dart of which 6 are tested,
+*   hash was not conidered needed to tested as it isn't used, and 
+*   for getFriendName we can't populate the private map it uses from the unit tester
+*/
+
 void main() {
   test('Testing tests', () {
    expect(true, true);
@@ -62,6 +67,24 @@ void main() {
     User.clearCurrentUser();
 
     expect(User.currentUser, new User.nullUser());
+  });
+
+  test('Testing checkFriend', () {
+    List<String> friends = ['randomId'];
+    User test = new User.full('unittester01', 'unittester', 'unittest@1.non', friends, null);
+
+    expect(test.checkFriend('randomId'), true);
+    expect(test.checkFriend('notRandomId'), false);
+  });
+
+  test('Testing user equality', () {
+    User test1 = new User.full('unittester01', 'unittester', 'unittest@1.non', null, null);
+    User test2 = new User.full('unittester01', 'unittesterNew', 'unittest@1.com', null, null);
+    User test3 = new User.full('unittester02', 'unittesterNew', 'unittest@1.com', null, null);
+
+    expect(test1 == test1, true);
+    expect(test1 == test3, false);
+    expect(test2 == test3, false);
   });
 
   test('Testing new Song', () {
