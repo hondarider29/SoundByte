@@ -196,7 +196,7 @@ class FriendProfile extends StatelessWidget {
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.wifi),
+            icon: Icon(Icons.tag_faces),
             title: Text('Profile',
             style: TextStyle(
               fontFamily: 'Pop'

@@ -21,7 +21,9 @@ class _MusicPlayerState extends State<MusicPlayer>{
  
 
   _MusicPlayerState(this.title, this.artist, this.image);
-
+  Color _iconColorBM = Colors.pink;
+  Color _iconColorRP = Colors.pink;
+  Color _iconColorSH = Colors.pink;
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;  
@@ -38,7 +40,6 @@ class _MusicPlayerState extends State<MusicPlayer>{
 
 Widget buildMain (Size screenSize, title, artist, image, BuildContext context) {
   double value1 = 0.0;
-  Color _iconColor = Colors.pink;
     return Scaffold(
       backgroundColor: Colors.blue,
         body: Column(
@@ -203,26 +204,47 @@ Widget buildMain (Size screenSize, title, artist, image, BuildContext context) {
               children: <Widget>[
                 IconButton(
                   icon: Icon(Icons.bookmark),
-                    color: _iconColor,
+                    color: _iconColorBM,
                     onPressed: () {
                       setState(() {
-                        _iconColor = Colors.white;
+                       if(_iconColorBM == Colors.white){
+                            _iconColorBM = Colors.pink;
+                          }
+                          else{
+                            _iconColorBM = Colors.white;
+                          }
                        });
                     },
                 ),
               IconButton(
-                              icon: Icon(Icons.shuffle),
-                              color: Colors.pink,
-                              onPressed: () {
-                                
-                              },
+                      icon: Icon(Icons.shuffle),
+                      color: _iconColorSH,
+                      onPressed: () {
+                            setState(() {
+                              if(_iconColorSH == Colors.white){
+                            _iconColorSH = Colors.pink;
+                          }
+                          else{
+                            _iconColorSH = Colors.white;
+                          }
+                        
+                       });    
+                      },
               ),
               IconButton(
-                              icon: Icon(Icons.repeat),
-                              color: Colors.pink,
-                              onPressed: () {
-                                
-                              },
+                     icon: Icon(Icons.repeat),
+                    color: _iconColorRP,
+                      onPressed: () {
+                        setState(() {
+                          if(_iconColorRP == Colors.white){
+                            _iconColorRP = Colors.pink;
+                          }
+                          else{
+                            _iconColorRP = Colors.white;
+                          }
+                        
+                       });     
+                      },
               ),
             ],
           ),
