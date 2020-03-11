@@ -119,6 +119,27 @@ class User
     return this._idToName[uid];
   }
 
+  String getUserName(String uid)
+  {
+    if (uid == this.userID)
+    {
+      return this.userName;
+    }
+
+    String ifFriend = getFriendName(uid);
+
+    if (ifFriend == null)
+    {
+      Firestore.instance.collection('Users')
+        .document(uid)
+        .get().then((user) =>
+          ifFriend = user.data['name']
+        );
+    }
+
+    return ifFriend;
+  }
+
   bool checkFriend(String id)
   {
     return this.friends.contains(id);

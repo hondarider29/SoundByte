@@ -43,6 +43,7 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       //messages and chat bar
       body: Column(
+        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[

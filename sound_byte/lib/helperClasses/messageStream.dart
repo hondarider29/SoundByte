@@ -18,7 +18,6 @@ class _MessagesStreamState extends State<MessagesStream> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      //TODO: change firestore collection to be actual ones. Here lie demos
       stream: _firestore.collection('Chats').document(widget.chatID).collection('Messages').orderBy('timesent').snapshots(),
       builder: (context, snapshot) {
         //loading screen
@@ -35,7 +34,8 @@ class _MessagesStreamState extends State<MessagesStream> {
           List<MessageBubble> messageBubbles = [];
           for (var message in messages) {
             final messageText = message.data['data'];
-            final senderText = message.data['senderID'];
+            final senderId = message.data['senderID'];
+            final senderText = User.currentUser.getUserName(senderId);
             final timeStamp = message.data['timesent'];
 
             final currentUser = User.currentUser.userID;
@@ -47,7 +47,7 @@ class _MessagesStreamState extends State<MessagesStream> {
                   text: messageText,
                   sender: senderText,
                   timeStamp: timeStamp,
-                  isMe: currentUser == senderText,
+                  isMe: currentUser == senderId,
                 ),
               );
             }
@@ -55,10 +55,12 @@ class _MessagesStreamState extends State<MessagesStream> {
 
           //actual displaying of the messages
           return Expanded(
-            child: ListView(
-              reverse: true,
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-              children: messageBubbles,
+            child: Container(
+              child: ListView(
+                reverse: true,
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                children: messageBubbles,
+              ),
             ),
           );
         }
