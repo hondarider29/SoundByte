@@ -163,11 +163,15 @@ class User
     this._idToName.remove(id);
   }
 
-  // Takes a chat ID and adds it from the chats list
-  void addChat(String id)
+  // Takes a user ID and adds it to the chats list
+  void addChat(String uid)
   {
-    this.chats.add(new Chat(id));
-    this._reference.updateData({'chats' : FieldValue.arrayUnion([id])});
+    Chat newChat = new Chat(uid);
+    this._reference.updateData({'chats' : FieldValue.arrayUnion([newChat.chatId])});
+    Firestore.instance.collection('Users')
+      .document(uid)
+      .updateData({'chats' : FieldValue.arrayUnion([newChat.chatId])});
+    this.chats.add(newChat);
   }
 
   // Takes a chat ID and removes it from the chats list

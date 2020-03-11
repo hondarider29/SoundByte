@@ -167,13 +167,16 @@ class FriendProfile extends StatelessWidget {
     );
   }
  
-  Widget _buildFriendButton()
+  Widget _buildFriendButton(BuildContext context)
   {
     User curr = User.currentUser;
     if (curr.checkFriend(_id))
     {
       return FlatButton(
-        onPressed: () { curr.removeFriend(_id); },
+        onPressed: () { 
+          curr.removeFriend(_id);
+          (context as Element).markNeedsBuild();
+        },
         color: Colors.white,
         child: Text(
           'Remove Friend',
@@ -189,7 +192,10 @@ class FriendProfile extends StatelessWidget {
     else
     {
       return RaisedButton(
-        onPressed: () { curr.addFriend(_id); },
+        onPressed: () {
+          curr.addFriend(_id);
+          (context as Element).markNeedsBuild();
+        },
         color: Colors.blue,
         child: Text(
           'Add Friend',
@@ -220,7 +226,7 @@ class FriendProfile extends StatelessWidget {
                   SizedBox(height: screenSize.height / 6.4),
                   _buildProfileImage(screenSize),
                   _buildFullName(),
-                  _buildFriendButton(),
+                  _buildFriendButton(context),
                   _buildStatContainer(),
                   _buildBio(),
                   _buildSeparator(screenSize),

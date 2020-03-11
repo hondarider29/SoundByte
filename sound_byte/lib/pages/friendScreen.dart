@@ -152,11 +152,19 @@ class _FriendScreenState extends State<FriendScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ChatScreen(
-                    User.currentUser.chats.firstWhere((chat) =>
-                      chat.getOtherUser() == id
-                    ).chatId
-                  ),
+                  builder: (context)
+                  {
+                    if (User.currentUser.chats.where((chat) =>
+                      chat.getOtherUser() == id).length == 0)
+                    {
+                      User.currentUser.addChat(id);
+                    }
+                    return ChatScreen(
+                      User.currentUser.chats.firstWhere((chat) =>
+                        chat.getOtherUser() == id
+                      ).chatId
+                    );
+                  },
                 ),
               );
             },

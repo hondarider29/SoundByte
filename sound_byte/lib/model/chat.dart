@@ -6,6 +6,7 @@ class Chat
   String chatId;
   List<String> participants = [];
   
+  /// Creates a new chat based on a given user ID
   Chat(String userId)
   {
     participants.add(User.currentUser.userID);
@@ -14,8 +15,12 @@ class Chat
     try
     {
       Firestore.instance.collection('Chats')
-        .where('participants', arrayContains: userId)
-        .where('participants', arrayContains: User.currentUser.userID)
+        .where('participants', isEqualTo: [userId, User.currentUser.userID])
+        .getDocuments().then((querySnapshot) =>
+            chatId = querySnapshot.documents[0].documentID
+          );
+      Firestore.instance.collection('Chats')
+        .where('participants', isEqualTo: [User.currentUser.userID, userId])
         .getDocuments().then((querySnapshot) =>
             chatId = querySnapshot.documents[0].documentID
           );
@@ -26,6 +31,17 @@ class Chat
     }
   }
 
+  /// Creates a new chat on Firebase using the given user ID
+  /// Not really functional, so try to use only existing chats
+  Chat.createNew(String uId)
+  {
+    participants.add(User.currentUser.userID);
+    participants.add(uId);
+    
+    _createEntries();
+  }
+
+  /// Creates a chat based on a given chat ID
   Chat.fromId(String chatId)
   {
     this.chatId = chatId;
@@ -33,6 +49,26 @@ class Chat
     _setParticipants(chatId);
   }
 
+  /// Creates the entries in firebase for Chat.createNew()
+  Future<void> _createEntries() async
+  {
+    await Firestore.instance.collection('Chats')
+      .add({
+        'participants': participants 
+      });
+    await Firestore.instance.collection('Chats')
+      .where('participants', isEqualTo: participants)
+      .getDocuments().then((query) =>
+        chatId = query.documents[0].documentID
+      );
+    await Firestore.instance.collection('Chats')
+      .document(chatId)
+      .collection('Messages')
+      .document()
+      .setData({});
+  }
+
+  /// Gets the participants from firebase
   Future<void> _setParticipants(String chatId) async
   {
     try
@@ -49,6 +85,7 @@ class Chat
     }
   }
 
+  /// Returns the name of the user who is not the current user
   String getOtherUser()
   {
     String otherId = participants.firstWhere((user) =>
@@ -58,4 +95,6 @@ class Chat
   }
 
   bool operator ==(o) => this.chatId == o.chatId;
+
+  int get hashCode => this.chatId.hashCode;
 }
