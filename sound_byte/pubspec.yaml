@@ -39,6 +39,9 @@ flutter:
   - family: Mont
     fonts:
     - asset: fonts/Montserrat-Black.ttf
+  - family: Pop
+    fonts:
+    - asset: fonts/Poppins-Regular.ttf
 
   assets:
   - assets/waves.png
