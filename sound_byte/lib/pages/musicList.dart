@@ -114,7 +114,7 @@ var rad = 'https://i.pinimg.com/originals/86/7c/5f/867c5fcbaac0e41e10bd2de274d82
       );
   }
 
-  Widget test (int index, BuildContext context) {
+  void test (int index, BuildContext context) {
     if (index == 1) {
        Navigator.push(
                 context,
