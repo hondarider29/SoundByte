@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sound_byte/model/chat.dart';
 
 class User
 {
@@ -11,7 +12,7 @@ class User
   List<String> friends;
   Map<String, String> _idToName;
   // List of Chats by string based ID
-  List<String> chats;
+  List<Chat> chats;
   // Document Refrence for the user
   DocumentReference _reference;
 
@@ -29,7 +30,7 @@ class User
     this.userEmail = email;
     this.friends = new List<String>();
     this._idToName = new Map<String, String>();
-    this.chats = new List<String>();
+    this.chats = new List<Chat>();
     this._reference = null;
   }
 
@@ -63,7 +64,9 @@ class User
     }
     else
     {
-      this.chats = chats;
+      chats.forEach((chatId) =>
+        this.chats.add(new Chat(chatId))
+      );
     }
   }
 
@@ -139,14 +142,16 @@ class User
   // Takes a chat ID and adds it from the chats list
   void addChat(String id)
   {
-    this.chats.add(id);
+    this.chats.add(new Chat(id));
     this._reference.updateData({'chats' : FieldValue.arrayUnion([id])});
   }
 
   // Takes a chat ID and removes it from the chats list
   void removeChat(String id)
   {
-    this.chats.remove(id);
+    this.chats.removeWhere((chat) =>
+      chat.chatId == id
+    );
     this._reference.updateData({'chats' : FieldValue.arrayRemove([id])});
   }
 

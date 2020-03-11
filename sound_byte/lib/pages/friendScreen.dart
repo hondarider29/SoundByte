@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sound_byte/pages/chatScreen.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'package:sound_byte/pages/friendProfile.dart';
 import 'package:sound_byte/model/user.dart';
@@ -130,7 +131,11 @@ class _FriendScreenState extends State<FriendScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => FriendProfile(name, imageName, status),
+                  builder: (context) => ChatScreen(
+                    User.currentUser.chats.firstWhere((chat) =>
+                      chat.getOtherUser().userID == id
+                    ).chatId
+                  ),
                 ),
               );
             },

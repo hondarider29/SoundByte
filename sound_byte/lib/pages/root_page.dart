@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sound_byte/pages/login_signup_page.dart';
 import 'package:sound_byte/services/authentication.dart';
 import 'package:sound_byte/pages/friendScreen.dart';
+import 'package:sound_byte/pages/chatList.dart';
 import 'package:sound_byte/model/user.dart';
 
 enum AuthStatus {
@@ -84,9 +85,13 @@ class _RootPageState extends State<RootPage> {
       case AuthStatus.LOGGED_IN:
         if (_userId.length > 0 && _userId != null) {
           
-          return FriendScreen(
-            auth: widget.auth,
-            logoutCallback: logoutCallback,
+          return PageView(
+            children: <Widget> [
+              FriendScreen(
+                auth: widget.auth,
+                logoutCallback: logoutCallback,
+              ),
+            ]
           );
         } else
           return LoginSignupPage(
