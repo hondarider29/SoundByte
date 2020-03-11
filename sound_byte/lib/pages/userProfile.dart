@@ -169,16 +169,6 @@ class _UserProfilePageState extends State<UserProfilePage>
     );
   }
 
-
-    Widget _buildSeparator(Size screenSize) {
-    return Container(
-      width: screenSize.width / 1.6,
-      height: 2.0,
-      color: Colors.black54,
-      margin: EdgeInsets.only(top: 4.0),
-    );
-  }
-
   int _pageT = 2;
   Widget nav (BuildContext context) {
     return Container(
@@ -221,7 +211,7 @@ class _UserProfilePageState extends State<UserProfilePage>
       );
   }
 
-  Widget test (int index, BuildContext context) {
+  void test (int index, BuildContext context) {
     if (index == 0) {
        Navigator.push(
                 context,
