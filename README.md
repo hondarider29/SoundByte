@@ -39,29 +39,12 @@ Continuous integration is performed by [TravisCI](https://travis-ci.com/hondarid
 
 ## Static Code Analysis
 
-All static code analysis is done using the built-in Flutter analyzer, which can be run using ```flutter analyze```, and is output to the file ```static_analysis_report.txt```.
+All static code analysis is done using the built-in Flutter analyzer, which can be run using ```flutter analyze```, and is output to the file ```static_analysis_report.txt``` which can be found at https://github.com/hondarider29/SoundByte/blob/master/static_analyisis_report.txt.
 
-## Getting Started
-- To get started, make sure to download a text editor or an IDE that you are comfortable with such as VS Code. 
-- Next, there needs to be the installation of Dart and Flutter. Each can be installed individually. However installing the Flutter SDK automatically install Dart on the user's machine. Links to download the Dart and Flutter SDK can be found in the Requirements section of the README. 
-- Once clicked on the install Flutter link, the user should chose for what operating system to install the framework and follow the steps and run the commands on that page. 
-- The user should then clone the repository using "git clone https://github.com/hondarider29/SoundByte.git" which will then create a clone of the repository on the user's machine.
-- The user should then enter the folder and run the command  "flutter doctor" to check for dependencies and install the appropriate dependencies.
-- At this point the user should open up the simulator whether from Android or IOS using their simulators respectively by running the command "open -a simulator". 
-- The user should then run the command "flutter run" which would then start the flutter framework and compile the code and cause the flutter machine to start running.
-
-
-## Coding Style
-
-https://dart.dev/guides/language/effective-dart/style
-
-## Static Code Analysis
-
-All static code analysis is done using the built-in Flutter analyzer, which can be run using ```flutter analyze```
 
 ## Acceptance Testing
 
-Flutter's form of acceptance testing is integration testing. A flutter integration test involves a flutter driver controlling the application and navigating through the application checking for errors and mistakes. Our Acceptance Tests are located in the 'test_driver' folder in a file 'app_test.dart'. To run these tests run the following command from the command line, "flutter drive --target=test_driver/app.dart".
+Flutter's form of acceptance testing is integration testing. A flutter integration test involves a flutter driver controlling the application and navigating through the application checking for errors and mistakes. Our Acceptance Tests are located in the 'test_driver' folder in a file 'app_test.dart' which can be found at https://github.com/hondarider29/SoundByte/blob/master/sound_byte/test_driver/app_test.dart. To run these tests run the following command from the command line, "flutter drive --target=test_driver/app.dart".
 
 ## Getting Started
 - To get started, make sure to download a text editor or an IDE that you are comfortable with such as VS Code. 
