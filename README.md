@@ -44,11 +44,11 @@ All static code analysis is done using the built-in Flutter analyzer, which can 
 
 ## Acceptance Testing
 
-Flutter's form of acceptance testing is integration testing. A flutter integration test involves a flutter driver controlling the application and navigating through the application checking for errors and mistakes. Our Acceptance Tests are located in the 'test_driver' folder in a file 'app_test.dart' which can be found at https://github.com/hondarider29/SoundByte/blob/master/sound_byte/test_driver/app_test.dart. To run these tests run the following command from the command line, "flutter drive --target=test_driver/app.dart".
+Flutter's form of acceptance testing is integration testing. A flutter integration test involves a flutter driver controlling the application and navigating through the application checking for errors and mistakes. Our Acceptance Tests are located in the 'test_driver' folder in a file 'app_test.dart' which can be found [here] (https://github.com/hondarider29/SoundByte/blob/master/sound_byte/test_driver/app_test.dart). To run these tests run the following command from the command line, "flutter drive --target=test_driver/app.dart".
 
 ## Unit Tests
 
-Our unit tests test almost every portion of the code that either do not have any communication with the Firebase/Firestore database or don't have any Widget Component. The Unit Tests can be found in https://github.com/hondarider29/SoundByte/blob/master/sound_byte/test/unit_test.dart.
+Our unit tests test almost every portion of the code that either do not have any communication with the Firebase/Firestore database or don't have any Widget Component. The Unit Tests can be found [here] (https://github.com/hondarider29/SoundByte/blob/master/sound_byte/test/unit_test.dart).
 
 ## Getting Started
 - To get started, make sure to download a text editor or an IDE that you are comfortable with such as VS Code. 
